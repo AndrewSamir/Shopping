@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Shopping</string>
+    <string name="done">done</string>
+    <string name="agree">Agree</string>
+    <string name="internet_connection">No Internet Connection</string>
+    <string name="mobile">Mobile</string>
+    <string name="password">Password</string>
+    <string name="enter">Login</string>
+    <string name="forget_password_q">forget password ?</string>
+    <string name="press_here">Press Here</string>
+    <string name="title_activity_maps">Map</string>
+</resources>
