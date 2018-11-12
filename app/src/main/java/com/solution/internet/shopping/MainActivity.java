@@ -32,7 +32,11 @@ import retrofit2.Call;
 public class MainActivity extends AppCompatActivity implements HandleRetrofitResp, Validator.ValidationListener
 {
 
+    //region fields
     Validator validator;
+    //endregion
+
+    //region views
     @NotEmpty
     @BindView(R.id.edtLoginPhone)
     EditText edtLoginPhone;
@@ -41,6 +45,9 @@ public class MainActivity extends AppCompatActivity implements HandleRetrofitRes
     @BindView(R.id.edtLoginPassword)
     EditText edtLoginPassword;
 
+    //endregion
+
+    //region life cycle
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -62,12 +69,18 @@ public class MainActivity extends AppCompatActivity implements HandleRetrofitRes
         validator.setValidationListener(this);
     }
 
+    //endregion
+
+    //region clicks
     @OnClick(R.id.btnLoginEnter)
     public void onClickbtnLoginEnter()
     {
         validator.validate();
     }
 
+    //endregion
+
+    //region call response
     @Override
     public void onResponseSuccess(String flag, Object o)
     {
@@ -94,6 +107,9 @@ public class MainActivity extends AppCompatActivity implements HandleRetrofitRes
 
     }
 
+    //endregion
+
+    //region calls
     private void callLogin()
     {
         ModelLoginRequest modelLoginRequest = new ModelLoginRequest();
@@ -103,6 +119,8 @@ public class MainActivity extends AppCompatActivity implements HandleRetrofitRes
         Call call = HandleCalls.restShopping.getClientService().callLogin(modelLoginRequest);
         HandleCalls.getInstance(this).callRetrofit(call, DataEnum.callLogin.name(), true);
     }
+
+    //endregion
 
     //region validation
 
