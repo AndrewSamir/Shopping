@@ -10,7 +10,7 @@
 
 
     <Button
-        android:id="@+id/btnLogin"
+        android:id="@+id/btnLoginMain"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/_10sdp"
@@ -26,7 +26,7 @@
         android:layout_marginEnd="@dimen/_10sdp"
         android:layout_marginStart="@dimen/_10sdp"
         android:layout_marginTop="@dimen/_10sdp"
-        android:text="btnSignUp"
+        android:text="SignUp"
         android:textColor="@color/colorBlack" />
 
     <Button
@@ -36,7 +36,37 @@
         android:layout_marginEnd="@dimen/_10sdp"
         android:layout_marginStart="@dimen/_10sdp"
         android:layout_marginTop="@dimen/_10sdp"
-        android:text="btnDelegate"
+        android:text="Delegate"
+        android:textColor="@color/colorBlack" />
+
+    <Button
+        android:id="@+id/btnAddProduct"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:text="add product"
+        android:textColor="@color/colorBlack" />
+
+    <Button
+        android:id="@+id/btnDelegateDetails"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:text="Delegate Details"
+        android:textColor="@color/colorBlack" />
+
+    <Button
+        android:id="@+id/btnMap"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:text="Map"
         android:textColor="@color/colorBlack" />
 
 </LinearLayout>

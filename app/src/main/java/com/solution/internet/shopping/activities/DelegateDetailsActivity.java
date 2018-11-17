@@ -8,9 +8,20 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.solution.internet.shopping.R;
+import com.solution.internet.shopping.interfaces.HandleRetrofitResp;
+import com.solution.internet.shopping.retorfitconfig.HandleCalls;
 
-public class DelegateDetailsActivity extends AppCompatActivity {
+public class DelegateDetailsActivity extends AppCompatActivity implements HandleRetrofitResp {
 
+    //region fields
+    //endregion
+
+    //region views
+
+
+    //endregion
+
+    //region life cycle
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,14 +29,47 @@ public class DelegateDetailsActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        HandleCalls.getInstance(this).setonRespnseSucess(this);
+    }
+
+    //endregion
+
+    //region clicks
+
+
+    //endregion
+
+    //region calls response
+    @Override
+    public void onResponseSuccess(String flag, Object o) {
+
+    }
+
+    @Override
+    public void onNoContent(String flag, int code) {
+
+    }
+
+    @Override
+    public void onResponseSuccess(String flag, Object o, int position) {
+
+    }
+    //endregion
+
+    //region calls
+
+    //endregion
+
+    //region functions
+
+    private void adjustView() {
+
+    }
+    //endregion
 
 }

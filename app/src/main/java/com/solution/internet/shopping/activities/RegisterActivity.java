@@ -1,5 +1,6 @@
 package com.solution.internet.shopping.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -36,27 +37,27 @@ public class RegisterActivity extends AppCompatActivity implements HandleRetrofi
     //endregion
 
     //region views
-    @NotEmpty(messageResId = R.id.required)
+    @NotEmpty(messageResId = R.string.required)
     @BindView(R.id.edtRegisterFirstName)
     EditText edtRegisterFirstName;
 
-    @NotEmpty(messageResId = R.id.required)
+    @NotEmpty(messageResId = R.string.required)
     @BindView(R.id.edtRegisterLastName)
     EditText edtRegisterLastName;
 
-    @NotEmpty(messageResId = R.id.required)
+    @NotEmpty(messageResId = R.string.required)
     @BindView(R.id.edtRegisterPostalCode)
     EditText edtRegisterPostalCode;
 
-    @Email(messageResId = R.id.correct_mail)
+    @Email(messageResId = R.string.correct_mail)
     @BindView(R.id.edtRegisterMail)
     EditText edtRegisterMail;
 
-    @Password(messageResId = R.id.required)
+    @Password(messageResId = R.string.required)
     @BindView(R.id.edtRegisterPassword)
     EditText edtRegisterPassword;
 
-    @ConfirmPassword(messageResId = R.id.correct_password)
+    @ConfirmPassword(messageResId = R.string.correct_password)
     @BindView(R.id.edtRegisterConfirmPassword)
     EditText edtRegisterConfirmPassword;
 
@@ -66,7 +67,7 @@ public class RegisterActivity extends AppCompatActivity implements HandleRetrofi
     @BindView(R.id.chRegisterFemale)
     CheckBox chRegisterFemale;
 
-    @NotEmpty(messageResId = R.id.required)
+    @NotEmpty(messageResId = R.string.required)
     @BindView(R.id.edtRegisterDescription)
     EditText edtRegisterDescription;
     //endregion
@@ -98,12 +99,12 @@ public class RegisterActivity extends AppCompatActivity implements HandleRetrofi
 
     @OnClick(R.id.btnRegisterRegister)
     public void onClickbtnRegisterRegister() {
-        // TODO submit data to server...
+        validator.validate();
     }
 
     @OnClick(R.id.tvRegisterLogin)
     public void onClicktvRegisterLogin() {
-        // TODO submit data to server...
+        startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
     }
 
     //endregion

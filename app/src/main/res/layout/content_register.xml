@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorWhite"
-    android:paddingBottom="@dimen/_20sdp"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".activities.RegisterActivity"
     tools:showIn="@layout/activity_register">
@@ -166,17 +165,22 @@
             android:text="@string/agree_policy" />
 
         <LinearLayout
+            android:layout_marginBottom="@dimen/_10sdp"
             android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:gravity="center"
             android:layout_height="wrap_content"
             android:layoutDirection="rtl"
             android:orientation="horizontal">
 
             <TextView
+                android:layout_margin="@dimen/_5sdp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/did_you_have_account" />
 
             <TextView
+                android:layout_margin="@dimen/_5sdp"
                 android:id="@+id/tvRegisterLogin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

@@ -1,6 +1,3 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <item name="required" type="id">هذا الحقل مطلوب</item>
-    <item name="correct_mail" type="id">أدخل بريد اليكتروني صحيح</item>
-    <item name="correct_password" type="id">كامة المرور غير متطابقة</item>
 </resources>

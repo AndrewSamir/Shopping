@@ -28,4 +28,7 @@
     <string name="title_activity_add_product">AddProductActivity</string>
     <string name="title_activity_delegate_details">DelegateDetailsActivity</string>
     <string name="edit_details">تعديل بيانات</string>
+    <string name="required" >هذا الحقل مطلوب</string>
+    <string name="correct_mail" >أدخل بريد اليكتروني صحيح</string>
+    <string name="correct_password" >كامة المرور غير متطابقة</string>
 </resources>

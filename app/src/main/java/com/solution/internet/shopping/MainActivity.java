@@ -12,7 +12,9 @@ import com.mobsandgeeks.saripaar.ValidationError;
 import com.mobsandgeeks.saripaar.Validator;
 import com.mobsandgeeks.saripaar.annotation.NotEmpty;
 import com.mobsandgeeks.saripaar.annotation.Password;
+import com.solution.internet.shopping.activities.AddProductActivity;
 import com.solution.internet.shopping.activities.DelegateActivity;
+import com.solution.internet.shopping.activities.DelegateDetailsActivity;
 import com.solution.internet.shopping.activities.LoginActivity;
 import com.solution.internet.shopping.activities.MapsActivity;
 import com.solution.internet.shopping.activities.RegisterActivity;
@@ -61,8 +63,8 @@ public class MainActivity extends AppCompatActivity {
     //endregion
 
     //region clicks
-    @OnClick(R.id.btnLoginEnter)
-    public void onClickbtnLoginEnter() {
+    @OnClick(R.id.btnLoginMain)
+    public void onClickbtnLoginMain() {
         startActivity(new Intent(MainActivity.this, LoginActivity.class));
     }
 
@@ -74,6 +76,21 @@ public class MainActivity extends AppCompatActivity {
     @OnClick(R.id.btnDelegate)
     public void onClickbtnDelegate() {
         startActivity(new Intent(MainActivity.this, DelegateActivity.class));
+    }
+
+    @OnClick(R.id.btnAddProduct)
+    public void onClickaddprodct() {
+        startActivity(new Intent(MainActivity.this, AddProductActivity.class));
+    }
+
+    @OnClick(R.id.btnDelegateDetails)
+    public void onClickbtnDelegateDetailst() {
+        startActivity(new Intent(MainActivity.this, DelegateDetailsActivity.class));
+    }
+
+    @OnClick(R.id.btnMap)
+    public void onClickbtnMap() {
+        startActivity(new Intent(MainActivity.this, MapsActivity.class));
     }
     //endregion
 }

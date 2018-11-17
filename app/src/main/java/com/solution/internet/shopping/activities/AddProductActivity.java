@@ -24,15 +24,15 @@ public class AddProductActivity extends AppCompatActivity implements HandleRetro
 
     //region views
 
-    @NotEmpty(messageResId = R.id.required)
+    @NotEmpty(messageResId = R.string.required)
     @BindView(R.id.tvAddProductTitle)
     EditText tvAddProductTitle;
 
-    @NotEmpty(messageResId = R.id.required)
+    @NotEmpty(messageResId = R.string.required)
     @BindView(R.id.tvAddProductPrice)
     EditText tvAddProductPrice;
 
-    @NotEmpty(messageResId = R.id.required)
+    @NotEmpty(messageResId = R.string.required)
     @BindView(R.id.tvAddProductContent)
     EditText tvAddProductContent;
 
