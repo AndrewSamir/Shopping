@@ -37,7 +37,23 @@
 
         <activity
             android:name=".activities.MapsActivity"
-            android:label="@string/title_activity_maps"></activity>
+            android:label="@string/title_activity_maps" />
+        <activity
+            android:name=".activities.RegisterActivity"
+            android:label="@string/title_activity_register"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.DelegateActivity"
+            android:label="@string/title_activity_delegate"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.AddProductActivity"
+            android:label="@string/title_activity_add_product"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.DelegateDetailsActivity"
+            android:label="@string/title_activity_delegate_details"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

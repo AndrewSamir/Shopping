@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".activities.DelegateDetailsActivity"
+    tools:showIn="@layout/activity_delegate_details">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_5sdp"
+        android:background="@color/colorAccent"
+        android:layoutDirection="rtl"
+        android:orientation="horizontal"
+        android:padding="@dimen/_3sdp"
+        android:weightSum="4">
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imgDelegateDetails"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_60sdp"
+                android:padding="@dimen/_5sdp"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/ic_launcher" />
+
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/tvDelegateDetailsName"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:gravity="center_vertical"
+            android:lines="1"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/_13sdp"
+            tools:text="اسم المندوب" />
+
+
+        <TextView
+            android:id="@+id/tvDelegateDetailsSpecialRequest"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="@dimen/_3sdp"
+            android:layout_weight="1"
+            android:background="@color/colorBlack"
+            android:gravity="center"
+            android:padding="@dimen/_5sdp"
+            android:text="@string/edit_details"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/_13sdp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/colorAccent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layoutDirection="rtl"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="@dimen/_7sdp"
+            android:text="الأعلانات المفعلة"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/_14sdp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="@dimen/_7sdp"
+            android:text="0"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/_14sdp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/colorAccent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layoutDirection="rtl"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="@dimen/_7sdp"
+            android:text="الأعلانات الغير المفعلة"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/_14sdp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="@dimen/_7sdp"
+            android:text="0"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/_14sdp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/colorAccent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layoutDirection="rtl"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="@dimen/_7sdp"
+            android:text="رصيد فالحساب"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/_14sdp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="@dimen/_7sdp"
+            android:text="0.0 رس"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/_14sdp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/colorAccent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layoutDirection="rtl"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="@dimen/_7sdp"
+            android:text="تعليقات العملاء"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/_14sdp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="@dimen/_7sdp"
+            android:text="0 تعليقات "
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/_14sdp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/colorAccent" />
+</LinearLayout>

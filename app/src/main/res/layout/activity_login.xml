@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="@dimen/_15sdp">
+
+    <EditText
+        android:id="@+id/edtLoginPhone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:hint="@string/mobile"
+        android:inputType="phone"
+        android:padding="@dimen/_15sdp"
+        tools:ignore="UnusedAttribute" />
+
+    <EditText
+        android:id="@+id/edtLoginPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_7sdp"
+        android:gravity="right"
+        android:hint="@string/password"
+        android:inputType="textPassword"
+        android:padding="@dimen/_15sdp"
+        tools:ignore="RtlHardcoded,UnusedAttribute" />
+
+    <Button
+        android:id="@+id/btnLoginEnter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_30sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_30sdp"
+        android:text="@string/enter"
+        android:textColor="@color/colorWhite" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layoutDirection="rtl"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/forget_password_q"
+            android:textColor="@color/colorBlack" />
+
+        <TextView
+            android:id="@+id/tvLoginPressHereForgetPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_3sdp"
+            android:text="@string/press_here"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+</LinearLayout>

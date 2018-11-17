@@ -9,4 +9,23 @@
     <string name="forget_password_q">forget password ?</string>
     <string name="press_here">Press Here</string>
     <string name="title_activity_maps">Map</string>
+    <string name="title_activity_register">RegisterActivity</string>
+    <string name="first_name">الأسم الأول*</string>
+    <string name="last_name">الأسم الأخير*</string>
+    <string name="postal_code">الرقم البريدي*</string>
+    <string name="mail">البريد الإلكتروني*</string>
+    <string name="password_astric">كلمة السر*</string>
+    <string name="confirm_password">إعادة كلمة السر*</string>
+    <string name="male">ذكر</string>
+    <string name="female">أنثي</string>
+    <string name="description">أوصف السلعة المراد بيعها*</string>
+    <string name="create_new_account">إنشاء حساب جديد</string>
+    <string name="agree_policy">من خلال إنشاء حساب جديد فإنك توافق علي شروط الإستخدام وإشعار الخصوصوية في تسوق</string>
+    <string name="did_you_have_account">هل لديك حساب حالي؟</string>
+    <string name="login">تسجيل الدخول</string>
+    <string name="title_activity_delegate">DelegateActivity</string>
+    <string name="special_request">طلب خاص</string>
+    <string name="title_activity_add_product">AddProductActivity</string>
+    <string name="title_activity_delegate_details">DelegateDetailsActivity</string>
+    <string name="edit_details">تعديل بيانات</string>
 </resources>

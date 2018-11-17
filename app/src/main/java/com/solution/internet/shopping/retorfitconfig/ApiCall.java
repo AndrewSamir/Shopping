@@ -1,5 +1,6 @@
 package com.solution.internet.shopping.retorfitconfig;
 
+import com.solution.internet.shopping.models.ModelAddProductRequest.ModelAddProductRequest;
 import com.solution.internet.shopping.models.ModelCommenResponse.ModelCommenResponse;
 import com.solution.internet.shopping.models.ModelLoginRequest.ModelLoginRequest;
 import com.solution.internet.shopping.models.ModelLoginResponse.ModelLoginResponse;
@@ -62,6 +63,10 @@ public interface ApiCall
 
     @GET(Constant.subUrl + "ProductsByUser/{id}")
     Call<ModelCommenResponse> callProductsByUser(@Path("id") int id);
+
+    /*@Multipart*/
+    @POST(Constant.subUrl + "products/add")
+    Call<ModelCommenResponse> callProductsAdd(/*@Part MultipartBody.Part photo,*/ @Body ModelAddProductRequest modelAddProductRequest);
 
     //endregion
 }
