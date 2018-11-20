@@ -21,8 +21,7 @@ import retrofit2.http.Part;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
-public interface ApiCall
-{
+public interface ApiCall {
 
     //region user
     @POST(Constant.subUrl + "user/login")
@@ -33,6 +32,9 @@ public interface ApiCall
 
     @GET(Constant.subUrl + "map")
     Call<ModelCommenResponse> callMap();
+
+    @GET(Constant.subUrl + "user/profile")
+    Call<ModelCommenResponse> callGetProfile();
 
     @GET(Constant.subUrl + "delivery/{id}")
     Call<ModelCommenResponse> callDelivery(@Path("id") int id);
@@ -57,6 +59,9 @@ public interface ApiCall
 
     @GET(Constant.subUrl + "products")
     Call<ModelCommenResponse> callProducts(@Query("city_id") int city_id, @Query("category_id") int category_id);
+
+    @GET(Constant.subUrl + "categories")
+    Call<ModelCommenResponse> callcategories();
 
     @GET(Constant.subUrl + "products/{id}")
     Call<ModelCommenResponse> callProductsInfo(@Path("id") int id);

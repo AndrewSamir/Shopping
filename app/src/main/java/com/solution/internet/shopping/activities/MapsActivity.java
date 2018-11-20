@@ -1,5 +1,6 @@
 package com.solution.internet.shopping.activities;
 
+import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -28,8 +29,7 @@ import java.util.List;
 
 import retrofit2.Call;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, HandleRetrofitResp
-{
+public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, HandleRetrofitResp {
 
     //region fields
 
@@ -39,8 +39,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     //endregion
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
 
@@ -53,8 +52,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     @Override
-    protected void onResume()
-    {
+    protected void onResume() {
         super.onResume();
         HandleCalls.getInstance(this).setonRespnseSucess(this);
     }
@@ -69,8 +67,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
      * installed Google Play services and returned to the app.
      */
     @Override
-    public void onMapReady(GoogleMap googleMap)
-    {
+    public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
         callMap();
@@ -78,12 +75,24 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
       /*  LatLng sydney = new LatLng(-34, 151);
         mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));*/
+
+        mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+
+            @Override
+            public void onInfoWindowClick(Marker arg0) {
+                Intent intent = new Intent(getBaseContext(), DelegateActivity.class);
+//                String reference = mMarkerPlaceLink.get(arg0.getId());
+                intent.putExtra(DataEnum.intentDeligateId.name(), (int) arg0.getTag());
+
+                // Starting the  Activity
+                startActivity(intent);
+            }
+        });
     }
 
     //region calls
 
-    private void callMap()
-    {
+    private void callMap() {
         Call call = HandleCalls.restShopping.getClientService().callMap();
         HandleCalls.getInstance(this).callRetrofit(call, DataEnum.callMap.name(), true);
     }
@@ -92,16 +101,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     //region call response
     @Override
-    public void onResponseSuccess(String flag, Object o)
-    {
+    public void onResponseSuccess(String flag, Object o) {
         Gson gson = new Gson();
 
-        if (flag.equals(DataEnum.callMap.name()))
-        {
+        if (flag.equals(DataEnum.callMap.name())) {
             JsonArray jsonArray = gson.toJsonTree(o).getAsJsonArray();
             List<ModelMarker> modelMarkerList = new ArrayList<>();
-            for (int i = 0; i < jsonArray.size(); i++)
-            {
+            for (int i = 0; i < jsonArray.size(); i++) {
                 ModelMarker modelMarker = gson.fromJson(jsonArray.get(i).getAsJsonObject(), ModelMarker.class);
                 modelMarkerList.add(modelMarker);
             }
@@ -112,40 +118,35 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     @Override
-    public void onNoContent(String flag, int code)
-    {
+    public void onNoContent(String flag, int code) {
 
     }
 
     @Override
-    public void onResponseSuccess(String flag, Object o, int position)
-    {
+    public void onResponseSuccess(String flag, Object o, int position) {
 
     }
     //endregion
 
     //region functions
 
-    private void setMarkers(List<ModelMarker> modelList)
-    {
-        if (mMap != null)
-        {
+    private void setMarkers(List<ModelMarker> modelList) {
+        if (mMap != null) {
             mMap.clear();
             mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 
-            for (ModelMarker model : modelList)
-            {
+            for (ModelMarker model : modelList) {
                 LatLng latLng = new LatLng(model.getLat(), model.getLng());
                 Marker marker = mMap.addMarker(new MarkerOptions()
                         .position(latLng)
                         .title(model.getFullname()));
 
+                marker.setTag(model.getUserid());
                 markerList.add(marker);
             }
 
             LatLngBounds.Builder builder = new LatLngBounds.Builder();
-            for (Marker marker : markerList)
-            {
+            for (Marker marker : markerList) {
                 builder.include(marker.getPosition());
             }
             LatLngBounds bounds = builder.build();

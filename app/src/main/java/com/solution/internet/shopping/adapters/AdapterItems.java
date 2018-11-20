@@ -26,7 +26,7 @@ public class AdapterItems extends RecyclerView.Adapter<AdapterItems.MyViewHolder
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener
     {
         TextView tvRvItemDelegateTitle, tvRvItemDelegatePrice,
-                tvRvItemDelegateSpecialAdvert, tvRvItemDelegateSinceTime,
+                tvRvItemDelegateSpecialAdvert, tvRvItemDelegateName,
                 tvRvItemDelegateAddress;
         ImageView imgRvItemDelegateItem,imgRvItemDelegateFavourite;
 
@@ -38,7 +38,7 @@ public class AdapterItems extends RecyclerView.Adapter<AdapterItems.MyViewHolder
             tvRvItemDelegateTitle = view.findViewById(R.id.tvRvItemDelegateTitle);
             tvRvItemDelegatePrice = view.findViewById(R.id.tvRvItemDelegatePrice);
             tvRvItemDelegateSpecialAdvert = view.findViewById(R.id.tvRvItemDelegateSpecialAdvert);
-            tvRvItemDelegateSinceTime = view.findViewById(R.id.tvRvItemDelegateSinceTime);
+            tvRvItemDelegateName = view.findViewById(R.id.tvRvItemDelegateName);
             tvRvItemDelegateAddress = view.findViewById(R.id.tvRvItemDelegateAddress);
 
             view.setOnClickListener(this);
@@ -78,6 +78,7 @@ public class AdapterItems extends RecyclerView.Adapter<AdapterItems.MyViewHolder
         final Items items = adapterList.get(position);
         holder.tvRvItemDelegateTitle.setText(items.getTitle());
         holder.tvRvItemDelegatePrice.setText(items.getPrice()+"");
+        holder.tvRvItemDelegateName.setText(items.getCategoryname());
 //        holder.tvRvItemDelegateSpecialAdvert.setText(items.getTagsastext());
 //        holder.tvRvItemDelegateSinceTime.setText(items.getLikescount() + "");
 //        holder.tvRvItemDelegateAddress.setText(items.getSincetime());

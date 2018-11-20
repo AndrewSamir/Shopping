@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 
 import com.google.gson.Gson;
@@ -27,8 +28,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import retrofit2.Call;
 
-public class LoginActivity extends AppCompatActivity implements HandleRetrofitResp, Validator.ValidationListener
-{
+public class LoginActivity extends AppCompatActivity implements HandleRetrofitResp, Validator.ValidationListener {
 
     //region fields
     Validator validator;
@@ -43,12 +43,13 @@ public class LoginActivity extends AppCompatActivity implements HandleRetrofitRe
     @BindView(R.id.edtLoginPassword)
     EditText edtLoginPassword;
 
+    @BindView(R.id.btnLoginAsClient)
+    Button btnLoginAsClient;
     //endregion
 
     //region life cycle
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
@@ -60,8 +61,7 @@ public class LoginActivity extends AppCompatActivity implements HandleRetrofitRe
     }
 
     @Override
-    public void onResume()
-    {
+    public void onResume() {
         super.onResume();
         validator = new Validator(this);
         validator.setValidationListener(this);
@@ -71,22 +71,37 @@ public class LoginActivity extends AppCompatActivity implements HandleRetrofitRe
 
     //region clicks
     @OnClick(R.id.btnLoginEnter)
-    public void onClickbtnLoginEnter()
-    {
+    public void onClickbtnLoginEnter() {
         validator.validate();
     }
 
+    @OnClick(R.id.btnLoginRegister)
+    public void onClickbtnLoginRegister() {
+        Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+        if (btnLoginAsClient.getText().toString().equals(getString(R.string.login_as_clint)))
+            intent.putExtra(DataEnum.intentRegisterType.name(), "delivery");
+        else
+            intent.putExtra(DataEnum.intentRegisterType.name(), "user");
+        startActivity(intent);
+    }
+
+    @OnClick(R.id.btnLoginAsClient)
+    public void onClickbtnLoginAsClient() {
+        if (btnLoginAsClient.getText().toString().equals(getString(R.string.login_as_clint)))
+            btnLoginAsClient.setText(getString(R.string.login_as_deligate));
+        else
+            btnLoginAsClient.setText(getString(R.string.login_as_clint));
+
+    }
     //endregion
 
     //region call response
     @Override
-    public void onResponseSuccess(String flag, Object o)
-    {
+    public void onResponseSuccess(String flag, Object o) {
         Gson gson = new Gson();
         JsonObject jsonObject = gson.toJsonTree(o).getAsJsonObject();
 
-        if (flag.equals(DataEnum.callLogin.name()))
-        {
+        if (flag.equals(DataEnum.callLogin.name())) {
             ModelLoginResponse modelLoginResponse = gson.fromJson(jsonObject, ModelLoginResponse.class);
             SharedPrefHelper.getInstance(this).setUser(modelLoginResponse);
             startActivity(new Intent(LoginActivity.this, MapsActivity.class));
@@ -94,22 +109,19 @@ public class LoginActivity extends AppCompatActivity implements HandleRetrofitRe
     }
 
     @Override
-    public void onNoContent(String flag, int code)
-    {
+    public void onNoContent(String flag, int code) {
 
     }
 
     @Override
-    public void onResponseSuccess(String flag, Object o, int position)
-    {
+    public void onResponseSuccess(String flag, Object o, int position) {
 
     }
 
     //endregion
 
     //region calls
-    private void callLogin()
-    {
+    private void callLogin() {
         ModelLoginRequest modelLoginRequest = new ModelLoginRequest();
         modelLoginRequest.setMobile(edtLoginPhone.getText().toString().trim());
         modelLoginRequest.setPassword(edtLoginPassword.getText().toString().trim());
@@ -124,25 +136,20 @@ public class LoginActivity extends AppCompatActivity implements HandleRetrofitRe
 
 
     @Override
-    public void onValidationSucceeded()
-    {
+    public void onValidationSucceeded() {
         callLogin();
     }
 
     @Override
-    public void onValidationFailed(List<ValidationError> errors)
-    {
-        for (ValidationError error : errors)
-        {
+    public void onValidationFailed(List<ValidationError> errors) {
+        for (ValidationError error : errors) {
             View view = error.getView();
             String message = error.getCollatedErrorMessage(this);
 
             // Display error messages ;)
-            if (view instanceof EditText)
-            {
+            if (view instanceof EditText) {
                 ((EditText) view).setError(message);
-            } else
-            {
+            } else {
 //                showMessage(message);
             }
         }

@@ -4,202 +4,101 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginEnd="@dimen/_10sdp"
+    android:layout_marginStart="@dimen/_10sdp"
     android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".activities.DelegateDetailsActivity"
     tools:showIn="@layout/activity_delegate_details">
 
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/imgDelegateDetails"
+        android:layout_width="@dimen/_90sdp"
+        android:layout_height="@dimen/_90sdp"
+        android:layout_gravity="center"
+        android:padding="@dimen/_5sdp"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/ic_launcher" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/_5sdp"
-        android:background="@color/colorAccent"
         android:layoutDirection="rtl"
         android:orientation="horizontal"
-        android:padding="@dimen/_3sdp"
-        android:weightSum="4">
+        android:weightSum="2">
 
-        <FrameLayout
+        <Button
+            android:id="@+id/btnDelegateEditProfile"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1">
-
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/imgDelegateDetails"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_60sdp"
-                android:padding="@dimen/_5sdp"
-                android:scaleType="centerCrop"
-                android:src="@mipmap/ic_launcher" />
-
-        </FrameLayout>
-
-        <TextView
-            android:id="@+id/tvDelegateDetailsName"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:gravity="center_vertical"
-            android:lines="1"
+            android:layout_gravity="center"
+            android:layout_marginBottom="@dimen/_30sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_30sdp"
+            android:layout_weight="1"
+            android:background="@color/colorPrimary"
+            android:text="@string/edit_profile"
             android:textColor="@color/colorWhite"
-            android:textSize="@dimen/_13sdp"
-            tools:text="اسم المندوب" />
+            android:textSize="@dimen/_15sdp" />
 
-
-        <TextView
-            android:id="@+id/tvDelegateDetailsSpecialRequest"
+        <Button
+            android:id="@+id/btnDelegateChangePassword"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_margin="@dimen/_3sdp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="@dimen/_30sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_30sdp"
             android:layout_weight="1"
-            android:background="@color/colorBlack"
-            android:gravity="center"
-            android:padding="@dimen/_5sdp"
-            android:text="@string/edit_details"
+            android:background="@color/colorAccent"
+            android:text="@string/change_password"
             android:textColor="@color/colorWhite"
-            android:textSize="@dimen/_13sdp" />
+            android:textSize="@dimen/_15sdp" />
     </LinearLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="@color/colorAccent" />
-
-    <LinearLayout
+    <TextView
+        android:id="@+id/tvDelegateName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layoutDirection="rtl"
-        android:orientation="horizontal"
-        android:weightSum="2">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:padding="@dimen/_7sdp"
-            android:text="الأعلانات المفعلة"
-            android:textColor="@color/colorAccent"
-            android:textSize="@dimen/_14sdp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:padding="@dimen/_7sdp"
-            android:text="0"
-            android:textColor="@color/colorAccent"
-            android:textSize="@dimen/_14sdp"
-            android:textStyle="bold" />
-    </LinearLayout>
+        android:textSize="@dimen/_15sdp"
+        tools:text="أحمد محمد محمود" />
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="2dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="@dimen/_5sdp"
         android:background="@color/colorAccent" />
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/tvDelegateMobile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layoutDirection="rtl"
-        android:orientation="horizontal"
-        android:weightSum="2">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:padding="@dimen/_7sdp"
-            android:text="الأعلانات الغير المفعلة"
-            android:textColor="@color/colorAccent"
-            android:textSize="@dimen/_14sdp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:padding="@dimen/_7sdp"
-            android:text="0"
-            android:textColor="@color/colorAccent"
-            android:textSize="@dimen/_14sdp"
-            android:textStyle="bold" />
-    </LinearLayout>
+        android:layout_marginTop="@dimen/_10sdp"
+        android:gravity="right"
+        android:textSize="@dimen/_15sdp"
+        tools:text="+966 1234 46237" />
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="2dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="@dimen/_5sdp"
         android:background="@color/colorAccent" />
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/tvDelegateMail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layoutDirection="rtl"
-        android:orientation="horizontal"
-        android:weightSum="2">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:padding="@dimen/_7sdp"
-            android:text="رصيد فالحساب"
-            android:textColor="@color/colorAccent"
-            android:textSize="@dimen/_14sdp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:padding="@dimen/_7sdp"
-            android:text="0.0 رس"
-            android:textColor="@color/colorAccent"
-            android:textSize="@dimen/_14sdp"
-            android:textStyle="bold" />
-    </LinearLayout>
+        android:layout_marginTop="@dimen/_10sdp"
+        android:gravity="right"
+        android:textSize="@dimen/_15sdp"
+        tools:text="ahmed@gmail.com" />
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="2dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="@dimen/_5sdp"
         android:background="@color/colorAccent" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layoutDirection="rtl"
-        android:orientation="horizontal"
-        android:weightSum="2">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:padding="@dimen/_7sdp"
-            android:text="تعليقات العملاء"
-            android:textColor="@color/colorAccent"
-            android:textSize="@dimen/_14sdp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:padding="@dimen/_7sdp"
-            android:text="0 تعليقات "
-            android:textColor="@color/colorAccent"
-            android:textSize="@dimen/_14sdp"
-            android:textStyle="bold" />
-    </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="@color/colorAccent" />
 </LinearLayout>

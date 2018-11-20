@@ -76,10 +76,12 @@ public class DelegateActivity extends AppCompatActivity implements HandleRetrofi
         adapterItems = new AdapterItems(itemsList, this);
         rvDelegate.setLayoutManager(new LinearLayoutManager(this));
         rvDelegate.setAdapter(adapterItems);
+        rvDelegate.setNestedScrollingEnabled(false);
 
         HandleCalls.getInstance(this).setonRespnseSucess(this);
 
-        callDelivery();
+        Intent intent = getIntent();
+        callDelivery(intent.getIntExtra(DataEnum.intentDeligateId.name(), 1));
     }
 
     //endregion
@@ -118,9 +120,9 @@ public class DelegateActivity extends AppCompatActivity implements HandleRetrofi
     //endregion
 
     //region calls
-    private void callDelivery() {
+    private void callDelivery(int id) {
 
-        Call call = HandleCalls.restShopping.getClientService().callDelivery(1);
+        Call call = HandleCalls.restShopping.getClientService().callDelivery(id);
         HandleCalls.getInstance(this).callRetrofit(call, DataEnum.callDelivery.name(), true);
     }
 

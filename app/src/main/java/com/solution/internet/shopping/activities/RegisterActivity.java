@@ -2,23 +2,18 @@ package com.solution.internet.shopping.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.CheckBox;
 import android.widget.EditText;
 
 import com.mobsandgeeks.saripaar.ValidationError;
 import com.mobsandgeeks.saripaar.Validator;
 import com.mobsandgeeks.saripaar.annotation.ConfirmPassword;
-import com.mobsandgeeks.saripaar.annotation.Email;
 import com.mobsandgeeks.saripaar.annotation.NotEmpty;
 import com.mobsandgeeks.saripaar.annotation.Password;
 import com.solution.internet.shopping.R;
 import com.solution.internet.shopping.interfaces.HandleRetrofitResp;
-import com.solution.internet.shopping.models.ModelLoginRequest.ModelLoginRequest;
 import com.solution.internet.shopping.models.ModelSignUpRequest.ModelSignUpRequest;
 import com.solution.internet.shopping.retorfitconfig.HandleCalls;
 import com.solution.internet.shopping.utlities.DataEnum;
@@ -34,24 +29,24 @@ public class RegisterActivity extends AppCompatActivity implements HandleRetrofi
 
     //region fields
     Validator validator;
+    String type;
     //endregion
 
     //region views
     @NotEmpty(messageResId = R.string.required)
-    @BindView(R.id.edtRegisterFirstName)
-    EditText edtRegisterFirstName;
+    @BindView(R.id.edtRegisterFullName)
+    EditText edtRegisterFullName;
 
     @NotEmpty(messageResId = R.string.required)
-    @BindView(R.id.edtRegisterLastName)
-    EditText edtRegisterLastName;
+    @BindView(R.id.edtRegisterMobile)
+    EditText edtRegisterMobile;
 
-    @NotEmpty(messageResId = R.string.required)
-    @BindView(R.id.edtRegisterPostalCode)
-    EditText edtRegisterPostalCode;
-
-    @Email(messageResId = R.string.correct_mail)
     @BindView(R.id.edtRegisterMail)
     EditText edtRegisterMail;
+    @BindView(R.id.edtRegisterNationalId)
+    EditText edtRegisterNationalId;
+    @BindView(R.id.edtRegisterLink)
+    EditText edtRegisterLink;
 
     @Password(messageResId = R.string.required)
     @BindView(R.id.edtRegisterPassword)
@@ -61,15 +56,7 @@ public class RegisterActivity extends AppCompatActivity implements HandleRetrofi
     @BindView(R.id.edtRegisterConfirmPassword)
     EditText edtRegisterConfirmPassword;
 
-    @BindView(R.id.chRegisterMale)
-    CheckBox chRegisterMale;
 
-    @BindView(R.id.chRegisterFemale)
-    CheckBox chRegisterFemale;
-
-    @NotEmpty(messageResId = R.string.required)
-    @BindView(R.id.edtRegisterDescription)
-    EditText edtRegisterDescription;
     //endregion
 
     //region life cycle
@@ -80,6 +67,8 @@ public class RegisterActivity extends AppCompatActivity implements HandleRetrofi
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        Intent intent = getIntent();
+        type = intent.getStringExtra(DataEnum.intentRegisterType.name());
         ButterKnife.bind(this);
         HandleCalls.getInstance(this).setonRespnseSucess(this);
 
@@ -127,13 +116,13 @@ public class RegisterActivity extends AppCompatActivity implements HandleRetrofi
     //endregion
 
     //region calls
-    private void callSignup() {
+    private void callSignUp() {
         ModelSignUpRequest modelSignUpRequest = new ModelSignUpRequest();
         modelSignUpRequest.setEmail(edtRegisterMail.getText().toString().trim());
-        modelSignUpRequest.setFullname(edtRegisterFirstName.getText().toString().trim() + " " + edtRegisterLastName.getText().toString().trim());
-        modelSignUpRequest.setMobile(edtRegisterPostalCode.getText().toString().trim());
+        modelSignUpRequest.setFullname(edtRegisterFullName.getText().toString().trim());
+        modelSignUpRequest.setMobile(edtRegisterMobile.getText().toString().trim());
         modelSignUpRequest.setPassword(edtRegisterPassword.getText().toString().trim());
-        modelSignUpRequest.setUserType("user");
+        modelSignUpRequest.setUserType(type);
 
         Call call = HandleCalls.restShopping.getClientService().callSignup(modelSignUpRequest);
         HandleCalls.getInstance(this).callRetrofit(call, DataEnum.callSignup.name(), true);
@@ -146,7 +135,7 @@ public class RegisterActivity extends AppCompatActivity implements HandleRetrofi
 
     @Override
     public void onValidationSucceeded() {
-        callSignup();
+        callSignUp();
     }
 
     @Override

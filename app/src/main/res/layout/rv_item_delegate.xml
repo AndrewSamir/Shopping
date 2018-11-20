@@ -4,15 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="@dimen/_110sdp"
-    android:layout_marginBottom="@dimen/_7sdp"
-    app:cardBackgroundColor="@color/colorWhite"
+    android:layout_marginBottom="@dimen/_14sdp"
+    app:cardBackgroundColor="@color/colorAccent"
     app:cardElevation="@dimen/_7sdp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:baselineAligned="false"
+        android:layout_marginTop="@dimen/_4sdp"
         android:layoutDirection="rtl"
+        android:background="@drawable/background_linear"
         android:orientation="horizontal"
         android:weightSum="5">
 
@@ -22,14 +24,16 @@
             android:layout_weight="2">
 
             <ImageView
+                android:layout_gravity="center"
                 android:id="@+id/imgRvItemDelegateItem"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="@dimen/_80sdp"
+                android:layout_height="@dimen/_80sdp"
                 android:scaleType="centerCrop"
                 android:src="@mipmap/ic_launcher"
                 tools:ignore="ContentDescription" />
 
             <ImageView
+                android:visibility="gone"
                 android:id="@+id/imgRvItemDelegateFavourite"
                 android:layout_width="@dimen/_25sdp"
                 android:layout_height="@dimen/_25sdp"
@@ -41,6 +45,7 @@
         </FrameLayout>
 
         <LinearLayout
+            android:gravity="center_vertical"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginEnd="@dimen/_3sdp"
@@ -59,18 +64,10 @@
                 android:textSize="@dimen/_13sdp"
                 tools:text="item name" />
 
-            <TextView
-                android:id="@+id/tvRvItemDelegatePrice"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_marginTop="@dimen/_4sdp"
-                android:layout_weight="1.5"
-                android:gravity="center_vertical"
-                android:textColor="@color/colorBlack"
-                android:textSize="@dimen/_14sdp"
-                tools:text="ج م 11,500,000" />
+
 
             <TextView
+                android:visibility="gone"
                 android:id="@+id/tvRvItemDelegateSpecialAdvert"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
@@ -81,10 +78,11 @@
                 tools:text="item name" />
 
             <TextView
-                android:id="@+id/tvRvItemDelegateSinceTime"
+                android:visibility="visible"
+                android:id="@+id/tvRvItemDelegateName"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
-                android:layout_marginTop="@dimen/_4sdp"
+                android:layout_marginTop="@dimen/_6sdp"
                 android:layout_weight="1"
                 android:alpha="0.56"
                 android:gravity="center_vertical"
@@ -93,6 +91,7 @@
                 tools:text="item name" />
 
             <TextView
+                android:visibility="gone"
                 android:id="@+id/tvRvItemDelegateAddress"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
@@ -103,6 +102,19 @@
                 android:textColor="@color/colorBlack"
                 android:textSize="@dimen/_12sdp"
                 tools:text="item name" />
+
+            <TextView
+                android:id="@+id/tvRvItemDelegatePrice"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_weight="1.5"
+                android:layout_gravity="left"
+                android:layout_marginLeft="@dimen/_12sdp"
+                android:gravity="center_vertical"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/_12sdp"
+                tools:text="ج م 11,500,000" />
         </LinearLayout>
     </LinearLayout>
 </android.support.v7.widget.CardView>
