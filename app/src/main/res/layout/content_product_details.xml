@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:scrollbars="none"
+    android:layout_marginStart="@dimen/_15sdp"
+    android:layout_marginEnd="@dimen/_15sdp"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".activities.ProductDetailsActivity"
+    tools:showIn="@layout/activity_product_details">
+
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".activities.ProductDetailsActivity"
+    tools:showIn="@layout/activity_product_details">
+
+    <TextView
+        android:id="@+id/tvProductDetailsName"
+        android:layout_width="wrap_content"
+        tools:text="أسم المندوب"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:textSize="@dimen/_14sdp"
+        android:layout_gravity="right"
+        android:textColor="@color/colorAccent"
+        android:layout_height="wrap_content" />
+
+    <ImageView
+        android:id="@+id/imgProductDetails"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:scaleType="centerCrop"
+        android:layout_width="match_parent"
+        android:src="@mipmap/ic_launcher"
+        android:layout_height="@dimen/_140sdp"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/tvProductDetailsTitle"
+        android:layout_width="wrap_content"
+        tools:text="أسم المنتج يوضع هنا في هذا المكان"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:textSize="@dimen/_14sdp"
+        android:layout_gravity="right"
+        android:textColor="@color/colorAccent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/tvProductDetailsContent"
+        android:layout_width="wrap_content"
+        tools:text="هناك حقيقة مثبتة منذ زمن طويل وهي أن
+المحتوى المقروء لصفحة ما سيلهي القارئ عنالتركيز على الشكل الخارجي للنص أو شكل الفقرات في الصفحة التي يقرأها. ولذلك يتم
+استخدام طريقة لوريم إيبسوم لأنها تعطي طبيعياَ -إلى حد ما- للأحرف عوضاً عن "
+        android:layout_marginTop="@dimen/_10sdp"
+        android:textSize="@dimen/_12sdp"
+        android:layout_gravity="right"
+        android:textColor="@color/colorAccent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/tvProductDetailsPrice"
+        android:layout_width="@dimen/_80sdp"
+        tools:text="150 ريال"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:textSize="@dimen/_14sdp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:background="@drawable/background_price"
+        android:textColor="@color/colorWhite"
+        android:layout_height="@dimen/_80sdp" />
+
+    <Button
+        android:id="@+id/btnProductDetails"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="@dimen/_30sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:background="@color/colorPrimary"
+        android:text="طلب المنتج الان"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/_15sdp" />
+
+</LinearLayout>
+</ScrollView>

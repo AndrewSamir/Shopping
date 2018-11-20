@@ -28,9 +28,9 @@
     <string name="title_activity_add_product">AddProductActivity</string>
     <string name="title_activity_delegate_details">DelegateDetailsActivity</string>
     <string name="edit_details">تعديل بيانات</string>
-    <string name="required" >هذا الحقل مطلوب</string>
-    <string name="correct_mail" >أدخل بريد اليكتروني صحيح</string>
-    <string name="correct_password" >كامة المرور غير متطابقة</string>
+    <string name="required">هذا الحقل مطلوب</string>
+    <string name="correct_mail">أدخل بريد اليكتروني صحيح</string>
+    <string name="correct_password">كامة المرور غير متطابقة</string>
     <string name="register">التسجيل</string>
     <string name="login_as_clint">الدخول كعميل</string>
     <string name="login_as_deligate">الدخول كمندوب</string>
@@ -39,4 +39,5 @@
     <string name="link">رابط معروف (إختياري)</string>
     <string name="edit_profile">تعديل البيانات</string>
     <string name="change_password">تغيير كلمة المرور</string>
+    <string name="title_activity_product_details">ProductDetailsActivity</string>
 </resources>
