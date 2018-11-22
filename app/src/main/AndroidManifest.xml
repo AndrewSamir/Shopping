@@ -16,7 +16,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -31,15 +31,16 @@
 
         <activity
             android:name=".activities.MapsActivity"
-            android:label="@string/title_activity_maps" />
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".activities.RegisterActivity"
-            android:label="@string/title_activity_register"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".activities.LoginActivity"
-            android:label="@string/title_activity_register"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -48,20 +49,28 @@
         </activity>
         <activity
             android:name=".activities.DelegateActivity"
-            android:label="@string/title_activity_delegate"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".activities.AddProductActivity"
-            android:label="@string/title_activity_add_product"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".activities.DelegateDetailsActivity"
-            android:label="@string/title_activity_delegate_details"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".activities.ProductDetailsActivity"
-            android:label="@string/title_activity_product_details"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".activities.ChangePasswordActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".activities.SearchActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme"/>
     </application>
 
 </manifest>

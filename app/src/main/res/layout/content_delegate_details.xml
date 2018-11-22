@@ -37,7 +37,7 @@
             android:layout_marginStart="@dimen/_10sdp"
             android:layout_marginTop="@dimen/_30sdp"
             android:layout_weight="1"
-            android:background="@color/colorPrimary"
+            android:background="@color/colorAccent"
             android:text="@string/edit_profile"
             android:textColor="@color/colorWhite"
             android:textSize="@dimen/_15sdp" />
@@ -52,7 +52,7 @@
             android:layout_marginStart="@dimen/_10sdp"
             android:layout_marginTop="@dimen/_30sdp"
             android:layout_weight="1"
-            android:background="@color/colorAccent"
+            android:background="@color/colorPrimary"
             android:text="@string/change_password"
             android:textColor="@color/colorWhite"
             android:textSize="@dimen/_15sdp" />

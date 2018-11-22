@@ -5,6 +5,10 @@ import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.location.places.Place;
+import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment;
+import com.google.android.gms.location.places.ui.PlaceSelectionListener;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -27,6 +31,8 @@ import com.solution.internet.shopping.utlities.DataEnum;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import retrofit2.Call;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, HandleRetrofitResp {
@@ -35,6 +41,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private GoogleMap mMap;
     List<Marker> markerList;
+    PlaceAutocompleteFragment placeAutoComplete;
 
     //endregion
 
@@ -44,6 +51,22 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         setContentView(R.layout.activity_maps);
 
         markerList = new ArrayList<>();
+
+        ButterKnife.bind(this);
+        placeAutoComplete = (PlaceAutocompleteFragment) getFragmentManager().findFragmentById(R.id.place_autocomplete);
+        placeAutoComplete.setOnPlaceSelectedListener(new PlaceSelectionListener() {
+            @Override
+            public void onPlaceSelected(Place place) {
+
+                Log.d("Maps", "Place selected: " + place.getName());
+                mMap.moveCamera(CameraUpdateFactory.newLatLng(place.getLatLng()));
+            }
+
+            @Override
+            public void onError(Status status) {
+                Log.d("Maps", "An error occurred: " + status);
+            }
+        });
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -158,5 +181,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
     }
 
+    //endregion
+
+    //region clicks
+
+    @OnClick(R.id.tvNavBarMore)
+    public void onClicktvNavBarMore() {
+        startActivity(new Intent(MapsActivity.this, DelegateDetailsActivity.class));
+    }
+
+    @OnClick(R.id.tvNavBarProducts)
+    public void onClicktvNavBarProducts() {
+        startActivity(new Intent(MapsActivity.this, SearchActivity.class));
+    }
     //endregion
 }

@@ -12,167 +12,222 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/_10sdp"
-        android:orientation="vertical"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        tools:context=".activities.RegisterActivity"
-        tools:showIn="@layout/activity_register">
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <EditText
-                android:id="@+id/edtRegisterFullName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/full_name"
-                android:inputType="text"
-                android:lines="1"
-                android:padding="@dimen/_10sdp"
-                android:textColor="@color/colorBlack" />
-
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <EditText
-                android:id="@+id/edtRegisterMobile"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_7sdp"
-                android:hint="@string/mobile"
-                android:inputType="phone"
-                android:lines="1"
-                android:maxLength="10"
-                android:padding="@dimen/_10sdp"
-                android:textColor="@color/colorBlack" />
-
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <EditText
-                android:id="@+id/edtRegisterMail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_7sdp"
-                android:hint="@string/mail"
-                android:inputType="textEmailAddress"
-                android:lines="1"
-                android:padding="@dimen/_10sdp"
-                android:textColor="@color/colorBlack" />
-
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <EditText
-                android:id="@+id/edtRegisterNationalId"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_7sdp"
-                android:hint="@string/national_id"
-                android:inputType="numberDecimal"
-                android:lines="1"
-                android:padding="@dimen/_10sdp"
-                android:textColor="@color/colorBlack" />
-
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <EditText
-                android:id="@+id/edtRegisterLink"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_7sdp"
-                android:hint="@string/link"
-                android:inputType="text"
-                android:lines="1"
-                android:padding="@dimen/_10sdp"
-                android:textColor="@color/colorBlack" />
-
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <EditText
-                android:id="@+id/edtRegisterPassword"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_7sdp"
-                android:hint="@string/password_astric"
-                android:inputType="textPassword"
-                android:lines="1"
-                android:padding="@dimen/_10sdp"
-                android:textColor="@color/colorBlack" />
-
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <EditText
-                android:id="@+id/edtRegisterConfirmPassword"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_7sdp"
-                android:hint="@string/confirm_password"
-                android:inputType="textPassword"
-                android:lines="1"
-                android:padding="@dimen/_10sdp"
-                android:textColor="@color/colorBlack" />
-
-        </android.support.design.widget.TextInputLayout>
-
-
-        <Button
-            android:id="@+id/btnRegisterRegister"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/create_new_account" />
+        android:background="@color/colorWhite"
+        android:orientation="vertical">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/_20sdp"
-            android:layout_marginStart="@dimen/_20sdp"
-            android:layout_marginTop="@dimen/_20sdp"
-            android:text="@string/agree_policy" />
+            android:background="#F2F2F2"
+            android:gravity="center"
+            android:padding="@dimen/_11sdp"
+            android:text="التسجيل"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/_15sdp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:gravity="center"
-            android:layoutDirection="rtl"
-            android:orientation="horizontal">
+            android:layout_margin="@dimen/_10sdp"
+            android:orientation="vertical"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            tools:context=".activities.RegisterActivity"
+            tools:showIn="@layout/activity_register">
 
-            <TextView
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/edtRegisterFullName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/full_name"
+                    android:inputType="text"
+                    android:lines="1"
+                    android:padding="@dimen/_10sdp"
+                    android:textColor="@color/colorBlack" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/edtRegisterMobile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_7sdp"
+                    android:hint="@string/mobile"
+                    android:inputType="phone"
+                    android:lines="1"
+                    android:maxLength="10"
+                    android:padding="@dimen/_10sdp"
+                    android:textColor="@color/colorBlack" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/edtRegisterMail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_7sdp"
+                    android:hint="@string/mail"
+                    android:inputType="textEmailAddress"
+                    android:lines="1"
+                    android:padding="@dimen/_10sdp"
+                    android:textColor="@color/colorBlack" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/edtRegisterNationalId"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_7sdp"
+                    android:hint="@string/national_id"
+                    android:inputType="numberDecimal"
+                    android:lines="1"
+                    android:padding="@dimen/_10sdp"
+                    android:textColor="@color/colorBlack" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/edtRegisterLink"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_7sdp"
+                    android:hint="@string/link"
+                    android:inputType="text"
+                    android:lines="1"
+                    android:padding="@dimen/_10sdp"
+                    android:textColor="@color/colorBlack" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/edtRegisterCity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_7sdp"
+                    android:drawableLeft="@drawable/arrow"
+                    android:hint="المدينة"
+                    android:inputType="none"
+                    android:lines="1"
+                    android:padding="@dimen/_10sdp"
+                    android:textColor="@color/colorBlack" />
+
+            </android.support.design.widget.TextInputLayout>
+
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/edtRegisterPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_7sdp"
+                    android:hint="@string/password_astric"
+                    android:inputType="textPassword"
+                    android:lines="1"
+                    android:padding="@dimen/_10sdp"
+                    android:textColor="@color/colorBlack" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/edtRegisterConfirmPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_7sdp"
+                    android:hint="@string/confirm_password"
+                    android:inputType="textPassword"
+                    android:lines="1"
+                    android:padding="@dimen/_10sdp"
+                    android:textColor="@color/colorBlack" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <CheckBox
+                android:id="@+id/chRegisterPolicy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/_5sdp"
-                android:text="@string/did_you_have_account" />
+                android:layout_gravity="right"
+                android:layout_marginTop="@dimen/_7sdp"
+                android:padding="@dimen/_7sdp"
+                android:text="أوافق علي إتفاقية الإستخدام" />
+
+            <Button
+                android:id="@+id/btnRegisterRegister"
+                android:layout_width="@dimen/_160sdp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_30sdp"
+                android:alpha="0.5"
+                android:background="@color/colorAccent"
+                android:enabled="false"
+                android:text="التسجيل"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/_15sdp" />
+
 
             <TextView
-                android:id="@+id/tvRegisterLogin"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/_5sdp"
-                android:text="@string/login" />
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:text="@string/agree_policy"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:gravity="center"
+                android:layoutDirection="rtl"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_5sdp"
+                    android:text="@string/did_you_have_account" />
+
+                <TextView
+                    android:id="@+id/tvRegisterLogin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_5sdp"
+                    android:text="@string/login" />
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 </ScrollView>

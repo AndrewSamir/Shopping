@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Shopping</string>
+    <string name="app_name">تسوق</string>
     <string name="done">done</string>
     <string name="agree">Agree</string>
     <string name="internet_connection">No Internet Connection</string>
@@ -40,4 +40,8 @@
     <string name="edit_profile">تعديل البيانات</string>
     <string name="change_password">تغيير كلمة المرور</string>
     <string name="title_activity_product_details">ProductDetailsActivity</string>
+    <string name="full_name_validation">الاسم يجب ان يكون 7 احرف علي الاقل</string>
+    <string name="title_activity_change_password">ChangePasswordActivity</string>
+    <string name="edit">تعديل</string>
+    <string name="title_activity_search">SearchActivity</string>
 </resources>

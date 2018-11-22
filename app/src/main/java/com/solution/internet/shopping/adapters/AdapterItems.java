@@ -17,12 +17,16 @@ import com.solution.internet.shopping.models.ModelCallDelivery.Items;
 import com.solution.internet.shopping.retorfitconfig.HandleCalls;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 
 public class AdapterItems extends RecyclerView.Adapter<AdapterItems.MyViewHolder> implements HandleRetrofitRespAdapter {
 
     private List<Items> adapterList;
+    ArrayList<Items> searchList;
+
     private Activity activity;
 
 
@@ -47,17 +51,17 @@ public class AdapterItems extends RecyclerView.Adapter<AdapterItems.MyViewHolder
 
         @Override
         public void onClick(View v) {
-            switch (v.getId()) {
-/*
-                Intent intent = new Intent(activity, ProductDetailsActivity.class);
-                intent.putExtra("test", (Serializable) adapterList.get(getAdapterPosition()));
-                activity.startActivity();*/
-            }
+            Intent intent = new Intent(activity, ProductDetailsActivity.class);
+            intent.putExtra("test", (Serializable) adapterList.get(getAdapterPosition()));
+            activity.startActivity(intent);
         }
     }
 
     public AdapterItems(List<Items> adapterList, Activity activity) {
         this.adapterList = adapterList;
+
+        this.searchList = new ArrayList<>();
+        this.searchList.addAll(adapterList);
         this.activity = activity;
 
         HandleCalls.getInstance(activity).setonRespnseSucessApapter(this);
@@ -109,6 +113,7 @@ public class AdapterItems extends RecyclerView.Adapter<AdapterItems.MyViewHolder
 
     public void insertItem(Items item, int position) {
         adapterList.add(position, item);
+        searchList.add(position, item);
         notifyItemInserted(position);
     }
 
@@ -123,6 +128,7 @@ public class AdapterItems extends RecyclerView.Adapter<AdapterItems.MyViewHolder
         clearAllListData();
         int startIndex = adapterList.size();
         adapterList.addAll(items);
+        searchList.addAll(items);
         notifyItemRangeInserted(startIndex, items.size());
     }
 
@@ -154,6 +160,22 @@ public class AdapterItems extends RecyclerView.Adapter<AdapterItems.MyViewHolder
 
 
     //endregion
+
+    // Filter method
+    public void filter(String charText) {
+        charText = charText.toLowerCase(Locale.getDefault());
+        adapterList.clear();
+        if (charText.length() == 0) {
+            adapterList.addAll(searchList);
+        } else {
+            for (Items s : searchList) {
+                if (s.getTitle().contains(charText)) {
+                    adapterList.add(s);
+                }
+            }
+        }
+        notifyDataSetChanged();
+    }
 
 }
 

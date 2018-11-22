@@ -1,6 +1,7 @@
 package com.solution.internet.shopping.retorfitconfig;
 
 import com.solution.internet.shopping.models.ModelAddProductRequest.ModelAddProductRequest;
+import com.solution.internet.shopping.models.ModelChangePasswordRequest.ModelChangePasswordRequest;
 import com.solution.internet.shopping.models.ModelCommenResponse.ModelCommenResponse;
 import com.solution.internet.shopping.models.ModelLoginRequest.ModelLoginRequest;
 import com.solution.internet.shopping.models.ModelLoginResponse.ModelLoginResponse;
@@ -29,6 +30,9 @@ public interface ApiCall {
 
     @POST(Constant.subUrl + "user/signup")
     Call<ModelCommenResponse> callSignup(@Body ModelSignUpRequest modelSignUpRequest);
+
+    @POST(Constant.subUrl + "user/changepassword")
+    Call<ModelCommenResponse> callChangePassword(@Body ModelChangePasswordRequest modelChangePasswordRequest);
 
     @GET(Constant.subUrl + "map")
     Call<ModelCommenResponse> callMap();
@@ -62,6 +66,9 @@ public interface ApiCall {
 
     @GET(Constant.subUrl + "categories")
     Call<ModelCommenResponse> callcategories();
+
+    @GET(Constant.subUrl + "cities")
+    Call<ModelCommenResponse> callCities();
 
     @GET(Constant.subUrl + "products/{id}")
     Call<ModelCommenResponse> callProductsInfo(@Path("id") int id);

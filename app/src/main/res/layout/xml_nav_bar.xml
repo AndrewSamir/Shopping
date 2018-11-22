@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/_70sdp"
+    android:layout_gravity="bottom"
+    android:background="@color/colorPrimary"
+    android:layoutDirection="rtl"
+    android:orientation="horizontal"
+    android:padding="@dimen/_6sdp"
+    android:weightSum="4">
+
+    <TextView
+        android:id="@+id/tvNavBarHome"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:drawableTop="@drawable/home"
+        android:gravity="center"
+        android:padding="@dimen/_4sdp"
+        android:text="الرئيسية"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/_13sdp" />
+
+    <TextView
+        android:id="@+id/tvNavBarProducts"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:drawableTop="@drawable/products"
+        android:gravity="center"
+        android:padding="@dimen/_4sdp"
+        android:text="المنتجات"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/_13sdp" />
+
+    <TextView
+        android:id="@+id/tvNavBarChat"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:drawableTop="@drawable/chat"
+        android:gravity="center"
+        android:padding="@dimen/_4sdp"
+        android:text="الرسائل"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/_13sdp" />
+
+    <TextView
+        android:id="@+id/tvNavBarMore"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:drawableTop="@drawable/more"
+        android:gravity="center"
+        android:padding="@dimen/_4sdp"
+        android:text="المزيد"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/_13sdp" />
+</LinearLayout>

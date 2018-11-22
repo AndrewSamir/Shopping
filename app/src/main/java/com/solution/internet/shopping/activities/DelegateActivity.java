@@ -67,8 +67,8 @@ public class DelegateActivity extends AppCompatActivity implements HandleRetrofi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_delegate);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+       /* Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);*/
 
         ButterKnife.bind(this);
 
@@ -136,5 +136,13 @@ public class DelegateActivity extends AppCompatActivity implements HandleRetrofi
         adapterItems.addAll(modelCallDelivery.getItems());
     }
     //endregion
+    @OnClick(R.id.tvNavBarMore)
+    public void onClicktvNavBarMore() {
+        startActivity(new Intent(this, DelegateDetailsActivity.class));
+    }
 
+    @OnClick(R.id.tvNavBarProducts)
+    public void onClicktvNavBarProducts() {
+        startActivity(new Intent(this, SearchActivity.class));
+    }
 }

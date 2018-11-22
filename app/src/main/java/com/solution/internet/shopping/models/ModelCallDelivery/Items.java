@@ -2,7 +2,9 @@ package com.solution.internet.shopping.models.ModelCallDelivery;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Items {
+import java.io.Serializable;
+
+public class Items implements Serializable {
     @SerializedName("item_id")
     private int itemId;
     @SerializedName("title")

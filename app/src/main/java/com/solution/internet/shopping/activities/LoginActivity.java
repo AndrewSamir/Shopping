@@ -83,6 +83,7 @@ public class LoginActivity extends AppCompatActivity implements HandleRetrofitRe
         else
             intent.putExtra(DataEnum.intentRegisterType.name(), "user");
         startActivity(intent);
+        finish();
     }
 
     @OnClick(R.id.btnLoginAsClient)
@@ -105,6 +106,7 @@ public class LoginActivity extends AppCompatActivity implements HandleRetrofitRe
             ModelLoginResponse modelLoginResponse = gson.fromJson(jsonObject, ModelLoginResponse.class);
             SharedPrefHelper.getInstance(this).setUser(modelLoginResponse);
             startActivity(new Intent(LoginActivity.this, MapsActivity.class));
+            finish();
         }
     }
 

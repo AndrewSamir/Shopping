@@ -1,23 +1,37 @@
 package com.solution.internet.shopping.activities;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import com.mobsandgeeks.saripaar.ValidationError;
 import com.mobsandgeeks.saripaar.Validator;
 import com.mobsandgeeks.saripaar.annotation.ConfirmPassword;
+import com.mobsandgeeks.saripaar.annotation.Length;
+import com.mobsandgeeks.saripaar.annotation.Min;
 import com.mobsandgeeks.saripaar.annotation.NotEmpty;
 import com.mobsandgeeks.saripaar.annotation.Password;
 import com.solution.internet.shopping.R;
 import com.solution.internet.shopping.interfaces.HandleRetrofitResp;
+import com.solution.internet.shopping.models.ModelGetCities.ModelGetCities;
+import com.solution.internet.shopping.models.ModelLoginResponse.ModelLoginResponse;
 import com.solution.internet.shopping.models.ModelSignUpRequest.ModelSignUpRequest;
 import com.solution.internet.shopping.retorfitconfig.HandleCalls;
 import com.solution.internet.shopping.utlities.DataEnum;
+import com.solution.internet.shopping.utlities.SharedPrefHelper;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -25,15 +39,17 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import retrofit2.Call;
 
-public class RegisterActivity extends AppCompatActivity implements HandleRetrofitResp, Validator.ValidationListener {
+public class RegisterActivity extends AppCompatActivity implements HandleRetrofitResp, Validator.ValidationListener, CompoundButton.OnCheckedChangeListener {
 
     //region fields
     Validator validator;
     String type;
+    List<ModelGetCities> modelGetCitiesList;
+    List<String> citiesName;
     //endregion
 
     //region views
-    @NotEmpty(messageResId = R.string.required)
+    @Length(min = 7, messageResId = R.string.full_name_validation)
     @BindView(R.id.edtRegisterFullName)
     EditText edtRegisterFullName;
 
@@ -48,7 +64,7 @@ public class RegisterActivity extends AppCompatActivity implements HandleRetrofi
     @BindView(R.id.edtRegisterLink)
     EditText edtRegisterLink;
 
-    @Password(messageResId = R.string.required)
+    @Password(messageResId = R.string.required, min = 8)
     @BindView(R.id.edtRegisterPassword)
     EditText edtRegisterPassword;
 
@@ -56,7 +72,14 @@ public class RegisterActivity extends AppCompatActivity implements HandleRetrofi
     @BindView(R.id.edtRegisterConfirmPassword)
     EditText edtRegisterConfirmPassword;
 
+    @BindView(R.id.chRegisterPolicy)
+    CheckBox chRegisterPolicy;
 
+    @BindView(R.id.btnRegisterRegister)
+    Button btnRegisterRegister;
+
+    @BindView(R.id.edtRegisterCity)
+    EditText edtRegisterCity;
     //endregion
 
     //region life cycle
@@ -64,14 +87,20 @@ public class RegisterActivity extends AppCompatActivity implements HandleRetrofi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+/*
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+*/
 
         Intent intent = getIntent();
         type = intent.getStringExtra(DataEnum.intentRegisterType.name());
         ButterKnife.bind(this);
+        edtRegisterCity.setFocusable(false);
+        edtRegisterCity.setClickable(true);
+        adjustView();
+        callCities();
         HandleCalls.getInstance(this).setonRespnseSucess(this);
-
+        chRegisterPolicy.setOnCheckedChangeListener(this);
     }
 
     @Override
@@ -94,13 +123,54 @@ public class RegisterActivity extends AppCompatActivity implements HandleRetrofi
     @OnClick(R.id.tvRegisterLogin)
     public void onClicktvRegisterLogin() {
         startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+        finish();
     }
 
+    @OnClick(R.id.edtRegisterCity)
+    public void onClickedtRegisterCity() {
+
+        final CharSequence[] items = new CharSequence[citiesName.size()];
+
+        for (int i = 0; i < citiesName.size(); i++) {
+            items[i] = citiesName.get(i);
+        }
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("أختر مدينة");
+        builder.setItems(items, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int item) {
+                // Do something with the selection
+                edtRegisterCity.setText(citiesName.get(item));
+            }
+        });
+        AlertDialog alert = builder.create();
+        alert.show();
+    }
     //endregion
 
     //region calls response
     @Override
     public void onResponseSuccess(String flag, Object o) {
+
+        Gson gson = new Gson();
+
+        if (flag.equals(DataEnum.callCities.name())) {
+            JsonArray jsonArray = gson.toJsonTree(o).getAsJsonArray();
+            modelGetCitiesList = new ArrayList<>();
+            citiesName = new ArrayList<>();
+            for (int i = 0; i < jsonArray.size(); i++) {
+                ModelGetCities modelGetCity = gson.fromJson(jsonArray.get(i).getAsJsonObject(), ModelGetCities.class);
+                modelGetCitiesList.add(modelGetCity);
+                citiesName.add(modelGetCity.getCity());
+            }
+
+        } else if (flag.equals(DataEnum.callSignup.name())) {
+            JsonObject jsonObject = gson.toJsonTree(o).getAsJsonObject();
+            ModelLoginResponse modelLoginResponse = gson.fromJson(jsonObject, ModelLoginResponse.class);
+            SharedPrefHelper.getInstance(this).setUser(modelLoginResponse);
+            startActivity(new Intent(RegisterActivity.this, MapsActivity.class));
+            finish();
+        }
 
     }
 
@@ -128,6 +198,12 @@ public class RegisterActivity extends AppCompatActivity implements HandleRetrofi
         HandleCalls.getInstance(this).callRetrofit(call, DataEnum.callSignup.name(), true);
     }
 
+    private void callCities() {
+
+        Call call = HandleCalls.restShopping.getClientService().callCities();
+        HandleCalls.getInstance(this).callRetrofit(call, DataEnum.callCities.name(), true);
+    }
+
     //endregion
 
     //region validation
@@ -152,5 +228,33 @@ public class RegisterActivity extends AppCompatActivity implements HandleRetrofi
             }
         }
     }
+
+
     //endregion
+
+    //region functions
+    @Override
+    public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+        if (b) {
+            btnRegisterRegister.setEnabled(true);
+            btnRegisterRegister.setAlpha(1f);
+        } else {
+
+            btnRegisterRegister.setEnabled(false);
+            btnRegisterRegister.setAlpha(0.5f);
+        }
+    }
+
+    private void adjustView() {
+
+        if (type.equals("user")) {
+
+            edtRegisterNationalId.setVisibility(View.GONE);
+            edtRegisterLink.setVisibility(View.GONE);
+            edtRegisterNationalId.setVisibility(View.GONE);
+            edtRegisterCity.setVisibility(View.GONE);
+        }
+    }
+    //endregion
+
 }
