@@ -34,11 +34,11 @@ public class ChangePasswordActivity extends AppCompatActivity implements HandleR
     //endregion
 
     //region views
-    @Password(min = 8, messageResId = R.string.correct_password)
+    @Password
     @BindView(R.id.edtChangePasswordOld)
     EditText edtChangePasswordOld;
 
-    @Password(min = 8, messageResId = R.string.correct_password)
+    @Password
     @BindView(R.id.edtChangePasswordNew)
     EditText edtChangePasswordNew;
 

@@ -7,4 +7,7 @@
     <color name="colorBlack">#000000</color>
     <color name="colorGreen">#D29F49</color>
     <color name="colorTest">#722DA3</color>
+    <color name="colorText">#242424</color>
+    <color name="colorTextPrice">#202020</color>
+    <color name="colorRedTransparent">#50CE4089</color>
 </resources>

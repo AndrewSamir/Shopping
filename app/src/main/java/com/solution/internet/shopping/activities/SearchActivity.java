@@ -137,6 +137,17 @@ public class SearchActivity extends AppCompatActivity implements HandleRetrofitR
         AlertDialog alert = builder.create();
         alert.show();
     }
+
+
+    @OnClick(R.id.tvNavBarMore)
+    public void onClicktvNavBarMore() {
+        startActivity(new Intent(this, DelegateDetailsActivity.class));
+    }
+
+    @OnClick(R.id.tvNavBarProducts)
+    public void onClicktvNavBarProducts() {
+        startActivity(new Intent(this, SearchActivity.class));
+    }
     //endregion
 
     //region calls response
@@ -242,13 +253,4 @@ public class SearchActivity extends AppCompatActivity implements HandleRetrofitR
     }
 
     //endregion
-    @OnClick(R.id.tvNavBarMore)
-    public void onClicktvNavBarMore() {
-        startActivity(new Intent(this, DelegateDetailsActivity.class));
-    }
-
-    @OnClick(R.id.tvNavBarProducts)
-    public void onClicktvNavBarProducts() {
-        startActivity(new Intent(this, SearchActivity.class));
-    }
 }

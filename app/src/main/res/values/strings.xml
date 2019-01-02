@@ -44,4 +44,5 @@
     <string name="title_activity_change_password">ChangePasswordActivity</string>
     <string name="edit">تعديل</string>
     <string name="title_activity_search">SearchActivity</string>
+    <string name="the_login">الدخول</string>
 </resources>

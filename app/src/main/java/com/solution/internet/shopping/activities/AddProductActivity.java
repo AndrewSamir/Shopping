@@ -20,6 +20,7 @@ import retrofit2.Call;
 public class AddProductActivity extends AppCompatActivity implements HandleRetrofitResp {
 
     //region fields
+
     //endregion
 
     //region views
@@ -43,7 +44,7 @@ public class AddProductActivity extends AppCompatActivity implements HandleRetro
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_product);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar =  findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
     }

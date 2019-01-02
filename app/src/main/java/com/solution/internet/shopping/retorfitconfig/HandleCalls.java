@@ -25,7 +25,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class HandleCalls
+public class    HandleCalls
 {
     private static Context context;
     private static HandleCalls instance = null;

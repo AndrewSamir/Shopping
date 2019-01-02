@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layoutDirection="rtl"
+        android:weightSum="4">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:src="@mipmap/ic_launcher"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            tools:text="سعد الدين"
+            android:textSize="@dimen/_9sdp"
+            android:textColor="@color/colorText"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_80sdp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:src="@mipmap/ic_launcher"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:textColor="@color/colorWhite"
+            android:background="@color/colorRedTransparent"
+            android:textSize="@dimen/_10sdp"
+            android:padding="@dimen/_5sdp"
+            android:layout_gravity="bottom"
+            android:gravity="center"
+            tools:text="أسم المنتج"
+            android:layout_height="wrap_content" />
+    </FrameLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        tools:text="24 ريال "
+        android:gravity="center"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:textSize="@dimen/_12sdp"
+        android:textStyle="bold"
+        android:textColor="@color/colorTextPrice"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>
