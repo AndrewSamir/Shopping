@@ -9,5 +9,7 @@
     <color name="colorTest">#722DA3</color>
     <color name="colorText">#242424</color>
     <color name="colorTextPrice">#202020</color>
+    <color name="colorTextHint">#343434</color>
+    <color name="colorEditText">#D2D2D2</color>
     <color name="colorRedTransparent">#50CE4089</color>
 </resources>
