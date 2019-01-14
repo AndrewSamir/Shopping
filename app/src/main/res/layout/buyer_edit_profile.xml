@@ -5,9 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorWhite"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".activities.RegisterActivity"
-    tools:showIn="@layout/activity_register">
+    android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:scaleType="fitXY"
-            android:src="@drawable/header_bg_1"
+            android:src="@drawable/header_bg_2"
             tools:ignore="ContentDescription" />
 
         <LinearLayout
@@ -26,10 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/_10sdp"
             android:background="@color/colorWhite"
-            android:orientation="vertical"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            tools:context=".activities.RegisterActivity"
-            tools:showIn="@layout/activity_register">
+            android:orientation="vertical">
 
 
             <EditText
@@ -37,11 +33,29 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/background_edit_register"
+                android:drawablePadding="@dimen/_7sdp"
+                android:drawableRight="@drawable/icon_yourname"
                 android:hint="@string/full_name"
                 android:inputType="text"
                 android:lines="1"
                 android:padding="@dimen/_10sdp"
-                android:textColor="@color/colorBlack" />
+                android:textColor="@color/colorBlack"
+                tools:ignore="RtlHardcoded" />
+
+            <EditText
+                android:id="@+id/edtRegisterNameShow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:background="@drawable/background_edit_register"
+                android:drawablePadding="@dimen/_7sdp"
+                android:drawableRight="@drawable/icon_yourname"
+                android:hint="@string/full_name"
+                android:inputType="text"
+                android:lines="1"
+                android:padding="@dimen/_10sdp"
+                android:textColor="@color/colorBlack"
+                tools:ignore="RtlHardcoded" />
 
 
             <EditText
@@ -50,13 +64,16 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_12sdp"
                 android:background="@drawable/background_edit_register"
+                android:drawablePadding="@dimen/_7sdp"
+                android:drawableRight="@drawable/icon_yourmobile"
                 android:gravity="right"
                 android:hint="@string/mobile"
                 android:inputType="phone"
                 android:lines="1"
                 android:maxLength="10"
                 android:padding="@dimen/_10sdp"
-                android:textColor="@color/colorBlack" />
+                android:textColor="@color/colorBlack"
+                tools:ignore="RtlHardcoded" />
 
 
             <EditText
@@ -65,25 +82,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_12sdp"
                 android:background="@drawable/background_edit_register"
+                android:drawablePadding="@dimen/_7sdp"
+                android:drawableRight="@drawable/icon_youremail"
                 android:hint="@string/mail"
                 android:inputType="textEmailAddress"
                 android:lines="1"
                 android:padding="@dimen/_10sdp"
-                android:textColor="@color/colorBlack" />
-
-
-            <EditText
-                android:id="@+id/edtRegisterNationalId"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_12sdp"
-                android:background="@drawable/background_edit_register"
-                android:hint="@string/national_id"
-                android:inputType="numberDecimal"
-                android:lines="1"
-                android:visibility="gone"
-                android:padding="@dimen/_10sdp"
-                android:textColor="@color/colorBlack" />
+                android:textColor="@color/colorBlack"
+                tools:ignore="RtlHardcoded" />
 
 
             <EditText
@@ -92,12 +98,16 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_12sdp"
                 android:background="@drawable/background_edit_register"
+                android:drawablePadding="@dimen/_7sdp"
+                android:drawableRight="@drawable/icon_yourlink"
+                tools:ignore="RtlHardcoded"
                 android:hint="@string/link"
                 android:inputType="text"
                 android:lines="1"
-                android:visibility="gone"
                 android:padding="@dimen/_10sdp"
-                android:textColor="@color/colorBlack" />
+                android:textColor="@color/colorBlack"
+                android:visibility="visible"
+               />
 
 
             <EditText
@@ -107,12 +117,15 @@
                 android:layout_marginTop="@dimen/_12sdp"
                 android:background="@drawable/background_edit_register"
                 android:drawableLeft="@drawable/arrow"
+                android:drawablePadding="@dimen/_7sdp"
+                android:drawableRight="@drawable/icon_yourcountry"
                 android:hint="المدينة"
                 android:inputType="none"
-                android:visibility="gone"
                 android:lines="1"
                 android:padding="@dimen/_10sdp"
-                android:textColor="@color/colorBlack" />
+                android:textColor="@color/colorBlack"
+                android:visibility="visible"
+                tools:ignore="RtlHardcoded" />
 
 
             <EditText
@@ -121,12 +134,15 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_12sdp"
                 android:background="@drawable/background_edit_register"
+                android:drawablePadding="@dimen/_7sdp"
+                android:drawableRight="@drawable/icon_yourpassword"
+                android:gravity="right"
                 android:hint="@string/password_astric"
                 android:inputType="textPassword"
-                android:gravity="right"
                 android:lines="1"
                 android:padding="@dimen/_10sdp"
-                android:textColor="@color/colorBlack" />
+                android:textColor="@color/colorBlack"
+                tools:ignore="RtlHardcoded" />
 
 
             <EditText
@@ -134,71 +150,47 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_12sdp"
+                android:background="@drawable/background_edit_register"
+                android:drawablePadding="@dimen/_7sdp"
+                android:drawableRight="@drawable/icon_yourpassword"
+                android:gravity="right"
                 android:hint="@string/confirm_password"
                 android:inputType="textPassword"
                 android:lines="1"
-                android:gravity="right"
-                android:background="@drawable/background_edit_register"
                 android:padding="@dimen/_10sdp"
-                android:textColor="@color/colorBlack" />
+                android:textColor="@color/colorBlack"
+                tools:ignore="RtlHardcoded" />
 
 
-            <CheckBox
-                android:id="@+id/chRegisterPolicy"
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
-                android:layout_marginTop="@dimen/_7sdp"
-                android:padding="@dimen/_7sdp"
-                android:text="أوافق علي إتفاقية الإستخدام" />
+                android:layout_margin="@dimen/_20sdp"
+                android:drawablePadding="@dimen/_10sdp"
+                android:drawableRight="@drawable/icon_uploadimage"
+                android:gravity="center_vertical"
+                android:text="@string/edit_image"
+                android:textColor="@color/colorTextHint"
+                android:textSize="@dimen/_20px"
+                tools:ignore="RtlHardcoded" />
 
             <Button
                 android:id="@+id/btnRegisterRegister"
                 android:layout_width="@dimen/_160sdp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginEnd="@dimen/_10sdp"
-                android:layout_marginStart="@dimen/_10sdp"
-                android:layout_marginTop="@dimen/_30sdp"
+                android:layout_marginEnd="@dimen/_50sdp"
+                android:layout_marginStart="@dimen/_50sdp"
+                android:elevation="@dimen/_5sdp"
                 android:alpha="0.5"
-                android:background="@drawable/background_button"
+                android:background="@drawable/background_text_edit_profile"
                 android:enabled="false"
-                android:text="التسجيل"
+                android:text="@string/edit_data"
                 android:textColor="@color/colorWhite"
-                android:textSize="@dimen/_15sdp" />
+                android:textSize="@dimen/_15sdp"
+                tools:ignore="UnusedAttribute" />
 
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/_20sdp"
-                android:layout_marginStart="@dimen/_20sdp"
-                android:layout_marginTop="@dimen/_20sdp"
-                android:text="@string/agree_policy"
-                android:visibility="gone" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/_10sdp"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:gravity="center"
-                android:layoutDirection="rtl"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/_5sdp"
-                    android:text="@string/did_you_have_account" />
-
-                <TextView
-                    android:id="@+id/tvRegisterLogin"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/_5sdp"
-                    android:text="@string/login" />
-            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 </ScrollView>

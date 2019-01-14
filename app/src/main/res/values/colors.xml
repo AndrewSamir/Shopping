@@ -11,5 +11,9 @@
     <color name="colorTextPrice">#202020</color>
     <color name="colorTextHint">#343434</color>
     <color name="colorEditText">#D2D2D2</color>
+    <color name="colorSeprator">#C4C4C4</color>
+    <color name="colorBackgroundPrice">#9D0152</color>
+    <color name="colorBackgroundPay">#CE4089</color>
+    <color name="colorBorder">#EAEAEA</color>
     <color name="colorRedTransparent">#50CE4089</color>
 </resources>

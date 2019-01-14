@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="fitXY"
+            android:src="@drawable/header_bg_5"
+            tools:ignore="ContentDescription" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="@dimen/_70sdp"
+            android:layout_height="@dimen/_70sdp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:src="@mipmap/ic_launcher"
+            app:civ_border_color="@color/colorBorder"
+            app:civ_border_width="1dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:textColor="@color/colorTextHint"
+            android:textSize="@dimen/_19px"
+            tools:text="فهد العتيبى محمود" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layoutDirection="rtl"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_12sdp"
+                android:layout_weight="2"
+                android:background="@drawable/background_text_price"
+                android:gravity="center"
+                android:padding="@dimen/_5sdp"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/_19px"
+                tools:text="الرصيد : 2555" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_12sdp"
+                android:layout_weight="1"
+                android:background="@drawable/background_text_pay"
+                android:gravity="center"
+                android:padding="@dimen/_5sdp"
+                android:text="@string/pay"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/_19px" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_12sdp"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:background="@drawable/background_linear_empty"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/_7sdp"
+            android:paddingEnd="@dimen/_15sdp"
+            android:paddingStart="@dimen/_15sdp"
+            android:paddingTop="@dimen/_7sdp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:drawablePadding="@dimen/_7sdp"
+                android:drawableRight="@drawable/icon_yourname"
+                android:textColor="@color/colorTextHint"
+                android:textSize="@dimen/_19px"
+                tools:ignore="RtlHardcoded"
+                tools:text="ابو ابراهيم ناصر المأمون" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/colorSeprator" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:drawablePadding="@dimen/_7sdp"
+                android:drawableRight="@drawable/icon_yourmobile"
+                android:gravity="right"
+                android:textColor="@color/colorTextHint"
+                android:textSize="@dimen/_19px"
+                tools:ignore="RtlHardcoded"
+                tools:text="+966 45 2877 5555" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/colorSeprator" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:drawablePadding="@dimen/_7sdp"
+                android:drawableRight="@drawable/icon_youremail"
+                android:gravity="right"
+                android:textColor="@color/colorTextHint"
+                android:textSize="@dimen/_19px"
+                tools:ignore="RtlHardcoded"
+                tools:text="naser_123@email.com" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/colorSeprator" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:drawablePadding="@dimen/_7sdp"
+                android:drawableRight="@drawable/icon_yourname"
+                android:textColor="@color/colorTextHint"
+                android:textSize="@dimen/_19px"
+                tools:ignore="RtlHardcoded"
+                tools:text="العمولات المستحقة: ريال" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/colorSeprator" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:drawablePadding="@dimen/_7sdp"
+                android:drawableRight="@drawable/icon_yourname"
+                android:textColor="@color/colorTextHint"
+                android:textSize="@dimen/_19px"
+                tools:ignore="RtlHardcoded"
+                tools:text="إعلاناتي:150" />
+
+        </LinearLayout>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_50sdp"
+            android:layout_marginStart="@dimen/_50sdp"
+            android:layout_marginTop="@dimen/_40sdp"
+            android:background="@drawable/background_text_edit_profile"
+            android:gravity="center"
+            android:padding="@dimen/_5sdp"
+            android:text="@string/edit_data"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/_19px" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_50sdp"
+            android:layout_marginStart="@dimen/_50sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:background="@drawable/background_text_my_reciepts"
+            android:gravity="center"
+            android:padding="@dimen/_5sdp"
+            android:text="@string/my_reseipts"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/_19px" />
+
+    </LinearLayout>
+</ScrollView>

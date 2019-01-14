@@ -45,4 +45,22 @@
     <string name="edit">تعديل</string>
     <string name="title_activity_search">SearchActivity</string>
     <string name="the_login">الدخول</string>
+    <string name="pay">أدفع</string>
+    <string name="my_reseipts">فواتيرى</string>
+    <string name="edit_data">تعديل البيانات</string>
+    <string name="edit_image">تعديل الصورة</string>
+    <string name="show_name">الأسم الذي سيظهر للمستخدمين</string>
+    <string name="choose_country">أختر المدينة</string>
+    <string name="accept_policy">أوافق علي إتفاقية الإستخدام</string>
+    <string name="confirm_transaction">تأكيد التحويل</string>
+    <string name="send">إرسال</string>
+    <string name="enter_amount">أدخل المبلغ</string>
+    <string name="attach_image">أرفق صورة</string>
+    <string name="transaction_done">هل تم التحويل؟</string>
+    <string name="yes">نعم</string>
+    <string name="no">لا</string>
+    <string name="buyer_rating">تقييم البائع</string>
+    <string name="rating_details">تفاصيل التقييم</string>
+    <string name="create_reset">إصدار فاتورة</string>
+    <string name="not_paid">غير مدفوعة</string>
 </resources>

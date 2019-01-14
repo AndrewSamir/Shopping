@@ -1,4 +1,10 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
-    <dimen name="_19px">@dimen/_17sdp</dimen>
+    <dimen name="_15px">@dimen/_13sdp</dimen>
+    <dimen name="_16px">@dimen/_14sdp</dimen>
+    <dimen name="_17px">@dimen/_16sdp</dimen>
+    <dimen name="_18px">@dimen/_17sdp</dimen>
+    <dimen name="_19px">@dimen/_18sdp</dimen>
+    <dimen name="_20px">@dimen/_19sdp</dimen>
+    <dimen name="_22px">@dimen/_20sdp</dimen>
 </resources>

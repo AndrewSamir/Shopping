@@ -37,8 +37,7 @@ public class RestShopping
                 .connectTimeout(5, TimeUnit.SECONDS);
 
 
-        //coment start
-
+        //comment start
 
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);

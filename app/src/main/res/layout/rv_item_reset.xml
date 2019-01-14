@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="@dimen/_20sdp"
+    android:layout_marginStart="@dimen/_20sdp"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:drawablePadding="@dimen/_7sdp"
+        android:drawableRight="@drawable/icon_calendar"
+        android:textColor="@color/colorTextHint"
+        android:textSize="@dimen/_15px"
+        tools:ignore="RtlHardcoded"
+        tools:text="05/11/18" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_5sdp"
+        android:layoutDirection="rtl"
+        android:orientation="horizontal"
+        android:weightSum="3">
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:padding="@dimen/_10sdp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/icon_notification_red" />
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:layoutDirection="rtl"
+                android:lines="1"
+                android:padding="@dimen/_1sdp"
+                android:textColor="@color/colorBackgroundPrice"
+                android:textDirection="rtl"
+                android:textSize="@dimen/_17px"
+                tools:text="#2537" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layoutDirection="rtl"
+                android:lines="1"
+                android:padding="@dimen/_1sdp"
+                android:textColor="@color/colorTextHint"
+                android:textDirection="rtl"
+                android:textSize="@dimen/_16px"
+                tools:text="سعد رمضان سالم" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:layoutDirection="rtl"
+                android:lines="1"
+                android:padding="@dimen/_1sdp"
+                android:textColor="#202020"
+                android:textDirection="rtl"
+                android:textSize="@dimen/_16px"
+                tools:text="65 ريال" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginBottom="@dimen/_5sdp"
+        android:background="@color/colorSeprator" />
+
+</LinearLayout>
