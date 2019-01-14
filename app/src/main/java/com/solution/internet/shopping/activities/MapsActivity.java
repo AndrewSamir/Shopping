@@ -14,14 +14,12 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
 import com.solution.internet.shopping.R;
 import com.solution.internet.shopping.interfaces.HandleRetrofitResp;
 import com.solution.internet.shopping.models.ModelMarker.ModelMarker;
@@ -35,7 +33,8 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import retrofit2.Call;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, HandleRetrofitResp {
+public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, HandleRetrofitResp
+{
 
     //region fields
 
@@ -45,8 +44,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     //endregion
 
+    //region life cycle
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
 
@@ -54,16 +55,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         ButterKnife.bind(this);
         placeAutoComplete = (PlaceAutocompleteFragment) getFragmentManager().findFragmentById(R.id.place_autocomplete);
-        placeAutoComplete.setOnPlaceSelectedListener(new PlaceSelectionListener() {
+        placeAutoComplete.setOnPlaceSelectedListener(new PlaceSelectionListener()
+        {
             @Override
-            public void onPlaceSelected(Place place) {
+            public void onPlaceSelected(Place place)
+            {
 
                 Log.d("Maps", "Place selected: " + place.getName());
                 mMap.moveCamera(CameraUpdateFactory.newLatLng(place.getLatLng()));
             }
 
             @Override
-            public void onError(Status status) {
+            public void onError(Status status)
+            {
                 Log.d("Maps", "An error occurred: " + status);
             }
         });
@@ -75,7 +79,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     @Override
-    protected void onResume() {
+    protected void onResume()
+    {
         super.onResume();
         HandleCalls.getInstance(this).setonRespnseSucess(this);
     }
@@ -90,32 +95,32 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
      * installed Google Play services and returned to the app.
      */
     @Override
-    public void onMapReady(GoogleMap googleMap) {
+    public void onMapReady(GoogleMap googleMap)
+    {
         mMap = googleMap;
 
         callMap();
-        // Add a marker in Sydney and move the camera
-      /*  LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));*/
 
-        mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+
+        mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener()
+        {
 
             @Override
-            public void onInfoWindowClick(Marker arg0) {
+            public void onInfoWindowClick(Marker arg0)
+            {
                 Intent intent = new Intent(getBaseContext(), DelegateActivity.class);
-//                String reference = mMarkerPlaceLink.get(arg0.getId());
                 intent.putExtra(DataEnum.intentDeligateId.name(), (int) arg0.getTag());
-
-                // Starting the  Activity
                 startActivity(intent);
             }
         });
     }
 
+    //endregion
+
     //region calls
 
-    private void callMap() {
+    private void callMap()
+    {
         Call call = HandleCalls.restShopping.getClientService().callMap();
         HandleCalls.getInstance(this).callRetrofit(call, DataEnum.callMap.name(), true);
     }
@@ -124,13 +129,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     //region call response
     @Override
-    public void onResponseSuccess(String flag, Object o) {
+    public void onResponseSuccess(String flag, Object o)
+    {
         Gson gson = new Gson();
 
-        if (flag.equals(DataEnum.callMap.name())) {
+        if (flag.equals(DataEnum.callMap.name()))
+        {
             JsonArray jsonArray = gson.toJsonTree(o).getAsJsonArray();
             List<ModelMarker> modelMarkerList = new ArrayList<>();
-            for (int i = 0; i < jsonArray.size(); i++) {
+            for (int i = 0; i < jsonArray.size(); i++)
+            {
                 ModelMarker modelMarker = gson.fromJson(jsonArray.get(i).getAsJsonObject(), ModelMarker.class);
                 modelMarkerList.add(modelMarker);
             }
@@ -141,24 +149,29 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     @Override
-    public void onNoContent(String flag, int code) {
+    public void onNoContent(String flag, int code)
+    {
 
     }
 
     @Override
-    public void onResponseSuccess(String flag, Object o, int position) {
+    public void onResponseSuccess(String flag, Object o, int position)
+    {
 
     }
     //endregion
 
     //region functions
 
-    private void setMarkers(List<ModelMarker> modelList) {
-        if (mMap != null) {
+    private void setMarkers(List<ModelMarker> modelList)
+    {
+        if (mMap != null)
+        {
             mMap.clear();
             mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 
-            for (ModelMarker model : modelList) {
+            for (ModelMarker model : modelList)
+            {
                 LatLng latLng = new LatLng(model.getLat(), model.getLng());
                 Marker marker = mMap.addMarker(new MarkerOptions()
                         .position(latLng)
@@ -169,7 +182,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
 
             LatLngBounds.Builder builder = new LatLngBounds.Builder();
-            for (Marker marker : markerList) {
+            for (Marker marker : markerList)
+            {
                 builder.include(marker.getPosition());
             }
             LatLngBounds bounds = builder.build();
@@ -186,12 +200,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     //region clicks
 
     @OnClick(R.id.tvNavBarMore)
-    public void onClicktvNavBarMore() {
+    public void onClicktvNavBarMore()
+    {
         startActivity(new Intent(MapsActivity.this, DelegateDetailsActivity.class));
     }
 
     @OnClick(R.id.tvNavBarProducts)
-    public void onClicktvNavBarProducts() {
+    public void onClicktvNavBarProducts()
+    {
         startActivity(new Intent(MapsActivity.this, SearchActivity.class));
     }
     //endregion
