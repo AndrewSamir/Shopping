@@ -1,0 +1,143 @@
+{
+  "project_info": {
+    "project_number": "748781060738",
+    "firebase_url": "https://cars-8d6ae.firebaseio.com",
+    "project_id": "cars-8d6ae",
+    "storage_bucket": "cars-8d6ae.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:748781060738:android:d09ac62e9e0e429e",
+        "android_client_info": {
+          "package_name": "com.samir.andrew.cars"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "748781060738-848icij01lb2eot2c9l8ctig15uhu66k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.samir.andrew.cars",
+            "certificate_hash": "f0b33f4178f95ce709b043bcf576aca41b8c419b"
+          }
+        },
+        {
+          "client_id": "748781060738-qrefnske8h0i5lfjvcurv4fqkkp9r97s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDtmOq4f6U6EjK3s3vl30TWs7S3k1F3KmA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "748781060738-qrefnske8h0i5lfjvcurv4fqkkp9r97s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:748781060738:android:25e384bcacb7ac6d",
+        "android_client_info": {
+          "package_name": "com.solution.internet.shopping"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "748781060738-e898l6ttp2kntk051ilhc90uvr08ha2i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.solution.internet.shopping",
+            "certificate_hash": "067f6005f5fc52e44a1a5914b76fc3f0df1b63e8"
+          }
+        },
+        {
+          "client_id": "748781060738-qrefnske8h0i5lfjvcurv4fqkkp9r97s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDtmOq4f6U6EjK3s3vl30TWs7S3k1F3KmA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "748781060738-qrefnske8h0i5lfjvcurv4fqkkp9r97s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:748781060738:android:4c5ebdbb83dcc227",
+        "android_client_info": {
+          "package_name": "moi.com.excel.moi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "748781060738-gqt233ksqse3mgecp0tpi9t90keboj4f.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "moi.com.excel.moi",
+            "certificate_hash": "067f6005f5fc52e44a1a5914b76fc3f0df1b63e8"
+          }
+        },
+        {
+          "client_id": "748781060738-qrefnske8h0i5lfjvcurv4fqkkp9r97s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDtmOq4f6U6EjK3s3vl30TWs7S3k1F3KmA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "748781060738-qrefnske8h0i5lfjvcurv4fqkkp9r97s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -9,6 +9,7 @@
     android:layoutDirection="rtl"
     android:orientation="horizontal"
     android:padding="@dimen/_6sdp"
+    android:visibility="gone"
     android:weightSum="4">
 
     <TextView

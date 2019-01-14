@@ -63,4 +63,6 @@
     <string name="rating_details">تفاصيل التقييم</string>
     <string name="create_reset">إصدار فاتورة</string>
     <string name="not_paid">غير مدفوعة</string>
+    <string name="product_description">وصف المنتج</string>
+    <string name="create_offer">قدم عرض</string>
 </resources>

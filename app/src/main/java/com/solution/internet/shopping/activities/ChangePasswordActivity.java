@@ -98,6 +98,7 @@ public class ChangePasswordActivity extends AppCompatActivity implements HandleR
 
         Call call = HandleCalls.restShopping.getClientService().callChangePassword(modelChangePasswordRequest);
         HandleCalls.getInstance(this).callRetrofit(call, DataEnum.callChangePassword.name(), true);
+
     }
     //endregion
 
