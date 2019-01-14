@@ -11,8 +11,8 @@
         android:layout_height="match_parent"
         android:layout_marginTop="@dimen/_120sdp"
         android:orientation="vertical"
-        android:paddingEnd="@dimen/_15sdp"
-        android:paddingStart="@dimen/_15sdp">
+        android:paddingEnd="@dimen/_20sdp"
+        android:paddingStart="@dimen/_20sdp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -35,9 +35,9 @@
             android:hint="@string/mobile"
             android:inputType="phone"
             android:padding="@dimen/_12sdp"
-            android:textColor="@color/colorBlack"
+            android:textColor="@color/colorWhite"
             android:textColorHint="@color/colorWhite"
-            tools:ignore="UnusedAttribute" />
+            tools:ignore="RtlHardcoded,UnusedAttribute" />
 
         <EditText
             android:id="@+id/edtLoginPassword"
@@ -51,7 +51,7 @@
             android:hint="@string/password"
             android:inputType="textPassword"
             android:padding="@dimen/_12sdp"
-            android:textColor="@color/colorBlack"
+            android:textColor="@color/colorWhite"
             android:textColorHint="@color/colorWhite"
             tools:ignore="RtlHardcoded,UnusedAttribute" />
 
@@ -63,7 +63,7 @@
             android:layout_marginEnd="@dimen/_10sdp"
             android:layout_marginStart="@dimen/_10sdp"
             android:layout_marginTop="@dimen/_20sdp"
-            android:background="@drawable/background_button"
+            android:background="@drawable/background_text_edit_profile"
             android:padding="@dimen/_10sdp"
             android:text="@string/enter"
             android:textColor="@color/colorWhite"
@@ -72,7 +72,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_30sdp"
             android:layoutDirection="rtl"
             android:orientation="horizontal"
             android:weightSum="2">

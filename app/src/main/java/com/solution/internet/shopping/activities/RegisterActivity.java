@@ -1,5 +1,6 @@
 package com.solution.internet.shopping.activities;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -7,6 +8,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -39,13 +41,14 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import retrofit2.Call;
 
-public class RegisterActivity extends AppCompatActivity implements HandleRetrofitResp, Validator.ValidationListener, CompoundButton.OnCheckedChangeListener {
+public class RegisterActivity extends Activity implements HandleRetrofitResp, Validator.ValidationListener, CompoundButton.OnCheckedChangeListener {
 
     //region fields
     Validator validator;
     String type;
     List<ModelGetCities> modelGetCitiesList;
     List<String> citiesName;
+    int selectedCityId = 0;
     //endregion
 
     //region views
@@ -59,8 +62,8 @@ public class RegisterActivity extends AppCompatActivity implements HandleRetrofi
 
     @BindView(R.id.edtRegisterMail)
     EditText edtRegisterMail;
-    @BindView(R.id.edtRegisterNationalId)
-    EditText edtRegisterNationalId;
+    @BindView(R.id.edtRegisterNameShow)
+    EditText edtRegisterNameShow;
     @BindView(R.id.edtRegisterLink)
     EditText edtRegisterLink;
 
@@ -86,11 +89,9 @@ public class RegisterActivity extends AppCompatActivity implements HandleRetrofi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
-/*
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-*/
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+
+        setContentView(R.layout.buyer_register);
 
         Intent intent = getIntent();
         type = intent.getStringExtra(DataEnum.intentRegisterType.name());
@@ -120,11 +121,13 @@ public class RegisterActivity extends AppCompatActivity implements HandleRetrofi
         validator.validate();
     }
 
+/*
     @OnClick(R.id.tvRegisterLogin)
     public void onClicktvRegisterLogin() {
         startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
         finish();
     }
+*/
 
     @OnClick(R.id.edtRegisterCity)
     public void onClickedtRegisterCity() {
@@ -141,6 +144,7 @@ public class RegisterActivity extends AppCompatActivity implements HandleRetrofi
             public void onClick(DialogInterface dialog, int item) {
                 // Do something with the selection
                 edtRegisterCity.setText(citiesName.get(item));
+                selectedCityId = modelGetCitiesList.get(item).getCityId();
             }
         });
         AlertDialog alert = builder.create();
@@ -187,15 +191,27 @@ public class RegisterActivity extends AppCompatActivity implements HandleRetrofi
 
     //region calls
     private void callSignUp() {
+        Call call;
         ModelSignUpRequest modelSignUpRequest = new ModelSignUpRequest();
         modelSignUpRequest.setEmail(edtRegisterMail.getText().toString().trim());
         modelSignUpRequest.setFullname(edtRegisterFullName.getText().toString().trim());
         modelSignUpRequest.setMobile(edtRegisterMobile.getText().toString().trim());
         modelSignUpRequest.setPassword(edtRegisterPassword.getText().toString().trim());
-        modelSignUpRequest.setUserType(type);
+        if (type.equals("delivery")) {
+            if (selectedCityId != 0)
+                modelSignUpRequest.setCity_id(selectedCityId + "");
+            if (edtRegisterLink.getText().toString().length() > 0)
+                modelSignUpRequest.setCity_id(edtRegisterLink.getText().toString());
 
-        Call call = HandleCalls.restShopping.getClientService().callSignup(modelSignUpRequest);
-        HandleCalls.getInstance(this).callRetrofit(call, DataEnum.callSignup.name(), true);
+            modelSignUpRequest.setLat("24.56565645");
+            modelSignUpRequest.setLng("36.34343434");
+
+            call = HandleCalls.restShopping.getClientService().callSignupDelivery(modelSignUpRequest);
+            HandleCalls.getInstance(this).callRetrofit(call, DataEnum.callSignupDelivery.name(), true);
+        } else {
+            call = HandleCalls.restShopping.getClientService().callSignup(modelSignUpRequest);
+            HandleCalls.getInstance(this).callRetrofit(call, DataEnum.callSignup.name(), true);
+        }
     }
 
     private void callCities() {
@@ -248,10 +264,8 @@ public class RegisterActivity extends AppCompatActivity implements HandleRetrofi
     private void adjustView() {
 
         if (type.equals("user")) {
-
-            edtRegisterNationalId.setVisibility(View.GONE);
             edtRegisterLink.setVisibility(View.GONE);
-            edtRegisterNationalId.setVisibility(View.GONE);
+            edtRegisterNameShow.setVisibility(View.GONE);
             edtRegisterCity.setVisibility(View.GONE);
         }
     }

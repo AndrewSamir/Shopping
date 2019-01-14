@@ -33,8 +33,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import retrofit2.Call;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, HandleRetrofitResp
-{
+public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, HandleRetrofitResp {
 
     //region fields
 
@@ -46,8 +45,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     //region life cycle
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
 
@@ -55,19 +53,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         ButterKnife.bind(this);
         placeAutoComplete = (PlaceAutocompleteFragment) getFragmentManager().findFragmentById(R.id.place_autocomplete);
-        placeAutoComplete.setOnPlaceSelectedListener(new PlaceSelectionListener()
-        {
+        placeAutoComplete.setOnPlaceSelectedListener(new PlaceSelectionListener() {
             @Override
-            public void onPlaceSelected(Place place)
-            {
+            public void onPlaceSelected(Place place) {
 
                 Log.d("Maps", "Place selected: " + place.getName());
                 mMap.moveCamera(CameraUpdateFactory.newLatLng(place.getLatLng()));
             }
 
             @Override
-            public void onError(Status status)
-            {
+            public void onError(Status status) {
                 Log.d("Maps", "An error occurred: " + status);
             }
         });
@@ -79,8 +74,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     @Override
-    protected void onResume()
-    {
+    protected void onResume() {
         super.onResume();
         HandleCalls.getInstance(this).setonRespnseSucess(this);
     }
@@ -95,19 +89,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
      * installed Google Play services and returned to the app.
      */
     @Override
-    public void onMapReady(GoogleMap googleMap)
-    {
+    public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        callMap();
+//        callMap();
 
 
-        mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener()
-        {
+        mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
 
             @Override
-            public void onInfoWindowClick(Marker arg0)
-            {
+            public void onInfoWindowClick(Marker arg0) {
                 Intent intent = new Intent(getBaseContext(), DelegateActivity.class);
                 intent.putExtra(DataEnum.intentDeligateId.name(), (int) arg0.getTag());
                 startActivity(intent);
@@ -115,9 +106,24 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         });
     }
 
+    @Override
+    public void onResponseSuccess(String flag, Object o) {
+
+    }
+
+    @Override
+    public void onNoContent(String flag, int code) {
+
+    }
+
+    @Override
+    public void onResponseSuccess(String flag, Object o, int position) {
+
+    }
+
     //endregion
 
-    //region calls
+   /* //region calls
 
     private void callMap()
     {
@@ -210,5 +216,5 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     {
         startActivity(new Intent(MapsActivity.this, SearchActivity.class));
     }
-    //endregion
+    //endregion*/
 }

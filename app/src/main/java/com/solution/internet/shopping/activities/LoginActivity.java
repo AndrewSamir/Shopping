@@ -1,11 +1,14 @@
 package com.solution.internet.shopping.activities;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -28,7 +31,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import retrofit2.Call;
 
-public class LoginActivity extends AppCompatActivity implements HandleRetrofitResp, Validator.ValidationListener {
+public class LoginActivity extends Activity implements HandleRetrofitResp, Validator.ValidationListener {
 
     //region fields
     Validator validator;
@@ -44,13 +47,15 @@ public class LoginActivity extends AppCompatActivity implements HandleRetrofitRe
     EditText edtLoginPassword;
 
     @BindView(R.id.btnLoginAsClient)
-    Button btnLoginAsClient;
+    TextView btnLoginAsClient;
     //endregion
 
     //region life cycle
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+
         setContentView(R.layout.activity_login);
 
         ButterKnife.bind(this);
@@ -78,20 +83,15 @@ public class LoginActivity extends AppCompatActivity implements HandleRetrofitRe
     @OnClick(R.id.btnLoginRegister)
     public void onClickbtnLoginRegister() {
         Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
-        if (btnLoginAsClient.getText().toString().equals(getString(R.string.login_as_clint)))
-            intent.putExtra(DataEnum.intentRegisterType.name(), "delivery");
-        else
-            intent.putExtra(DataEnum.intentRegisterType.name(), "user");
+        intent.putExtra(DataEnum.intentRegisterType.name(), "delivery");
         startActivity(intent);
-        finish();
     }
 
     @OnClick(R.id.btnLoginAsClient)
     public void onClickbtnLoginAsClient() {
-        if (btnLoginAsClient.getText().toString().equals(getString(R.string.login_as_clint)))
-            btnLoginAsClient.setText(getString(R.string.login_as_deligate));
-        else
-            btnLoginAsClient.setText(getString(R.string.login_as_clint));
+        Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+        intent.putExtra(DataEnum.intentRegisterType.name(), "user");
+        startActivity(intent);
 
     }
     //endregion
@@ -105,7 +105,7 @@ public class LoginActivity extends AppCompatActivity implements HandleRetrofitRe
         if (flag.equals(DataEnum.callLogin.name())) {
             ModelLoginResponse modelLoginResponse = gson.fromJson(jsonObject, ModelLoginResponse.class);
             SharedPrefHelper.getInstance(this).setUser(modelLoginResponse);
-            startActivity(new Intent(LoginActivity.this, MapsActivity.class));
+            startActivity(new Intent(LoginActivity.this, MainActivity.class));
             finish();
         }
     }

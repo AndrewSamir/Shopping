@@ -14,8 +14,8 @@
     <string name="last_name">الأسم الأخير*</string>
     <string name="postal_code">الرقم البريدي*</string>
     <string name="mail">البريد الإلكتروني</string>
-    <string name="password_astric">كلمة السر*</string>
-    <string name="confirm_password">إعادة كلمة السر*</string>
+    <string name="password_astric">كلمة السر</string>
+    <string name="confirm_password">إعادة كلمة السر</string>
     <string name="male">ذكر</string>
     <string name="female">أنثي</string>
     <string name="description">أوصف السلعة المراد بيعها*</string>
@@ -65,4 +65,7 @@
     <string name="not_paid">غير مدفوعة</string>
     <string name="product_description">وصف المنتج</string>
     <string name="create_offer">قدم عرض</string>
+    <string name="permissions_needed">permissions_needed</string>
+    <string name="cancel">cancel</string>
+    <string name="send_to">ارسال الي</string>
 </resources>

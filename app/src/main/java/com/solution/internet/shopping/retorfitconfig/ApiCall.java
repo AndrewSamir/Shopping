@@ -24,9 +24,12 @@ import retrofit2.http.Query;
 
 public interface ApiCall {
 
-    //region user
+    //region auth
     @POST(Constant.subUrl + "user/login")
     Call<ModelCommenResponse> callLogin(@Body ModelLoginRequest modelLoginRequest);
+
+    @POST(Constant.subUrl + "user/signupDelivery")
+    Call<ModelCommenResponse> callSignupDelivery(@Body ModelSignUpRequest modelSignUpRequest);
 
     @POST(Constant.subUrl + "user/signup")
     Call<ModelCommenResponse> callSignup(@Body ModelSignUpRequest modelSignUpRequest);
