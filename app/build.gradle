@@ -4,7 +4,7 @@ android {
     compileSdkVersion 27
     defaultConfig {
         applicationId "com.solution.internet.shopping"
-        minSdkVersion 17
+        minSdkVersion 19
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
@@ -34,6 +34,8 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    implementation 'com.android.support:multidex:1.0.0'
 
     //BottomNavigationViewEx
     implementation 'com.github.ittianyu:BottomNavigationViewEx:1.2.4'
@@ -79,4 +81,12 @@ dependencies {
 
     //circle image
     implementation 'de.hdodenhof:circleimageview:2.2.0'
+
+    //select image
+    implementation 'gun0912.ted:tedbottompicker:1.0.1'
+
+    //compressor
+    implementation 'id.zelory:compressor:2.1.0'
+    implementation 'com.github.fanyu2013:PhotoCompress:v1.0'
+    implementation 'com.github.amanjeetsingh150:ImageZipper:1.3'
 }

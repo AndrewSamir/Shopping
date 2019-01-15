@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="fitXY"
+            android:src="@drawable/header_bg_5"
+            tools:ignore="ContentDescription" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_12sdp"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:background="@drawable/background_linear_empty"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/_7sdp"
+            android:paddingEnd="@dimen/_15sdp"
+            android:paddingStart="@dimen/_15sdp"
+            android:paddingTop="@dimen/_7sdp">
+
+            <TextView
+                android:id="@+id/tvUserProfileName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:drawablePadding="@dimen/_7sdp"
+                android:drawableRight="@drawable/icon_yourname"
+                android:textColor="@color/colorTextHint"
+                android:textSize="@dimen/_19px"
+                tools:ignore="RtlHardcoded"
+                tools:text="ابو ابراهيم ناصر المأمون" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/colorSeprator" />
+
+            <TextView
+                android:id="@+id/tvUserProfileMobile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:drawablePadding="@dimen/_7sdp"
+                android:drawableRight="@drawable/icon_yourmobile"
+                android:gravity="right"
+                android:textColor="@color/colorTextHint"
+                android:textSize="@dimen/_19px"
+                tools:ignore="RtlHardcoded"
+                tools:text="+966 45 2877 5555" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/colorSeprator" />
+
+            <TextView
+                android:id="@+id/tvUserProfileMail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:drawablePadding="@dimen/_7sdp"
+                android:drawableRight="@drawable/icon_youremail"
+                android:gravity="right"
+                android:textColor="@color/colorTextHint"
+                android:textSize="@dimen/_19px"
+                tools:ignore="RtlHardcoded"
+                tools:text="naser_123@email.com" />
+
+
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/tvUserProfileEditData"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_50sdp"
+            android:layout_marginStart="@dimen/_50sdp"
+            android:layout_marginTop="@dimen/_40sdp"
+            android:background="@drawable/background_text_edit_profile"
+            android:gravity="center"
+            android:padding="@dimen/_5sdp"
+            android:text="@string/edit_data"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/_19px" />
+
+        <TextView
+            android:id="@+id/tvUserProfileChangePassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_50sdp"
+            android:layout_marginStart="@dimen/_50sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:background="@drawable/background_text_my_reciepts"
+            android:gravity="center"
+            android:padding="@dimen/_5sdp"
+            android:text="@string/change_password"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/_19px" />
+
+    </LinearLayout>
+</ScrollView>

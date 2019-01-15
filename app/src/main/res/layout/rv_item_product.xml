@@ -1,62 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/_7sdp"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layoutDirection="rtl"
+        android:orientation="horizontal"
         android:weightSum="4">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:src="@mipmap/ic_launcher"
-            android:layout_height="wrap_content" />
+            android:src="@mipmap/ic_launcher" />
 
         <TextView
+            android:id="@+id/tvRvItemDelegateName"
             android:layout_width="0dp"
-            android:layout_weight="3"
-            tools:text="سعد الدين"
-            android:textSize="@dimen/_9sdp"
-            android:textColor="@color/colorText"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_height="wrap_content" />
+            android:layout_weight="3"
+            android:textColor="@color/colorText"
+            android:textSize="@dimen/_9sdp"
+            android:text="اسم الشخص" />
     </LinearLayout>
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_80sdp">
+        android:layout_height="@dimen/_80sdp"
+        android:layout_marginTop="@dimen/_7sdp">
 
         <ImageView
+            android:id="@+id/imgRvItemDelegateItem"
             android:layout_width="match_parent"
-            android:src="@mipmap/ic_launcher"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/ic_launcher" />
 
         <TextView
+            android:id="@+id/tvRvItemDelegateTitle"
             android:layout_width="match_parent"
-            android:textColor="@color/colorWhite"
-            android:background="@color/colorRedTransparent"
-            android:textSize="@dimen/_10sdp"
-            android:padding="@dimen/_5sdp"
+            android:layout_height="wrap_content"
             android:layout_gravity="bottom"
+            android:background="@color/colorRedTransparent"
+            android:ellipsize="end"
             android:gravity="center"
-            tools:text="أسم المنتج"
-            android:layout_height="wrap_content" />
+            android:lines="1"
+            android:padding="@dimen/_5sdp"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/_10sdp"
+            tools:text="أسم المنتج" />
     </FrameLayout>
 
     <TextView
+        android:id="@+id/tvRvItemDelegatePrice"
         android:layout_width="match_parent"
-        tools:text="24 ريال "
-        android:gravity="center"
+        android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_5sdp"
+        android:gravity="center"
+        android:textColor="@color/colorTextPrice"
         android:textSize="@dimen/_12sdp"
         android:textStyle="bold"
-        android:textColor="@color/colorTextPrice"
-        android:layout_height="wrap_content" />
+        tools:text="24 ريال " />
 
 </LinearLayout>

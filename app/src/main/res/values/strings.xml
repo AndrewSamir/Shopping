@@ -68,4 +68,8 @@
     <string name="permissions_needed">permissions_needed</string>
     <string name="cancel">cancel</string>
     <string name="send_to">ارسال الي</string>
+    <string name="category">القسم</string>
+    <string name="city">المدينة</string>
+    <string name="search_word">كلمة البحث</string>
+    <string name="report_product">تبليغ عن منتج مسئ</string>
 </resources>

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="fitXY"
+            android:src="@drawable/header_bg_2"
+            tools:ignore="ContentDescription" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_10sdp"
+            android:background="@color/colorWhite"
+            android:orientation="vertical">
+
+
+            <EditText
+                android:id="@+id/edtRegisterFullName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/background_edit_register"
+                android:drawablePadding="@dimen/_7sdp"
+                android:drawableRight="@drawable/icon_yourname"
+                android:hint="@string/full_name"
+                android:inputType="text"
+                android:lines="1"
+                android:padding="@dimen/_10sdp"
+                android:textColor="@color/colorBlack"
+                tools:ignore="RtlHardcoded" />
+
+
+            <EditText
+                android:id="@+id/edtRegisterMobile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:background="@drawable/background_edit_register"
+                android:drawablePadding="@dimen/_7sdp"
+                android:drawableRight="@drawable/icon_yourmobile"
+                android:gravity="right"
+                android:hint="@string/mobile"
+                android:inputType="phone"
+                android:lines="1"
+                android:maxLength="10"
+                android:padding="@dimen/_10sdp"
+                android:textColor="@color/colorBlack"
+                tools:ignore="RtlHardcoded" />
+
+
+            <EditText
+                android:id="@+id/edtRegisterMail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:background="@drawable/background_edit_register"
+                android:drawablePadding="@dimen/_7sdp"
+                android:drawableRight="@drawable/icon_youremail"
+                android:hint="@string/mail"
+                android:inputType="textEmailAddress"
+                android:lines="1"
+                android:padding="@dimen/_10sdp"
+                android:textColor="@color/colorBlack"
+                tools:ignore="RtlHardcoded" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layoutDirection="rtl"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/imgUserEditProfileUpdateImage"
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="@dimen/_70sdp"
+                    android:src="@drawable/icon_uploadimage"
+                    tools:ignore="ContentDescription" />
+
+                <TextView
+                    android:id="@+id/tvUserEditProfileUpdateImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|center_vertical"
+                    android:layout_margin="@dimen/_20sdp"
+                    android:drawablePadding="@dimen/_10sdp"
+                    android:gravity="center"
+                    android:text="@string/edit_image"
+                    android:textColor="@color/colorTextHint"
+                    android:textSize="@dimen/_20px"
+                    tools:ignore="RtlHardcoded" />
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnRegisterRegister"
+                android:layout_width="@dimen/_160sdp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginEnd="@dimen/_50sdp"
+                android:layout_marginStart="@dimen/_50sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:alpha="1"
+                android:background="@drawable/background_text_edit_profile"
+                android:elevation="@dimen/_5sdp"
+                android:text="@string/edit_data"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/_15sdp"
+                tools:ignore="UnusedAttribute" />
+
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

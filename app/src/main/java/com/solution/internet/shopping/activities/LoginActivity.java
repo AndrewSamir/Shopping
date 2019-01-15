@@ -31,7 +31,8 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import retrofit2.Call;
 
-public class LoginActivity extends Activity implements HandleRetrofitResp, Validator.ValidationListener {
+public class LoginActivity extends Activity implements HandleRetrofitResp, Validator.ValidationListener
+{
 
     //region fields
     Validator validator;
@@ -52,7 +53,8 @@ public class LoginActivity extends Activity implements HandleRetrofitResp, Valid
 
     //region life cycle
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
@@ -66,7 +68,8 @@ public class LoginActivity extends Activity implements HandleRetrofitResp, Valid
     }
 
     @Override
-    public void onResume() {
+    public void onResume()
+    {
         super.onResume();
         validator = new Validator(this);
         validator.setValidationListener(this);
@@ -76,19 +79,22 @@ public class LoginActivity extends Activity implements HandleRetrofitResp, Valid
 
     //region clicks
     @OnClick(R.id.btnLoginEnter)
-    public void onClickbtnLoginEnter() {
+    public void onClickbtnLoginEnter()
+    {
         validator.validate();
     }
 
     @OnClick(R.id.btnLoginRegister)
-    public void onClickbtnLoginRegister() {
+    public void onClickbtnLoginRegister()
+    {
         Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
         intent.putExtra(DataEnum.intentRegisterType.name(), "delivery");
         startActivity(intent);
     }
 
     @OnClick(R.id.btnLoginAsClient)
-    public void onClickbtnLoginAsClient() {
+    public void onClickbtnLoginAsClient()
+    {
         Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
         intent.putExtra(DataEnum.intentRegisterType.name(), "user");
         startActivity(intent);
@@ -98,32 +104,40 @@ public class LoginActivity extends Activity implements HandleRetrofitResp, Valid
 
     //region call response
     @Override
-    public void onResponseSuccess(String flag, Object o) {
+    public void onResponseSuccess(String flag, Object o)
+    {
         Gson gson = new Gson();
         JsonObject jsonObject = gson.toJsonTree(o).getAsJsonObject();
 
-        if (flag.equals(DataEnum.callLogin.name())) {
+        if (flag.equals(DataEnum.callLogin.name()))
+        {
             ModelLoginResponse modelLoginResponse = gson.fromJson(jsonObject, ModelLoginResponse.class);
             SharedPrefHelper.getInstance(this).setUser(modelLoginResponse);
-            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+            if (modelLoginResponse.getUsertype().equals("user"))
+                startActivity(new Intent(LoginActivity.this, MainActivity.class));
+            else
+                startActivity(new Intent(LoginActivity.this, MainActivity.class));
             finish();
         }
     }
 
     @Override
-    public void onNoContent(String flag, int code) {
+    public void onNoContent(String flag, int code)
+    {
 
     }
 
     @Override
-    public void onResponseSuccess(String flag, Object o, int position) {
+    public void onResponseSuccess(String flag, Object o, int position)
+    {
 
     }
 
     //endregion
 
     //region calls
-    private void callLogin() {
+    private void callLogin()
+    {
         ModelLoginRequest modelLoginRequest = new ModelLoginRequest();
         modelLoginRequest.setMobile(edtLoginPhone.getText().toString().trim());
         modelLoginRequest.setPassword(edtLoginPassword.getText().toString().trim());
@@ -138,20 +152,25 @@ public class LoginActivity extends Activity implements HandleRetrofitResp, Valid
 
 
     @Override
-    public void onValidationSucceeded() {
+    public void onValidationSucceeded()
+    {
         callLogin();
     }
 
     @Override
-    public void onValidationFailed(List<ValidationError> errors) {
-        for (ValidationError error : errors) {
+    public void onValidationFailed(List<ValidationError> errors)
+    {
+        for (ValidationError error : errors)
+        {
             View view = error.getView();
             String message = error.getCollatedErrorMessage(this);
 
             // Display error messages ;)
-            if (view instanceof EditText) {
+            if (view instanceof EditText)
+            {
                 ((EditText) view).setError(message);
-            } else {
+            } else
+            {
 //                showMessage(message);
             }
         }

@@ -9,6 +9,7 @@
     android:orientation="vertical">
 
     <TextView
+        android:id="@+id/tvRvItemMessageTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="left"
@@ -27,6 +28,7 @@
         android:orientation="horizontal">
 
         <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imhRvItemMessageImg"
             android:layout_width="@dimen/_50sdp"
             android:layout_height="@dimen/_50sdp"
             android:src="@mipmap/ic_launcher" />
@@ -37,6 +39,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/tvRvItemMessageName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
@@ -45,11 +48,12 @@
                 android:padding="@dimen/_5sdp"
                 android:textColor="@color/colorTextHint"
                 android:textDirection="rtl"
-                android:textStyle="bold"
                 android:textSize="@dimen/_16px"
+                android:textStyle="bold"
                 tools:text="سعد رمضان سالم" />
 
             <TextView
+                android:id="@+id/tvRvItemMessage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"

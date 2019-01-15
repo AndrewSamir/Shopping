@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/_5sdp"
+
+        android:orientation="vertical"
+        android:scrollbars="none"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:context=".activities.ProductDetailsActivity"
+        tools:showIn="@layout/activity_product_details">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            tools:context=".activities.ProductDetailsActivity"
+            tools:showIn="@layout/activity_product_details">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scaleType="fitXY"
+                android:src="@drawable/header_bg_6" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:background="@drawable/background_linear_empty"
+                android:orientation="vertical"
+                android:padding="@dimen/_10sdp">
+
+
+                <ImageView
+                    android:id="@+id/imgProductDetails"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_140sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:scaleType="centerCrop"
+                    android:src="@mipmap/ic_launcher"
+                    tools:ignore="ContentDescription" />
+
+                <TextView
+                    android:id="@+id/tvProductDetailsTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:textColor="@color/colorTextHint"
+                    android:textSize="@dimen/_19px"
+                    tools:text="حذاء بنى رجالى شمواة" />
+
+                <TextView
+                    android:id="@+id/tvProductDetailsContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/_12sdp"
+                    tools:text="هناك حقيقة مثبتة منذ زمن طويل وهي أن
+المحتوى المقروء لصفحة ما سيلهي القارئ عنالتركيز على الشكل الخارجي للنص أو شكل الفقرات في الصفحة التي يقرأها. ولذلك يتم
+استخدام طريقة لوريم إيبسوم لأنها تعطي طبيعياَ -إلى حد ما- للأحرف عوضاً عن " />
+
+
+                <TextView
+                    android:id="@+id/tvProductDetailsPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@drawable/background_text_edit_profile"
+                    android:gravity="center"
+                    android:paddingBottom="@dimen/_10sdp"
+                    android:paddingEnd="@dimen/_40sdp"
+                    android:paddingStart="@dimen/_40sdp"
+                    android:paddingTop="@dimen/_10sdp"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/_19px"
+                    android:visibility="visible"
+                    tools:text="150 ريال" />
+
+                <TextView
+                    android:id="@+id/tvProductDetailsReport"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:drawablePadding="@dimen/_7sdp"
+                    android:drawableRight="@drawable/icon_pen"
+                    android:gravity="center"
+                    android:paddingBottom="@dimen/_10sdp"
+                    android:paddingEnd="@dimen/_40sdp"
+                    android:paddingStart="@dimen/_40sdp"
+                    android:paddingTop="@dimen/_10sdp"
+                    android:text="@string/report_product"
+                    android:textColor="#9D0152"
+                    android:textSize="@dimen/_17px"
+                    android:visibility="visible"
+                    tools:ignore="RtlHardcoded" />
+
+            </LinearLayout>
+
+
+            <Button
+                android:id="@+id/btnProductDetails"
+                android:layout_width="@dimen/_160sdp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_30sdp"
+                android:alpha="1"
+                android:background="@drawable/background_order_product"
+                android:enabled="false"
+                android:text="طلب المنتج"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/_17px" />
+        </LinearLayout>
+    </ScrollView>
+
+</android.support.design.widget.CoordinatorLayout>

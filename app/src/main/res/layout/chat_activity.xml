@@ -28,6 +28,7 @@
         android:textSize="@dimen/_15sdp" />
 
     <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvChat"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/_12sdp"
