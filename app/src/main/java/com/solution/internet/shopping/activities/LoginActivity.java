@@ -31,7 +31,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import retrofit2.Call;
 
-public class LoginActivity extends Activity implements HandleRetrofitResp, Validator.ValidationListener
+public class LoginActivity extends AppCompatActivity implements HandleRetrofitResp, Validator.ValidationListener
 {
 
     //region fields
@@ -56,8 +56,6 @@ public class LoginActivity extends Activity implements HandleRetrofitResp, Valid
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-
         setContentView(R.layout.activity_login);
 
         ButterKnife.bind(this);

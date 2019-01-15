@@ -152,7 +152,7 @@ public class ProductDetailsUserFragment extends BaseFragment implements HandleRe
 //        tvProductDetailsName.setText(item.getCategoryname());
         tvProductDetailsTitle.setText(item.getTitle());
         tvProductDetailsContent.setText(item.getCityname());
-        tvProductDetailsPrice.setText(item.getPrice() + "ريال");
+        tvProductDetailsPrice.setText(item.getPrice() + " ريال ");
 
         Picasso.with(getBaseActivity())
                 .load(item.getPhoto())

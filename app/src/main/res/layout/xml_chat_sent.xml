@@ -41,9 +41,8 @@
             android:paddingLeft="@dimen/_20sdp"
             android:paddingRight="@dimen/_20sdp"
             android:paddingTop="@dimen/_5sdp"
-
-            android:textColor="@color/colorPrimary"
-            android:textSize="@dimen/_12sdp"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/_10sdp"
             tools:ignore="RtlHardcoded"
             tools:text="this is a message " />
 
@@ -55,7 +54,7 @@
             android:layout_gravity="left"
             android:layout_marginBottom="@dimen/_5sdp"
             android:layout_marginLeft="@dimen/_5sdp"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/colorWhite"
             android:textSize="@dimen/_7sdp"
             tools:text="2:00 am" />
     </LinearLayout>

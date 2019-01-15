@@ -16,10 +16,26 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <ImageView
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/header_bg_6" />
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scaleType="fitXY"
+                android:src="@drawable/header_bg_6"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_marginTop="@dimen/_7sdp"
+                android:layout_gravity="center_horizontal"
+                android:textSize="@dimen/_22px"
+                android:textColor="@color/colorWhite"
+                android:text="@string/add_product"
+                android:layout_height="wrap_content" />
+        </FrameLayout>
 
         <TextView
             android:layout_width="wrap_content"

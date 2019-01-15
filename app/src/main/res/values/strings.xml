@@ -72,4 +72,21 @@
     <string name="city">المدينة</string>
     <string name="search_word">كلمة البحث</string>
     <string name="report_product">تبليغ عن منتج مسئ</string>
+    <string name="confirm_new_password">تأكيد كلمة المرور الجديدة</string>
+    <string name="old_password">كلمة المرور القديمة</string>
+    <string name="new_password">كلمة المرور الجديدة</string>
+    <string name="required_password">يجب الا يقل عن 8 أحرف</string>
+    <string name="required_confirm_password">كلمة المرور غير متطابقة</string>
+    <string name="chat">الشات</string>
+    <string name="personal_profile">الملف الشخصي</string>
+    <string name="add_product">إضافة منتج</string>
+    <string name="product_details">تفاصيل المنتج</string>
+    <string name="messages">الرسائل</string>
+    <string name="notifications">الإشعارات</string>
+    <string name="rating">تقييم</string>
+    <string name="reset_details">تفاصيل الفاتورة</string>
+    <string name="transaction_data">بيانات التحويل</string>
+    <string name="confirmation_code">تأكيد رقم الجوال</string>
+    <string name="enter_confirmation_code">أدخل كود التفعيل المرسل الي جوالك</string>
+    <string name="send_code">إرسال الكود</string>
 </resources>

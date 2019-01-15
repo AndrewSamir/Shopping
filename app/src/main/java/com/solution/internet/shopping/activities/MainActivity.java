@@ -16,6 +16,7 @@ import android.view.Window;
 
 import com.solution.internet.shopping.R;
 import com.solution.internet.shopping.fragments.BaseFragment;
+import com.solution.internet.shopping.fragments.ConfirmationCodeFragment;
 import com.solution.internet.shopping.fragments.HomeFragment;
 import com.solution.internet.shopping.fragments.InboxFragment;
 import com.solution.internet.shopping.fragments.UserProfileFragment;
@@ -26,11 +27,9 @@ import com.solution.internet.shopping.interfaces.HandleRetrofitResp;
  * This will mainly be used to show most of the app. <br></br>
  * It has a header and a BottomNavigationView, and can easily be shown from the functions required from each Fragment.
  */
-public class MainActivity extends BaseActivity implements View.OnClickListener, HandleRetrofitResp
-{
+public class MainActivity extends BaseActivity implements View.OnClickListener, HandleRetrofitResp {
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
 //        appHeader.setBackgroundResource(R.color.colorPrimary);
@@ -38,8 +37,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
 
         Intent intent = getIntent();
 
-
-        addContentFragment(new HomeFragment(), false);
+        if (intent.hasExtra("mobile"))
+            addContentFragment(ConfirmationCodeFragment.init(intent.getStringExtra("mobile")), false);
+        else
+            addContentFragment(new HomeFragment(), false);
 
 //            addContentFragment(ReservationsFragments.init(intent.getStringExtra(DataEnum.extraReservationID.name())), true);
 
@@ -47,14 +48,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
 
     //region parent
     @Override
-    public int getFragmentContainerID()
-    {
+    public int getFragmentContainerID() {
         return R.id.mainActivity_container;
     }
 
     @Override
-    protected int getBaseLayoutID()
-    {
+    protected int getBaseLayoutID() {
         return R.layout.main_activity;
     }
 
@@ -62,27 +61,20 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
 
     //region bottom bar
 
-    private void initBottomBar()
-    {
+    private void initBottomBar() {
 //        adjustMenuItemFont();
 
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener()
-        {
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item)
-            {//open correct view when clicked
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {//open correct view when clicked
 
-                if (item.getItemId() == R.id.bottomItem_main)
-                {
+                if (item.getItemId() == R.id.bottomItem_main) {
                     addContentFragment(new HomeFragment(), true);
-                } else if (item.getItemId() == R.id.bottomItem_messages)
-                {
+                } else if (item.getItemId() == R.id.bottomItem_messages) {
                     addContentFragment(new InboxFragment(), true);
-                } else if (item.getItemId() == R.id.bottomItem_map)
-                {
+                } else if (item.getItemId() == R.id.bottomItem_map) {
                     addContentFragment(new HomeFragment(), true);
-                } else if (item.getItemId() == R.id.bottomItem_more)
-                {
+                } else if (item.getItemId() == R.id.bottomItem_more) {
                     addContentFragment(new UserProfileFragment(), true);
                 }
 
@@ -93,15 +85,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
 
     }
 
-    private void adjustMenuItemFont()
-    {
+    private void adjustMenuItemFont() {
         int menuSize = bottomNavigationView.getMenu().size();
-        for (int j = 0; j < menuSize; j++)
-        {//change the type face for the menu font
+        for (int j = 0; j < menuSize; j++) {//change the type face for the menu font
             MenuItem mi = bottomNavigationView.getMenu().getItem(j);
             Typeface font = Typeface.createFromAsset(getAssets(), "fonts/TheSansArabic-Plain.otf");
-            if (mi.getTitle() != null)
-            {
+            if (mi.getTitle() != null) {
                 SpannableString mNewTitle = new SpannableString(mi.getTitle());
 //                mNewTitle.setSpan(new CustomTypefaceSpan("", font), 0, mNewTitle.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
                 mi.setTitle(mNewTitle);
@@ -114,18 +103,15 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
 
     //region helpers
     @Override
-    public void onBackPressed()
-    {
+    public void onBackPressed() {
         super.onBackPressed();
     }
 
-    public void updateNavigationBarState()
-    {
+    public void updateNavigationBarState() {
         //TODO adjust bottom navigation view buttons to select the correct one
         BaseFragment fragment = (BaseFragment) getSupportFragmentManager().findFragmentById(getFragmentContainerID());
         int actionId = fragment.getSelectedMenuId();
-        if (actionId != 0)
-        {
+        if (actionId != 0) {
             //            Menu menu = bottomNavigationView.getMenu();
 
             //            for (int i = 0, size = menu.size(); i < size; i++)
@@ -139,22 +125,18 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     }
 
     @Override
-    public void addContentFragment(Fragment fragment, boolean addToBackStack, @AnimRes int enterAnim, @AnimRes int exitAnim)
-    {
+    public void addContentFragment(Fragment fragment, boolean addToBackStack, @AnimRes int enterAnim, @AnimRes int exitAnim) {
         super.addContentFragment(fragment, addToBackStack, enterAnim, exitAnim);
     }
 
     //endregion
 
     //region initiate the activity
-    public static void init(Context context)
-    {
-        if (context != null)
-        {
+    public static void init(Context context) {
+        if (context != null) {
             Intent intent = new Intent(context, MainActivity.class);
             context.startActivity(intent);
-        } else
-        {
+        } else {
 //            Logger.INSTANCE.e("MainActivity", "Context is null during init() function");
         }
     }
@@ -162,8 +144,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     //endregion
 
     @Override
-    public void onClick(View v)
-    {
+    public void onClick(View v) {
        /* Category category = new Category();
 
         switch (v.getId())
@@ -195,20 +176,17 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     }
 
     @Override
-    public void onResponseSuccess(String flag, Object o)
-    {
+    public void onResponseSuccess(String flag, Object o) {
 
     }
 
     @Override
-    public void onNoContent(String flag, int code)
-    {
+    public void onNoContent(String flag, int code) {
 
     }
 
     @Override
-    public void onResponseSuccess(String flag, Object o, int position)
-    {
+    public void onResponseSuccess(String flag, Object o, int position) {
 
     }
 }

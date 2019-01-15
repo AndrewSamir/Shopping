@@ -25,12 +25,26 @@
             tools:context=".activities.ProductDetailsActivity"
             tools:showIn="@layout/activity_product_details">
 
-            <ImageView
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:scaleType="fitXY"
-                android:src="@drawable/header_bg_8" />
+                android:layout_height="wrap_content">
 
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/header_bg_8"
+                    tools:ignore="ContentDescription" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_marginTop="@dimen/_7sdp"
+                    android:layout_gravity="center_horizontal"
+                    android:textSize="@dimen/_22px"
+                    android:textColor="@color/colorWhite"
+                    android:text="@string/product_details"
+                    android:layout_height="wrap_content" />
+            </FrameLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

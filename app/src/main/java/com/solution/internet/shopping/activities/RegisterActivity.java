@@ -172,7 +172,8 @@ public class RegisterActivity extends Activity implements HandleRetrofitResp, Va
             JsonObject jsonObject = gson.toJsonTree(o).getAsJsonObject();
             ModelLoginResponse modelLoginResponse = gson.fromJson(jsonObject, ModelLoginResponse.class);
             SharedPrefHelper.getInstance(this).setUser(modelLoginResponse);
-            startActivity(new Intent(RegisterActivity.this, MapsActivity.class));
+            startActivity(new Intent(RegisterActivity.this, MainActivity.class)
+                    .putExtra("mobile", edtRegisterMobile.getText().toString()));
             finish();
         }
 

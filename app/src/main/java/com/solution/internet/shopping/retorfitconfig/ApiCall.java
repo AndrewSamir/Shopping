@@ -2,7 +2,9 @@ package com.solution.internet.shopping.retorfitconfig;
 
 import com.solution.internet.shopping.models.ModelAddProductRequest.ModelAddProductRequest;
 import com.solution.internet.shopping.models.ModelChangePasswordRequest.ModelChangePasswordRequest;
+import com.solution.internet.shopping.models.ModelChatNewRequest.ModelChatNewRequest;
 import com.solution.internet.shopping.models.ModelCommenResponse.ModelCommenResponse;
+import com.solution.internet.shopping.models.ModelConfirmationCodeRequest.ModelConfirmationCodeRequest;
 import com.solution.internet.shopping.models.ModelLoginRequest.ModelLoginRequest;
 import com.solution.internet.shopping.models.ModelLoginResponse.ModelLoginResponse;
 import com.solution.internet.shopping.models.ModelSignUpRequest.ModelSignUpRequest;
@@ -24,8 +26,7 @@ import retrofit2.http.PartMap;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
-public interface ApiCall
-{
+public interface ApiCall {
 
     //region auth
     @POST(Constant.subUrl + "user/login")
@@ -36,6 +37,9 @@ public interface ApiCall
 
     @POST(Constant.subUrl + "user/signup")
     Call<ModelCommenResponse> callSignup(@Body ModelSignUpRequest modelSignUpRequest);
+
+    @POST(Constant.subUrl + "user/ActivePhone")
+    Call<ModelCommenResponse> callActivePhone(@Body ModelConfirmationCodeRequest modelConfirmationCodeRequest);
 
     @POST(Constant.subUrl + "user/changepassword")
     Call<ModelCommenResponse> callChangePassword(@Body ModelChangePasswordRequest modelChangePasswordRequest);
@@ -60,12 +64,18 @@ public interface ApiCall
     @GET(Constant.subUrl + "chat")
     Call<ModelCommenResponse> callChat();
 
-    @GET(Constant.subUrl + "/chat/{id}")
+    @POST(Constant.subUrl + "chat/new")
+    Call<ModelCommenResponse> callChatNew(@Body ModelChatNewRequest modelChatNewRequest);
+
+    @POST(Constant.subUrl + "chat/acceptInvoice")
+    Call<ModelCommenResponse> callAcceptInvoice(@Body ModelChatNewRequest modelChatNewRequest);
+
+    @GET(Constant.subUrl + "chat/{id}")
     Call<ModelCommenResponse> callChatWith(@Path("id") int id);
 
     @Multipart
     @POST(Constant.subUrl + "chat/uploadPhoto")
-    Call<ModelCommenResponse> callUploadPhoto(@Part MultipartBody.Part postImage);
+    Call<ModelCommenResponse> callUploadPhoto(@Part MultipartBody.Part photo);
 
     //endregion
 

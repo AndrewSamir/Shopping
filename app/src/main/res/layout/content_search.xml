@@ -49,7 +49,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/background_linear_empty"
                 android:drawableLeft="@drawable/arrow"
-                android:drawableRight="@drawable/icon_pen"
+                android:drawableRight="@drawable/icon_country"
                 android:gravity="center"
                 android:hint="@string/city"
                 android:padding="@dimen/_7sdp"
@@ -67,6 +67,7 @@
             android:layout_marginTop="@dimen/_10sdp"
             android:background="@drawable/background_linear_empty"
             android:hint="@string/search_word"
+            android:imeOptions="actionSearch"
             android:padding="@dimen/_7sdp"
             android:inputType="text" />
 

@@ -5,12 +5,26 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <ImageView
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:scaleType="fitXY"
-        android:src="@drawable/header_bg_16"
-        tools:ignore="ContentDescription" />
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="fitXY"
+            android:src="@drawable/header_bg_16"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_marginTop="@dimen/_7sdp"
+            android:layout_gravity="center_horizontal"
+            android:textSize="@dimen/_22px"
+            android:textColor="@color/colorWhite"
+            android:text="@string/chat"
+            android:layout_height="wrap_content" />
+    </FrameLayout>
 
     <Button
         android:id="@+id/btnRegisterRegister"
@@ -29,6 +43,7 @@
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rvChat"
+        android:padding="@dimen/_6sdp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/_12sdp"

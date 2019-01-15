@@ -20,9 +20,11 @@
             android:id="@+id/bottomNavigationView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorWhite"
+            android:background="@color/colorBackgroundPrice"
             android:elevation="@dimen/_5sdp"
             android:layoutDirection="ltr"
+            app:itemTextColor="@color/colorWhite"
+            app:itemIconTint="@color/colorWhite"
             app:menu="@menu/bottom_nav_items"
             tools:ignore="UnusedAttribute" />
     </android.support.v7.widget.CardView>

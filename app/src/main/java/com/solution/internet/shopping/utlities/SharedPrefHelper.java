@@ -43,9 +43,9 @@ public class SharedPrefHelper
         editor.apply();
     }
 
-    public String getUserid()
+    public int getUserid()
     {
-        return prefs.getString(DataEnum.shUserID.name(), null);
+        return prefs.getInt(DataEnum.shUserID.name(), -1);
     }
 
     public String getApiToken()
