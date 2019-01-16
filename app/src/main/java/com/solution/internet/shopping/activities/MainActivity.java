@@ -19,6 +19,7 @@ import com.solution.internet.shopping.fragments.BaseFragment;
 import com.solution.internet.shopping.fragments.ConfirmationCodeFragment;
 import com.solution.internet.shopping.fragments.HomeFragment;
 import com.solution.internet.shopping.fragments.InboxFragment;
+import com.solution.internet.shopping.fragments.MapFragment;
 import com.solution.internet.shopping.fragments.UserProfileFragment;
 import com.solution.internet.shopping.interfaces.HandleRetrofitResp;
 
@@ -73,7 +74,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                 } else if (item.getItemId() == R.id.bottomItem_messages) {
                     addContentFragment(new InboxFragment(), true);
                 } else if (item.getItemId() == R.id.bottomItem_map) {
-                    addContentFragment(new HomeFragment(), true);
+                    addContentFragment(new MapFragment(), true);
                 } else if (item.getItemId() == R.id.bottomItem_more) {
                     addContentFragment(new UserProfileFragment(), true);
                 }

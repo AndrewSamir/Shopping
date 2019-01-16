@@ -89,4 +89,5 @@
     <string name="confirmation_code">تأكيد رقم الجوال</string>
     <string name="enter_confirmation_code">أدخل كود التفعيل المرسل الي جوالك</string>
     <string name="send_code">إرسال الكود</string>
+    <string name="map">الخريطة</string>
 </resources>
