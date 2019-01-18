@@ -2,9 +2,9 @@ package com.solution.internet.shopping.models.ModelChatNewRequest;
 
 public class ModelChatNewRequest {
 
-    String type, message, price, userid;
+    String type, message, price;
 
-    int cr_id;
+    int cr_id,userid;
 
     public int getCr_id() {
         return cr_id;
@@ -38,11 +38,11 @@ public class ModelChatNewRequest {
         this.price = price;
     }
 
-    public String getUserid() {
+    public int getUserid() {
         return userid;
     }
 
-    public void setUserid(String userid) {
+    public void setUserid(int userid) {
         this.userid = userid;
     }
 }

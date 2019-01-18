@@ -6,6 +6,7 @@
     android:orientation="vertical">
 
     <FrameLayout
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -27,6 +28,7 @@
     </FrameLayout>
 
     <Button
+        android:visibility="gone"
         android:id="@+id/btnRegisterRegister"
         android:layout_width="@dimen/_170sdp"
         android:layout_height="wrap_content"
@@ -53,16 +55,30 @@
 
 
     <Button
+        android:id="@+id/btnChatSend"
         android:layout_width="@dimen/_170sdp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginEnd="@dimen/_10sdp"
         android:layout_marginStart="@dimen/_10sdp"
         android:layout_marginTop="@dimen/_20sdp"
-        android:alpha="0.5"
+        android:alpha="1"
         android:background="@drawable/background_text_edit_profile"
-        android:enabled="false"
         android:text="@string/send"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/_15sdp" />
+
+    <Button
+        android:id="@+id/btnChatImg"
+        android:layout_width="@dimen/_170sdp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:alpha="1"
+        android:background="@drawable/background_text_edit_profile"
+        android:text="@string/personal_profile"
         android:textColor="@color/colorWhite"
         android:textSize="@dimen/_15sdp" />
 </LinearLayout>

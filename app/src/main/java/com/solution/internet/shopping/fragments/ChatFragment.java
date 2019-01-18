@@ -48,11 +48,13 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import gun0912.tedbottompicker.TedBottomPicker;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
+import retrofit2.http.Multipart;
 
 public class ChatFragment extends BaseFragment implements HandleRetrofitResp {
     //region fields
@@ -158,7 +160,15 @@ public class ChatFragment extends BaseFragment implements HandleRetrofitResp {
     //endregion
 
     //region clicks
+    @OnClick(R.id.btnChatSend)
+    public void onClickbtnChatSend() {
+        callChatNew();
+    }
 
+    @OnClick(R.id.btnChatImg)
+    public void onClickbtnChatImg() {
+        selectImage();
+    }
     //endregion
 
     //region calls
@@ -171,9 +181,9 @@ public class ChatFragment extends BaseFragment implements HandleRetrofitResp {
     private void callChatNew() {
 
         ModelChatNewRequest modelChatNewRequest = new ModelChatNewRequest();
-        modelChatNewRequest.setMessage("");
-        modelChatNewRequest.setType("");
-        modelChatNewRequest.setUserid(SingletonShopping.getInstance().getChatUserId() + "");
+        modelChatNewRequest.setMessage("test message");
+        modelChatNewRequest.setType("text");
+        modelChatNewRequest.setUserid(SingletonShopping.getInstance().getChatUserId());
         Call call = HandleCalls.restShopping.getClientService().callChatNew(modelChatNewRequest);
         HandleCalls.getInstance(getBaseActivity()).callRetrofit(call, DataEnum.callChatNew.name(), true);
     }
@@ -186,7 +196,7 @@ public class ChatFragment extends BaseFragment implements HandleRetrofitResp {
         HandleCalls.getInstance(getBaseActivity()).callRetrofit(call, DataEnum.callAcceptInvoice.name(), true);
     }
 
-    private void callUploadPhoto() {
+    private void callUploadPhoto(MultipartBody.Part profileImage) {
 
         Call call = HandleCalls.restShopping.getClientService().callUploadPhoto(profileImage);
         HandleCalls.getInstance(getBaseActivity()).callRetrofit(call, DataEnum.callUploadPhoto.name(), true);
@@ -262,8 +272,8 @@ public class ChatFragment extends BaseFragment implements HandleRetrofitResp {
                                         .load(Uri.fromFile(imageZipperFile))
                                         .into(imgUserEditProfileUpdateImage);
 */
-                                profileImage = prepareFilePart("File", Uri.fromFile(imageZipperFile));
-//                                callUpdateProfilePhoto(profileImage);
+                                profileImage = prepareFilePart("photo", Uri.fromFile(imageZipperFile));
+                                callUploadPhoto(profileImage);
                                 Log.d("test", "dhghjkl");
                             } else {
                                 imageZipperFile = new ImageZipper(getBaseActivity())
@@ -277,8 +287,8 @@ public class ChatFragment extends BaseFragment implements HandleRetrofitResp {
                                         .load(Uri.fromFile(imageZipperFile))
                                         .into(imgUserEditProfileUpdateImage);
 */
-                                profileImage = prepareFilePart("File", Uri.fromFile(imageZipperFile));
-//                                callUpdateProfilePhoto(profileImage);
+                                profileImage = prepareFilePart("photo", Uri.fromFile(imageZipperFile));
+                                callUploadPhoto(profileImage);
                             }
                         } catch (IOException e) {
                             e.printStackTrace();
