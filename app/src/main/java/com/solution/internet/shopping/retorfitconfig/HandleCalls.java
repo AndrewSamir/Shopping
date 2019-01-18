@@ -25,7 +25,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class    HandleCalls
+public class HandleCalls
 {
     private static Context context;
     private static HandleCalls instance = null;
@@ -75,6 +75,8 @@ public class    HandleCalls
                     ModelCommenResponse modelCommenResponse = response.body();
                     if (modelCommenResponse.getResponseMessage() != null)
                         showMessage(modelCommenResponse.getResponseMessage());
+                    if (modelCommenResponse.getLink() != null)
+                        onRespnse.onResponseSuccess(flag, modelCommenResponse.getLink());
                     if (modelCommenResponse.getData() != null && modelCommenResponse.getStatus().equals(context.getString(R.string.done)))
                         onRespnse.onResponseSuccess(flag, modelCommenResponse.getData());
                     else if (modelCommenResponse.getStatus().equals(context.getString(R.string.done)))

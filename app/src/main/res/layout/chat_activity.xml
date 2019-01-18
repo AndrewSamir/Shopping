@@ -1,84 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <FrameLayout
-        android:visibility="gone"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/_45sdp"
+        android:background="@color/colorWhite"
+        android:orientation="vertical">
 
-        <ImageView
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:scaleType="fitXY"
-            android:src="@drawable/header_bg_16"
-            tools:ignore="ContentDescription" />
+            android:visibility="gone">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scaleType="fitXY"
+                android:src="@drawable/header_bg_16"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/_7sdp"
+                android:text="@string/chat"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/_22px" />
+        </FrameLayout>
+
+        <Button
+            android:id="@+id/btnRegisterRegister"
+            android:layout_width="@dimen/_170sdp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:alpha="0.5"
+            android:background="@drawable/background_text_edit_profile"
+            android:enabled="false"
+            android:text="@string/confirm_transaction"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/_15sdp"
+            android:visibility="gone" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvChat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_12sdp"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:padding="@dimen/_6sdp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_gravity="bottom"
+        android:background="#F9F9FA"
+        android:gravity="center"
+        android:layoutDirection="rtl"
+        android:orientation="horizontal"
+        android:weightSum="7">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_marginTop="@dimen/_7sdp"
-            android:layout_gravity="center_horizontal"
-            android:textSize="@dimen/_22px"
-            android:textColor="@color/colorWhite"
-            android:text="@string/chat"
-            android:layout_height="wrap_content" />
-    </FrameLayout>
+            android:id="@+id/btnChatSend"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/send"
+            android:textStyle="bold" />
 
-    <Button
-        android:visibility="gone"
-        android:id="@+id/btnRegisterRegister"
-        android:layout_width="@dimen/_170sdp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginEnd="@dimen/_10sdp"
-        android:layout_marginStart="@dimen/_10sdp"
-        android:layout_marginTop="@dimen/_20sdp"
-        android:alpha="0.5"
-        android:background="@drawable/background_text_edit_profile"
-        android:enabled="false"
-        android:text="@string/confirm_transaction"
-        android:textColor="@color/colorWhite"
-        android:textSize="@dimen/_15sdp" />
+        <EditText
+            android:id="@+id/edtChatMessage"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/_5sdp"
+            android:layout_weight="5"
+            android:background="@drawable/background_edt_white"
+            android:hint="@string/write_msg_here"
+            android:inputType="text"
+            android:padding="@dimen/_7sdp"
+            android:textSize="@dimen/_11sdp" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rvChat"
-        android:padding="@dimen/_6sdp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/_12sdp"
-        android:layout_marginStart="@dimen/_12sdp"
-        android:layout_marginTop="@dimen/_10sdp"
-        android:background="@drawable/background_linear_empty" />
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center">
 
-
-    <Button
-        android:id="@+id/btnChatSend"
-        android:layout_width="@dimen/_170sdp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginEnd="@dimen/_10sdp"
-        android:layout_marginStart="@dimen/_10sdp"
-        android:layout_marginTop="@dimen/_20sdp"
-        android:alpha="1"
-        android:background="@drawable/background_text_edit_profile"
-        android:text="@string/send"
-        android:textColor="@color/colorWhite"
-        android:textSize="@dimen/_15sdp" />
-
-    <Button
-        android:id="@+id/btnChatImg"
-        android:layout_width="@dimen/_170sdp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginEnd="@dimen/_10sdp"
-        android:layout_marginStart="@dimen/_10sdp"
-        android:layout_marginTop="@dimen/_20sdp"
-        android:alpha="1"
-        android:background="@drawable/background_text_edit_profile"
-        android:text="@string/personal_profile"
-        android:textColor="@color/colorWhite"
-        android:textSize="@dimen/_15sdp" />
-</LinearLayout>
+            <ImageView
+                android:id="@+id/btnChatImg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="@dimen/_5sdp"
+                android:src="@drawable/ic_action_attach_file" />
+        </LinearLayout>
+    </LinearLayout>
+</android.support.design.widget.CoordinatorLayout>

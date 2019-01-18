@@ -89,7 +89,7 @@ public class AdapterInbox extends RecyclerView.Adapter<AdapterInbox.MyViewHolder
 */
         Locale locale = new Locale("en");
 
-        SimpleDateFormat formatter = new SimpleDateFormat("DD/MM/YY | hh:mm aa", locale);
+        SimpleDateFormat formatter = new SimpleDateFormat("DD/MM/yy | hh:mm aa", locale);
         long dateTime = Long.parseLong(items.getTime()+"000");
         String dateString = formatter.format(new Date(dateTime));
 

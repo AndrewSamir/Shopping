@@ -11,6 +11,8 @@ public class ModelCommenResponse
 
     @SerializedName("status")
     private String Status;
+    @SerializedName("link")
+    private String link;
     @SerializedName("code")
     private int code;
     @SerializedName(value = "ResponseMessage", alternate = "Message")
@@ -18,6 +20,16 @@ public class ModelCommenResponse
 
     @SerializedName("data")
     private Object Data;
+
+    public String getLink()
+    {
+        return link;
+    }
+
+    public void setLink(String link)
+    {
+        this.link = link;
+    }
 
     public int getCode() {
         return code;

@@ -90,4 +90,7 @@
     <string name="enter_confirmation_code">أدخل كود التفعيل المرسل الي جوالك</string>
     <string name="send_code">إرسال الكود</string>
     <string name="map">الخريطة</string>
+    <string name="write_msg_here">اكتب الرسالة هنا ...</string>
+    <string name="price">السعر</string>
+    <string name="message">الرسالة</string>
 </resources>

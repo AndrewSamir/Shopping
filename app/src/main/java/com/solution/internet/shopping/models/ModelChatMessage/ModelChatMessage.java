@@ -22,6 +22,9 @@ public class ModelChatMessage
     @SerializedName("fullname")
     private String fullname;
     @Expose
+    @SerializedName("type")
+    private String type;
+    @Expose
     @SerializedName("userid")
     private int userid;
     @Expose
@@ -96,5 +99,15 @@ public class ModelChatMessage
     public void setCId(int cId)
     {
         this.cId = cId;
+    }
+
+    public String getType()
+    {
+        return type;
+    }
+
+    public void setType(String type)
+    {
+        this.type = type;
     }
 }
