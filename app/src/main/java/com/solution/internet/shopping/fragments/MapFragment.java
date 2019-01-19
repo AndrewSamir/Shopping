@@ -40,7 +40,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import retrofit2.Call;
 
-public class MapFragment extends BaseFragment implements HandleRetrofitResp, OnMapReadyCallback {
+public class MapFragment extends BaseFragment implements HandleRetrofitResp, OnMapReadyCallback
+{
 
     //region fields
     private GoogleMap googleMap;
@@ -62,21 +63,24 @@ public class MapFragment extends BaseFragment implements HandleRetrofitResp, OnM
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
+    {
         super.onCreateView(inflater, container, savedInstanceState);
+
         final View view = inflater.inflate(R.layout.map_fragment, container, false);
 
         unbinder = ButterKnife.bind(this, view);
         markerList = new ArrayList<>();
 
         markerList = new ArrayList<>();
-
-
+/*
         placeAutoComplete = (PlaceAutocompleteFragment) getBaseActivity().getFragmentManager().findFragmentById(R.id.place_autocomplete);
         placeAutoComplete.setHint("");
-        placeAutoComplete.setOnPlaceSelectedListener(new PlaceSelectionListener() {
+        placeAutoComplete.setOnPlaceSelectedListener(new PlaceSelectionListener()
+        {
             @Override
-            public void onPlaceSelected(Place place) {
+            public void onPlaceSelected(Place place)
+            {
 
                 Log.d("Maps", "Place selected: " + place.getName());
                 googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(place.getLatLng(), (float) 15));
@@ -84,55 +88,76 @@ public class MapFragment extends BaseFragment implements HandleRetrofitResp, OnM
             }
 
             @Override
-            public void onError(Status status) {
+            public void onError(Status status)
+            {
                 Log.d("Maps", "An error occurred: " + status);
             }
         });
-
+*/
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager()
-                .findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
+
+        if(googleMap==null)
+        {
+            SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager()
+                    .findFragmentById(R.id.map);
+            mapFragment.getMapAsync(this);
+        }
         return view;
     }
 
     @Override
-    public void onResume() {
+    public void onResume()
+    {
         super.onResume();
         HandleCalls.getInstance(getBaseActivity()).setonRespnseSucess(this);
     }
 
     @Override
-    public void onStop() {
+    public void onStop()
+    {
         super.onStop();
-//        appHeader.setRight(0, 0, 0);
+//        placeAutoComplete.onDestroyView();
+
+//        placeAutoComplete.onStop();
+/*
+        SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager()
+                .findFragmentById(R.id.map);
+        if (mapFragment != null)
+            getChildFragmentManager().beginTransaction()
+                    .remove(mapFragment).commitAllowingStateLoss();*/
+        //        appHeader.setRight(0, 0, 0);
     }
 
     //endregion
 
     //region parent methods
     @Override
-    protected boolean canShowAppHeader() {
+    protected boolean canShowAppHeader()
+    {
         return false;
     }
 
     @Override
-    protected boolean canShowBottomBar() {
+    protected boolean canShowBottomBar()
+    {
         return true;
     }
 
     @Override
-    protected boolean canShowBackArrow() {
+    protected boolean canShowBackArrow()
+    {
         return false;
     }
 
     @Override
-    protected String getTitle() {
+    protected String getTitle()
+    {
         return null;
     }
 
     @Override
-    public int getSelectedMenuId() {
+    public int getSelectedMenuId()
+    {
         return R.id.tvNavBarProducts;
     }
 
@@ -140,13 +165,16 @@ public class MapFragment extends BaseFragment implements HandleRetrofitResp, OnM
 
     //region calls response
     @Override
-    public void onResponseSuccess(String flag, Object o) {
+    public void onResponseSuccess(String flag, Object o)
+    {
         Gson gson = new Gson();
 
-        if (flag.equals(DataEnum.callMap.name())) {
+        if (flag.equals(DataEnum.callMap.name()))
+        {
             JsonArray jsonArray = gson.toJsonTree(o).getAsJsonArray();
             List<ModelMarker> modelMarkerList = new ArrayList<>();
-            for (int i = 0; i < jsonArray.size(); i++) {
+            for (int i = 0; i < jsonArray.size(); i++)
+            {
                 ModelMarker modelMarker = gson.fromJson(jsonArray.get(i).getAsJsonObject(), ModelMarker.class);
                 modelMarkerList.add(modelMarker);
             }
@@ -157,12 +185,14 @@ public class MapFragment extends BaseFragment implements HandleRetrofitResp, OnM
     }
 
     @Override
-    public void onNoContent(String flag, int code) {
+    public void onNoContent(String flag, int code)
+    {
 
     }
 
     @Override
-    public void onResponseSuccess(String flag, Object o, int position) {
+    public void onResponseSuccess(String flag, Object o, int position)
+    {
 
     }
 
@@ -174,7 +204,8 @@ public class MapFragment extends BaseFragment implements HandleRetrofitResp, OnM
     //endregion
 
     //region calls
-    private void callMap() {
+    private void callMap()
+    {
         Call call = HandleCalls.restShopping.getClientService().callMap();
         HandleCalls.getInstance(getBaseActivity()).callRetrofit(call, DataEnum.callMap.name(), true);
     }
@@ -182,19 +213,24 @@ public class MapFragment extends BaseFragment implements HandleRetrofitResp, OnM
 
     //region functions
 
-    public static MapFragment init() {
+    public static MapFragment init()
+    {
         return new MapFragment();
     }
 
-    private void setMarkers(List<ModelMarker> modelList) {
-        if (googleMap != null) {
+    private void setMarkers(List<ModelMarker> modelList)
+    {
+        if (googleMap != null)
+        {
             googleMap.clear();
             googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 
-            for (ModelMarker model : modelList) {
+            for (ModelMarker model : modelList)
+            {
                 LatLng latLng = new LatLng(model.getLat(), model.getLng());
                 Marker marker = googleMap.addMarker(new MarkerOptions()
                         .position(latLng)
+//                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.logo))
                         .title(model.getFullname()));
 
                 marker.setTag(model.getUserid());
@@ -202,7 +238,8 @@ public class MapFragment extends BaseFragment implements HandleRetrofitResp, OnM
             }
 
             LatLngBounds.Builder builder = new LatLngBounds.Builder();
-            for (Marker marker : markerList) {
+            for (Marker marker : markerList)
+            {
                 builder.include(marker.getPosition());
             }
             LatLngBounds bounds = builder.build();
@@ -229,18 +266,19 @@ public class MapFragment extends BaseFragment implements HandleRetrofitResp, OnM
     }*/
 
     @Override
-    public void onMapReady(GoogleMap map) {
+    public void onMapReady(GoogleMap map)
+    {
         this.googleMap = map;
 
         callMap();
 
-        googleMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+        googleMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener()
+        {
 
             @Override
-            public void onInfoWindowClick(Marker arg0) {
-                Intent intent = new Intent(getBaseActivity(), DelegateActivity.class);
-                intent.putExtra(DataEnum.intentDeligateId.name(), (int) arg0.getTag());
-                startActivity(intent);
+            public void onInfoWindowClick(Marker arg0)
+            {
+                addFragment(DeliveryPageFragment.init((int) arg0.getTag()), true);
             }
         });
 //        LatLng latLng = new LatLng(Double.parseDouble(model.getLatitude()), Double.parseDouble(model.getLongitude()));
@@ -248,8 +286,10 @@ public class MapFragment extends BaseFragment implements HandleRetrofitResp, OnM
     }
 
 
-    private void adjustMapLatLng(@android.support.annotation.NonNull LatLng latLng) {
-        if (googleMap != null) {
+    private void adjustMapLatLng(@android.support.annotation.NonNull LatLng latLng)
+    {
+        if (googleMap != null)
+        {
             googleMap.clear();
             googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
             googleMap.addMarker(new MarkerOptions().position(latLng));

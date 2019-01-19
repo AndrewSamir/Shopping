@@ -3,6 +3,7 @@ package com.solution.internet.shopping.fragments;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -67,7 +68,7 @@ public class DeliveryPageFragment extends BaseFragment implements HandleRetrofit
 
         itemsList = new ArrayList<>();
         adapterItems = new AdapterItems(itemsList, getBaseActivity());
-        rvDelegate.setLayoutManager(new LinearLayoutManager(getBaseActivity()));
+        rvDelegate.setLayoutManager(new GridLayoutManager(getBaseActivity(), 2));
         rvDelegate.setAdapter(adapterItems);
         rvDelegate.setNestedScrollingEnabled(false);
 
@@ -185,7 +186,7 @@ public class DeliveryPageFragment extends BaseFragment implements HandleRetrofit
     {
 
         tvDelegateName.setText(modelCallDelivery.getInfo().getFullname());
-        tvDelegateCity.setText(modelCallDelivery.getInfo().getCityId());
+        tvDelegateCity.setText(modelCallDelivery.getInfo().getCityId() + "");
         tvDelegateLink.setText(modelCallDelivery.getInfo().getEmail());
         tvDelegateContent.setText(modelCallDelivery.getInfo().getNotes());
         adapterItems.addAll(modelCallDelivery.getItems());

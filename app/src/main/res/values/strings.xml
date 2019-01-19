@@ -93,4 +93,5 @@
     <string name="write_msg_here">اكتب الرسالة هنا ...</string>
     <string name="price">السعر</string>
     <string name="message">الرسالة</string>
+    <string name="invoices">الفواتير</string>
 </resources>

@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBlack"
+    android:orientation="vertical"
+    android:padding="@dimen/_20sdp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorBlack"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layoutDirection="rtl"
+            android:orientation="horizontal">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imgMoreProfile"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_70sdp"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/ic_launcher" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvMoreName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:gravity="center_vertical"
+                    android:lines="1"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/_20px"
+                    tools:text="سعد رمضان فهد" />
+
+                <TextView
+                    android:id="@+id/tvMoreEditData"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:gravity="right"
+                    android:lines="1"
+                    android:text="@string/edit_data"
+                    android:textColor="#DF579D"
+                    android:textSize="@dimen/_18px"
+                    tools:ignore="RtlHardcoded" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvMoreLogout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:drawablePadding="@dimen/_10sdp"
+            android:drawableRight="@drawable/menu_logout"
+            android:gravity="right"
+            android:lines="1"
+            android:text="الخروج"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/_17px"
+            tools:ignore="RtlHardcoded" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvMoreLogin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:drawablePadding="@dimen/_10sdp"
+                android:drawableRight="@drawable/menu_login"
+                android:gravity="right"
+                android:lines="1"
+                android:text="الدخول"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/_18px"
+                tools:ignore="RtlHardcoded" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1.5dp"
+                android:background="#50FFFFFF" />
+
+            <TextView
+                android:id="@+id/tvMoreAbout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:drawablePadding="@dimen/_10sdp"
+                android:drawableRight="@drawable/menu_about"
+                android:gravity="right"
+                android:lines="1"
+                android:text="من نحن"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/_18px"
+                tools:ignore="RtlHardcoded" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1.5dp"
+                android:background="#50FFFFFF" />
+
+            <TextView
+                android:id="@+id/tvMoreContact"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:drawablePadding="@dimen/_10sdp"
+                android:drawableRight="@drawable/menu_contact"
+                android:gravity="right"
+                android:lines="1"
+                android:text="تواصل معنا"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/_18px"
+                tools:ignore="RtlHardcoded" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1.5dp"
+                android:background="#50FFFFFF" />
+
+            <TextView
+                android:id="@+id/tvMorePrivacy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:drawablePadding="@dimen/_10sdp"
+                android:drawableRight="@drawable/menu_privacy"
+                android:gravity="right"
+                android:lines="1"
+                android:text="سياسة الإستخدام"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/_18px"
+                tools:ignore="RtlHardcoded" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1.5dp"
+                android:background="#50FFFFFF" />
+
+            <TextView
+                android:id="@+id/tvMoreInvoices"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:drawablePadding="@dimen/_10sdp"
+                android:drawableRight="@drawable/menu_invoices"
+                android:gravity="right"
+                android:lines="1"
+                android:text="الفواتير"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/_18px"
+                tools:ignore="RtlHardcoded" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1.5dp"
+                android:background="#50FFFFFF" />
+
+            <TextView
+                android:id="@+id/tvMoreMessages"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:drawablePadding="@dimen/_10sdp"
+                android:drawableRight="@drawable/menu_messages"
+                android:gravity="right"
+                android:lines="1"
+                android:text="الرسائل"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/_18px"
+                tools:ignore="RtlHardcoded" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1.5dp"
+                android:background="#50FFFFFF" />
+
+            <TextView
+                android:id="@+id/tvMoreOrders"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:drawablePadding="@dimen/_10sdp"
+                android:drawableRight="@drawable/menu_orders"
+                android:gravity="right"
+                android:lines="1"
+                android:text="الطلبات"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/_18px"
+                tools:ignore="RtlHardcoded" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1.5dp"
+                android:background="#50FFFFFF" />
+
+            <TextView
+                android:id="@+id/tvMoreSpecialOrder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:drawablePadding="@dimen/_10sdp"
+                android:drawableRight="@drawable/menu_specialorder"
+                android:gravity="right"
+                android:lines="1"
+                android:text="طلب خاص"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/_18px"
+                tools:ignore="RtlHardcoded" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1.5dp"
+                android:background="#50FFFFFF" />
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

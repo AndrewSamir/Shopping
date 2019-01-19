@@ -74,7 +74,7 @@ public class UserProfileFragment extends BaseFragment implements HandleRetrofitR
 
     @Override
     protected boolean canShowBottomBar() {
-        return true;
+        return false;
     }
 
     @Override

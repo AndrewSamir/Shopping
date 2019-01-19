@@ -26,7 +26,8 @@ import retrofit2.http.PartMap;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
-public interface ApiCall {
+public interface ApiCall
+{
 
     //region auth
     @POST(Constant.subUrl + "user/login")
@@ -99,6 +100,16 @@ public interface ApiCall {
     /*@Multipart*/
     @POST(Constant.subUrl + "products/add")
     Call<ModelCommenResponse> callProductsAdd(/*@Part MultipartBody.Part photo,*/ @Body ModelAddProductRequest modelAddProductRequest);
+
+    //endregion
+
+    //region customer
+
+    @GET(Constant.subUrl + "invoices/customer")
+    Call<ModelCommenResponse> callInvoicesCustomer();
+
+    @GET(Constant.subUrl + "invoices/{id}/details")
+    Call<ModelCommenResponse> callInvoiceDetails(@Path("id") int id);
 
     //endregion
 }

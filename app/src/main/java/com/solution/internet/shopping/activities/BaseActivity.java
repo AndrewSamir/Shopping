@@ -128,6 +128,7 @@ public abstract class BaseActivity extends RxAppCompatActivity {
 
     //region helper methods
 
+
     /**
      * method to insert Fragments in ContentFragment
      *
