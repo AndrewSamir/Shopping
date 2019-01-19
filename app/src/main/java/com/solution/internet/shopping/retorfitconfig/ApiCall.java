@@ -1,5 +1,7 @@
 package com.solution.internet.shopping.retorfitconfig;
 
+import android.app.VoiceInteractor;
+
 import com.solution.internet.shopping.models.ModelAddProductRequest.ModelAddProductRequest;
 import com.solution.internet.shopping.models.ModelChangePasswordRequest.ModelChangePasswordRequest;
 import com.solution.internet.shopping.models.ModelChatNewRequest.ModelChatNewRequest;
@@ -97,10 +99,16 @@ public interface ApiCall
     @GET(Constant.subUrl + "ProductsByUser/{id}")
     Call<ModelCommenResponse> callProductsByUser(@Path("id") int id);
 
-    /*@Multipart*/
-    @POST(Constant.subUrl + "products/add")
-    Call<ModelCommenResponse> callProductsAdd(/*@Part MultipartBody.Part photo,*/ @Body ModelAddProductRequest modelAddProductRequest);
+    @POST(Constant.subUrl + "products/delete")
+    Call<ModelCommenResponse> callDeleteProduct(@Body ModelAddProductRequest body);
 
+    @Multipart
+    @POST(Constant.subUrl + "products/add")
+    Call<ModelCommenResponse> callAddProduct(@Part MultipartBody.Part photo, @PartMap() Map<String, RequestBody> partMap);
+
+    @Multipart
+    @POST(Constant.subUrl + "products/update")
+    Call<ModelCommenResponse> callUpdateProduct(@Part MultipartBody.Part photo, @PartMap() Map<String, RequestBody> partMap);
     //endregion
 
     //region customer
@@ -110,6 +118,15 @@ public interface ApiCall
 
     @GET(Constant.subUrl + "invoices/{id}/details")
     Call<ModelCommenResponse> callInvoiceDetails(@Path("id") int id);
+
+    //endregion
+
+    //region special orders
+
+    @Multipart
+    @POST(Constant.subUrl + "PrivateOrder/new")
+    Call<ModelCommenResponse> callPrivateOrder(@Part MultipartBody.Part photo, @PartMap() Map<String, RequestBody> partMap);
+
 
     //endregion
 }
