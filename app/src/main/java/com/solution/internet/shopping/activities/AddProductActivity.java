@@ -85,7 +85,7 @@ public class AddProductActivity extends AppCompatActivity implements HandleRetro
     //region calls
 
     private void callProductsAdd() {
-
+/*
         ModelAddProductRequest modelAddProductRequest = new ModelAddProductRequest();
         modelAddProductRequest.setCategory_id("1");
         modelAddProductRequest.setContent(tvAddProductContent.getText().toString().trim());
@@ -93,7 +93,7 @@ public class AddProductActivity extends AppCompatActivity implements HandleRetro
         modelAddProductRequest.setTitle(tvAddProductTitle.getText().toString().trim());
 
         Call call = HandleCalls.restShopping.getClientService().callProductsAdd(modelAddProductRequest);
-        HandleCalls.getInstance(this).callRetrofit(call, DataEnum.callProductsAdd.name(), true);
+        HandleCalls.getInstance(this).callRetrofit(call, DataEnum.callProductsAdd.name(), true);*/
     }
 
     //endregion

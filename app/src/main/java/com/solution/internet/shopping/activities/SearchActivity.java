@@ -13,6 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -37,7 +38,8 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import retrofit2.Call;
 
-public class SearchActivity extends AppCompatActivity implements HandleRetrofitResp, TextWatcher {
+public class SearchActivity extends AppCompatActivity implements HandleRetrofitResp, TextWatcher
+{
 
     //region fields
 
@@ -49,6 +51,7 @@ public class SearchActivity extends AppCompatActivity implements HandleRetrofitR
     int categoryId = -1;
     List<Items> itemsList;
     AdapterItems adapterItems;
+    String searchText = "";
     //endregion
 
     //region views
@@ -68,7 +71,8 @@ public class SearchActivity extends AppCompatActivity implements HandleRetrofitR
 
     //region life cycle
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
         ButterKnife.bind(this);
@@ -79,11 +83,26 @@ public class SearchActivity extends AppCompatActivity implements HandleRetrofitR
         rvSearch.setNestedScrollingEnabled(false);
 
         edtSearch.addTextChangedListener(this);
+
+        edtSearch.setOnEditorActionListener(new TextView.OnEditorActionListener()
+        {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event)
+            {
+                if (edtSearch.getText().toString().length() > 0)
+                {
+                    searchText = edtSearch.getText().toString();
+                    callProducts();
+                }
+                return true;
+            }
+        });
         callCities();
     }
 
     @Override
-    protected void onResume() {
+    protected void onResume()
+    {
         super.onResume();
         HandleCalls.getInstance(this).setonRespnseSucess(this);
     }
@@ -93,17 +112,21 @@ public class SearchActivity extends AppCompatActivity implements HandleRetrofitR
     //region clicks
 
     @OnClick(R.id.tvSearchCity)
-    public void onClicktvSearchCity() {
+    public void onClicktvSearchCity()
+    {
         final CharSequence[] items = new CharSequence[citiesName.size()];
 
-        for (int i = 0; i < citiesName.size(); i++) {
+        for (int i = 0; i < citiesName.size(); i++)
+        {
             items[i] = citiesName.get(i);
         }
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("أختر مدينة");
-        builder.setItems(items, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int item) {
+        builder.setItems(items, new DialogInterface.OnClickListener()
+        {
+            public void onClick(DialogInterface dialog, int item)
+            {
                 // Do something with the selection
                 tvSearchCity.setText(citiesName.get(item));
                 cityId = modelGetCitiesList.get(item).getCityId();
@@ -116,17 +139,21 @@ public class SearchActivity extends AppCompatActivity implements HandleRetrofitR
     }
 
     @OnClick(R.id.tvSearchCategory)
-    public void onClicktvSearchCategory() {
+    public void onClicktvSearchCategory()
+    {
         final CharSequence[] items = new CharSequence[categoriesName.size()];
 
-        for (int i = 0; i < categoriesName.size(); i++) {
+        for (int i = 0; i < categoriesName.size(); i++)
+        {
             items[i] = categoriesName.get(i);
         }
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("أختر القسم");
-        builder.setItems(items, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int item) {
+        builder.setItems(items, new DialogInterface.OnClickListener()
+        {
+            public void onClick(DialogInterface dialog, int item)
+            {
                 // Do something with the selection
                 tvSearchCategory.setText(categoriesName.get(item));
                 categoryId = modelGetCategoriesList.get(item).getCategoryId();
@@ -140,44 +167,53 @@ public class SearchActivity extends AppCompatActivity implements HandleRetrofitR
 
 
     @OnClick(R.id.tvNavBarMore)
-    public void onClicktvNavBarMore() {
+    public void onClicktvNavBarMore()
+    {
         startActivity(new Intent(this, DelegateDetailsActivity.class));
     }
 
     @OnClick(R.id.tvNavBarProducts)
-    public void onClicktvNavBarProducts() {
+    public void onClicktvNavBarProducts()
+    {
         startActivity(new Intent(this, SearchActivity.class));
     }
     //endregion
 
     //region calls response
     @Override
-    public void onResponseSuccess(String flag, Object o) {
+    public void onResponseSuccess(String flag, Object o)
+    {
         Gson gson = new Gson();
 
-        if (flag.equals(DataEnum.callCities.name())) {
+        if (flag.equals(DataEnum.callCities.name()))
+        {
             JsonArray jsonArray = gson.toJsonTree(o).getAsJsonArray();
             modelGetCitiesList = new ArrayList<>();
             citiesName = new ArrayList<>();
-            for (int i = 0; i < jsonArray.size(); i++) {
+            for (int i = 0; i < jsonArray.size(); i++)
+            {
                 ModelGetCities modelGetCity = gson.fromJson(jsonArray.get(i).getAsJsonObject(), ModelGetCities.class);
                 modelGetCitiesList.add(modelGetCity);
                 citiesName.add(modelGetCity.getCity());
             }
             callcategories();
-        } else if (flag.equals(DataEnum.callcategories.name())) {
+        } else if (flag.equals(DataEnum.callcategories.name()))
+        {
             JsonArray jsonArray = gson.toJsonTree(o).getAsJsonArray();
             modelGetCategoriesList = new ArrayList<>();
             categoriesName = new ArrayList<>();
-            for (int i = 0; i < jsonArray.size(); i++) {
+            for (int i = 0; i < jsonArray.size(); i++)
+            {
                 ModelGetCategories modelGetCategories = gson.fromJson(jsonArray.get(i).getAsJsonObject(), ModelGetCategories.class);
                 modelGetCategoriesList.add(modelGetCategories);
                 categoriesName.add(modelGetCategories.getCategory());
             }
-        } else if ((flag.equals(DataEnum.callProducts.name()))) {
+        } else if ((flag.equals(DataEnum.callProducts.name())))
+        {
             JsonArray jsonArray = gson.toJsonTree(o).getAsJsonArray();
 
-            for (int i = 0; i < jsonArray.size(); i++) {
+            for (int i = 0; i < jsonArray.size(); i++)
+            {
                 Items item = gson.fromJson(jsonArray.get(i).getAsJsonObject(), Items.class);
                 adapterItems.addItem(item);
             }
@@ -185,32 +221,37 @@ public class SearchActivity extends AppCompatActivity implements HandleRetrofitR
     }
 
     @Override
-    public void onNoContent(String flag, int code) {
+    public void onNoContent(String flag, int code)
+    {
 
     }
 
     @Override
-    public void onResponseSuccess(String flag, Object o, int position) {
+    public void onResponseSuccess(String flag, Object o, int position)
+    {
 
     }
     //endregion
 
     //region calls
-    private void callCities() {
+    private void callCities()
+    {
 
         Call call = HandleCalls.restShopping.getClientService().callCities();
         HandleCalls.getInstance(this).callRetrofit(call, DataEnum.callCities.name(), true);
     }
 
-    private void callcategories() {
+    private void callcategories()
+    {
 
         Call call = HandleCalls.restShopping.getClientService().callcategories();
         HandleCalls.getInstance(this).callRetrofit(call, DataEnum.callcategories.name(), true);
     }
 
-    private void callProducts() {
+    private void callProducts()
+    {
 
-        Call call = HandleCalls.restShopping.getClientService().callProducts(cityId, categoryId);
+        Call call = HandleCalls.restShopping.getClientService().callProducts(cityId, categoryId, searchText);
         HandleCalls.getInstance(this).callRetrofit(call, DataEnum.callProducts.name(), true);
     }
 
@@ -219,37 +260,29 @@ public class SearchActivity extends AppCompatActivity implements HandleRetrofitR
 
     //region functions
 
-    private void adjustView() {
+    private void adjustView()
+    {
 
     }
 
     @Override
-    public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+    public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2)
+    {
 
     }
 
     @Override
-    public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+    public void onTextChanged(CharSequence charSequence, int i, int i1, int i2)
+    {
 
-        if (TextUtils.isEmpty(charSequence)) {
-            try {
-                adapterItems.filter("");
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            //  listView.clearTextFilter();
-        } else {
-            try {
-                adapterItems.filter(charSequence.toString());
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
+
     }
 
     @Override
-    public void afterTextChanged(Editable editable) {
-
+    public void afterTextChanged(Editable editable)
+    {
+        if (editable.toString().length() == 0)
+            searchText = "";
     }
 
     //endregion

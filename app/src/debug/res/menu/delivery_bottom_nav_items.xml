@@ -13,8 +13,8 @@
 
     <item
         android:id="@+id/bottomItem_map"
-        android:icon="@drawable/menu_bottom_map"
-        android:title="الخريطة" />
+        android:icon="@drawable/menu_invoices"
+        android:title="فواتيري" />
 
     <item
         android:id="@+id/bottomItem_more"

@@ -39,6 +39,7 @@ public class SharedPrefHelper
         editor.putString(DataEnum.shApiToken.name(), modelLoginResponse.getApiToken());
         editor.putString(DataEnum.shFullName.name(), modelLoginResponse.getFullname());
         editor.putString(DataEnum.shMobile.name(), modelLoginResponse.getMobile());
+        editor.putString(DataEnum.shType.name(), modelLoginResponse.getUsertype());
 
         editor.apply();
     }
@@ -58,25 +59,20 @@ public class SharedPrefHelper
     {
         return prefs.getString(DataEnum.shFullName.name(), null);
     }
+  public String getUserType()
+    {
+        return prefs.getString(DataEnum.shType.name(), null);
+    }
 
     public void signOut()
     {
 
-      /*  editor = context.getSharedPreferences("MY_PREFS_NAME", MODE_PRIVATE).edit();
+        editor = context.getSharedPreferences("MY_PREFS_NAME", MODE_PRIVATE).edit();
         editor.remove(DataEnum.shUserID.name());
-        editor.remove(DataEnum.shAccessToken.name());
-        editor.remove(DataEnum.shProfileIdentifier.name());
-        editor.remove(DataEnum.shUserName.name());
+        editor.remove(DataEnum.shApiToken.name());
         editor.remove(DataEnum.shFullName.name());
-        editor.remove(DataEnum.shBio.name());
         editor.remove(DataEnum.shMobile.name());
-        editor.remove(DataEnum.shIsVerified.name());
-        editor.remove(DataEnum.shImageLocation.name());
-        editor.remove(DataEnum.shCountryID.name());
-        editor.remove(DataEnum.shCountryName.name());
-        editor.remove(DataEnum.shFollowersCount.name());
-        editor.remove(DataEnum.shFollowingCount.name());
-        editor.remove(DataEnum.shSharesCount.name());*/
+        editor.remove(DataEnum.shType.name());
 
         editor.apply();
     }

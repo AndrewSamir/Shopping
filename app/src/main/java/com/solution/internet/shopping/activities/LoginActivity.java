@@ -61,6 +61,8 @@ public class LoginActivity extends AppCompatActivity implements HandleRetrofitRe
         ButterKnife.bind(this);
         HandleCalls.getInstance(this).setonRespnseSucess(this);
 
+   /*     edtLoginPhone.setText("012861022");
+        edtLoginPassword.setText("123123123");*/
         edtLoginPhone.setText("501231233");
         edtLoginPassword.setText("123123");
     }
@@ -114,7 +116,7 @@ public class LoginActivity extends AppCompatActivity implements HandleRetrofitRe
             if (modelLoginResponse.getUsertype().equals("user"))
                 startActivity(new Intent(LoginActivity.this, MainActivity.class));
             else
-                startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                startActivity(new Intent(LoginActivity.this, DeliveryMainActivity.class));
             finish();
         }
     }

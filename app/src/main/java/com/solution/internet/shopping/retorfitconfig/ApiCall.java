@@ -85,7 +85,7 @@ public interface ApiCall
     //region products
 
     @GET(Constant.subUrl + "products")
-    Call<ModelCommenResponse> callProducts(@Query("city_id") int city_id, @Query("category_id") int category_id);
+    Call<ModelCommenResponse> callProducts(@Query("city_id") int city_id, @Query("category_id") int category_id, @Query("q") String q);
 
     @GET(Constant.subUrl + "categories")
     Call<ModelCommenResponse> callcategories();
@@ -118,6 +118,14 @@ public interface ApiCall
 
     @GET(Constant.subUrl + "invoices/{id}/details")
     Call<ModelCommenResponse> callInvoiceDetails(@Path("id") int id);
+
+    //endregion
+
+    //region delivery
+
+    @GET(Constant.subUrl + "invoices/delivery")
+    Call<ModelCommenResponse> callInvoicesDelivery();
+
 
     //endregion
 

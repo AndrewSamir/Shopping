@@ -1,5 +1,6 @@
 package com.solution.internet.shopping.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -8,8 +9,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.solution.internet.shopping.R;
+import com.solution.internet.shopping.activities.LoginActivity;
 import com.solution.internet.shopping.interfaces.HandleRetrofitResp;
 import com.solution.internet.shopping.retorfitconfig.HandleCalls;
+import com.solution.internet.shopping.utlities.SharedPrefHelper;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -126,13 +129,19 @@ public class MoreFragment extends BaseFragment implements HandleRetrofitResp
     @OnClick(R.id.tvMoreLogout)
     void onClicktvMoreLogout(View view)
     {
-
+        SharedPrefHelper.getInstance(getBaseActivity()).signOut();
+        Intent intent = new Intent(getBaseActivity(), LoginActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
     }
 
     @OnClick(R.id.tvMoreLogin)
     void onClicktvMoreLogin(View view)
     {
-
+        SharedPrefHelper.getInstance(getBaseActivity()).signOut();
+        Intent intent = new Intent(getBaseActivity(), LoginActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
     }
 
     @OnClick(R.id.tvMoreAbout)
@@ -156,13 +165,16 @@ public class MoreFragment extends BaseFragment implements HandleRetrofitResp
     @OnClick(R.id.tvMoreInvoices)
     void onClicktvMoreInvoices(View view)
     {
-        addFragment(CustomerInvoices.init(), true);
+        if (SharedPrefHelper.getInstance(getBaseActivity()).getUserType().equals("user"))
+            addFragment(CustomerInvoices.init(), true);
+        else
+            addFragment(DeliveryInvoices.init(), true);
     }
 
     @OnClick(R.id.tvMoreMessages)
     void onClicktvMoreMessages(View view)
     {
-
+        addFragment(InboxFragment.init(), true);
     }
 
     @OnClick(R.id.tvMoreOrders)
