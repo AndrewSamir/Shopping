@@ -94,4 +94,5 @@
     <string name="price">السعر</string>
     <string name="message">الرسالة</string>
     <string name="invoices">الفواتير</string>
+    <string name="update_product">تعديل منتج</string>
 </resources>

@@ -164,7 +164,11 @@ public class DeliveryHomeFragment extends BaseFragment implements HandleRetrofit
 
     //region clicks
 
-
+    @OnClick(R.id.imgAddProduct)
+    void onClickimgAddProduct(View view)
+    {
+        addFragment(AddPeoductFragment.init(), true);
+    }
     //endregion
 
     //region calls

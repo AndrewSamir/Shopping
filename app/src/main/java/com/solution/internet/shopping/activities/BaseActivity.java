@@ -336,7 +336,7 @@ public abstract class BaseActivity extends RxAppCompatActivity {
             if (negativeClick != null) {
                 builder.negativeText(R.string.cancel);
                 builder.onNegative(negativeClick);
-                builder.typeface("TheSansArabic-Plain.otf", "TheSansArabic-Plain.otf");
+                builder.typeface("GE SS Two Medium.otf", "GE SS Two Medium.otf");
                 builder.negativeColor(getResources().getColor(R.color.colorPrimary));
             }
 

@@ -9,6 +9,7 @@ import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.GravityEnum;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.solution.internet.shopping.R;
+import com.solution.internet.shopping.activities.BaseActivity;
 import com.solution.internet.shopping.interfaces.HandleRetrofitResp;
 import com.solution.internet.shopping.interfaces.HandleRetrofitRespAdapter;
 import com.solution.internet.shopping.models.ModelCommenResponse.ModelCommenResponse;
@@ -128,6 +129,76 @@ public class HandleCalls
 
     }
 
+    public <T> void callRetrofitAdapter(Call<ModelCommenResponse> call, final String flag, final Boolean showLoading, final int position)
+    {
+        if (showLoading)
+            progressDialog = new ProgressDialog(context, IndicatorStyle.BallBeat).show();
+
+        call.enqueue(new Callback<ModelCommenResponse>()
+        {
+            @Override
+            public void onResponse(Call<ModelCommenResponse> call, Response<ModelCommenResponse> response)
+            {
+                if (showLoading)
+                    progressDialog.dismiss();
+                if (response.code() == 200)
+                {
+
+                    ModelCommenResponse modelCommenResponse = response.body();
+                    if (modelCommenResponse.getResponseMessage() != null)
+                        ((BaseActivity) context).showMessage(modelCommenResponse.getResponseMessage());
+                    if (modelCommenResponse.getData() != null && modelCommenResponse.getStatus().equals(context.getString(R.string.done)))
+                        onRespnseAdapter.onResponseSuccess(flag, modelCommenResponse.getData(), position);
+                    else if (modelCommenResponse.getStatus().equals(context.getString(R.string.done)))
+                        onRespnseAdapter.onNoContent(flag, position);
+
+
+                } else if (response.code() == 406)
+                {
+                    try
+                    {
+                        JSONObject jObjError = new JSONObject(response.errorBody().string());
+                        ((BaseActivity) context).showMessage(jObjError.getString("Message"));
+
+                    } catch (JSONException e)
+                    {
+                        e.printStackTrace();
+                    } catch (IOException e)
+                    {
+                        e.printStackTrace();
+                    }
+                } else if (response.code() == 500)
+                {
+                    try
+                    {
+                        JSONObject jObjError = new JSONObject(response.errorBody().string());
+                        ((BaseActivity) context).showMessage(jObjError.getString("Message"));
+
+                    } catch (JSONException e)
+                    {
+                        e.printStackTrace();
+                    } catch (IOException e)
+                    {
+                        e.printStackTrace();
+                    }
+                }
+
+
+            }
+
+            @Override
+            public void onFailure(Call<ModelCommenResponse> call, Throwable t)
+            {
+                if (showLoading)
+                    progressDialog.dismiss();
+                onRespnseAdapter.onNoContent(flag, position);
+
+//                ((BaseActivity) context).showMessage(((BaseActivity) context).getString(R.string.internet_connection));
+
+            }
+        });
+
+    }
 
     public MaterialDialog.Builder getMaterialDialogBuilder()
     {

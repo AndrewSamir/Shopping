@@ -7,10 +7,32 @@
     android:background="@color/colorWhite"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_45sdp"
+        android:background="#9D0152"
+        android:elevation="@dimen/_4sdp"
+        android:gravity="center"
+        android:text="الرئيسية"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/_22px"
+        tools:ignore="HardcodedText,UnusedAttribute" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:src="@drawable/icon_add_product"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="@dimen/_16sdp"
+        android:id="@+id/imgAddProduct"
+        android:layout_height="wrap_content" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="@dimen/_15sdp"
+        android:layout_marginEnd="@dimen/_15sdp"
+        android:layout_marginStart="@dimen/_15sdp"
+        android:layout_marginBottom="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_60sdp"
         android:background="@color/colorWhite"
         android:orientation="vertical">
 

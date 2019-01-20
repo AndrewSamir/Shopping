@@ -32,7 +32,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/_7sdp"
-                android:text="@string/add_product"
+                android:text="@string/update_product"
                 android:textColor="@color/colorWhite"
                 android:textSize="@dimen/_22px" />
         </FrameLayout>
@@ -143,7 +143,7 @@
             android:layout_marginStart="@dimen/_40sdp"
             android:layout_marginTop="@dimen/_20sdp"
             android:background="@drawable/button_pink"
-            android:text="إضافة منتج"
+            android:text="@string/update_product"
             android:textColor="@color/colorWhite"
             android:textSize="@dimen/_19px" />
     </LinearLayout>

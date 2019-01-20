@@ -9,10 +9,24 @@
     tools:context=".activities.SearchActivity"
     tools:showIn="@layout/activity_search">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_45sdp"
+        android:background="#9D0152"
+        android:elevation="@dimen/_4sdp"
+        android:gravity="center"
+        android:text="الرئيسية"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/_22px"
+        tools:ignore="HardcodedText,UnusedAttribute" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="@dimen/_15sdp"
+        android:layout_marginBottom="@dimen/_15sdp"
+        android:layout_marginEnd="@dimen/_15sdp"
+        android:layout_marginStart="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_60sdp"
         android:background="@color/colorWhite"
         android:orientation="vertical">
 
@@ -68,8 +82,8 @@
             android:background="@drawable/background_linear_empty"
             android:hint="@string/search_word"
             android:imeOptions="actionSearch"
-            android:padding="@dimen/_7sdp"
-            android:inputType="text" />
+            android:inputType="text"
+            android:padding="@dimen/_7sdp" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rvSearch"
