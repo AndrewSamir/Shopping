@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+
     <item
-        android:id="@+id/bottomItem_main"
-        android:icon="@drawable/menu_bottom_home"
-        android:title="الرئيسية" />
+        android:id="@+id/bottomItem_more"
+        android:icon="@drawable/menu_bottom_myaccount"
+        android:title="المزيد" />
 
     <item
         android:id="@+id/bottomItem_messages"
@@ -16,8 +17,9 @@
         android:icon="@drawable/menu_invoices"
         android:title="فواتيري" />
 
+
     <item
-        android:id="@+id/bottomItem_more"
-        android:icon="@drawable/menu_bottom_myaccount"
-        android:title="المزيد" />
+        android:id="@+id/bottomItem_main"
+        android:icon="@drawable/menu_bottom_home"
+        android:title="الرئيسية" />
 </menu>
