@@ -1,15 +1,14 @@
 package com.solution.internet.shopping.retorfitconfig;
 
-import android.app.VoiceInteractor;
-
 import com.solution.internet.shopping.models.ModelAddProductRequest.ModelAddProductRequest;
 import com.solution.internet.shopping.models.ModelChangePasswordRequest.ModelChangePasswordRequest;
 import com.solution.internet.shopping.models.ModelChatNewRequest.ModelChatNewRequest;
 import com.solution.internet.shopping.models.ModelCommenResponse.ModelCommenResponse;
 import com.solution.internet.shopping.models.ModelConfirmationCodeRequest.ModelConfirmationCodeRequest;
 import com.solution.internet.shopping.models.ModelLoginRequest.ModelLoginRequest;
-import com.solution.internet.shopping.models.ModelLoginResponse.ModelLoginResponse;
+import com.solution.internet.shopping.models.ModelRefreshTokenRequest.ModelRefreshTokenRequest;
 import com.solution.internet.shopping.models.ModelSignUpRequest.ModelSignUpRequest;
+import com.solution.internet.shopping.models.ModelPrivateOrderOfferNewRequest.ModelPrivateOrderOfferNewRequest;
 import com.solution.internet.shopping.utlities.Constant;
 
 import java.util.Map;
@@ -18,8 +17,6 @@ import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
-import retrofit2.http.FieldMap;
-import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
@@ -46,6 +43,9 @@ public interface ApiCall
 
     @POST(Constant.subUrl + "user/changepassword")
     Call<ModelCommenResponse> callChangePassword(@Body ModelChangePasswordRequest modelChangePasswordRequest);
+
+    @POST(Constant.subUrl + "user/refreshtoken")
+    Call<ModelCommenResponse> callRefreshToken(@Body ModelRefreshTokenRequest model);
 
     @GET(Constant.subUrl + "map")
     Call<ModelCommenResponse> callMap();
@@ -133,8 +133,28 @@ public interface ApiCall
 
     @Multipart
     @POST(Constant.subUrl + "PrivateOrder/new")
-    Call<ModelCommenResponse> callPrivateOrder(@Part MultipartBody.Part photo, @PartMap() Map<String, RequestBody> partMap);
+    Call<ModelCommenResponse> callPrivateOrderNew(@Part MultipartBody.Part photo, @PartMap() Map<String, RequestBody> partMap);
 
+
+    @POST(Constant.subUrl + "PrivateOrder/offer/new")
+    Call<ModelCommenResponse> callPrivateOrderOfferNew(@Body ModelPrivateOrderOfferNewRequest body);
+
+    @POST(Constant.subUrl + "PrivateOrder/offer/accept")
+    Call<ModelCommenResponse> callPrivateOrderOfferAccept(@Body ModelPrivateOrderOfferNewRequest body);
+
+    @POST(Constant.subUrl + "PrivateOrder/offer/reject")
+    Call<ModelCommenResponse> callPrivateOrderOfferReject(@Body ModelPrivateOrderOfferNewRequest body);
+
+    @GET(Constant.subUrl + "PrivateOrder")
+    Call<ModelCommenResponse> callPrivateOrder();
+
+
+    @GET(Constant.subUrl + "PrivateOrder/getUserPrivateOrders")
+    Call<ModelCommenResponse> callPrivateOrderGetUserPrivateOrders();
+
+
+    @GET(Constant.subUrl + "PrivateOrder/{id}")
+    Call<ModelCommenResponse> callPrivateOrderInfo(@Path("id") int id);
 
     //endregion
 }
