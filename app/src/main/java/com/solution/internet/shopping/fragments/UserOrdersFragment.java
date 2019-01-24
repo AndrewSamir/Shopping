@@ -12,11 +12,12 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.solution.internet.shopping.R;
 import com.solution.internet.shopping.adapters.AdapterCustomerInvoice;
-import com.solution.internet.shopping.adapters.AdapterDeliveryInvoice;
+import com.solution.internet.shopping.adapters.AdapterOrders;
 import com.solution.internet.shopping.interfaces.HandleRetrofitResp;
-import com.solution.internet.shopping.models.ModelInvoice.ModelInvoice;
+import com.solution.internet.shopping.models.ModelUserPrivateOrder.ModelUserPrivateOrder;
 import com.solution.internet.shopping.retorfitconfig.HandleCalls;
 import com.solution.internet.shopping.utlities.DataEnum;
+import com.solution.internet.shopping.utlities.SharedPrefHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,12 +26,12 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import retrofit2.Call;
 
-public class DeliveryInvoices extends BaseFragment implements HandleRetrofitResp
+public class UserOrdersFragment extends BaseFragment implements HandleRetrofitResp
 {
     //region fields
 
-    List<ModelInvoice> modelInvoiceList;
-    AdapterDeliveryInvoice adapterCustomerInvoice;
+    List<ModelUserPrivateOrder> modelInvoiceList;
+    AdapterOrders adapterCustomerInvoice;
 
     //endregion
 
@@ -48,16 +49,20 @@ public class DeliveryInvoices extends BaseFragment implements HandleRetrofitResp
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
     {
         super.onCreateView(inflater, container, savedInstanceState);
-        final View view = inflater.inflate(R.layout.customer_invoices_fragment, container, false);
+        final View view = inflater.inflate(R.layout.customer_orders_fragment, container, false);
 
         unbinder = ButterKnife.bind(this, view);
 
         modelInvoiceList = new ArrayList<>();
-        adapterCustomerInvoice = new AdapterDeliveryInvoice(modelInvoiceList, getBaseActivity());
+        adapterCustomerInvoice = new AdapterOrders(modelInvoiceList, getBaseActivity());
         rvCustomerInvoices.setLayoutManager(new LinearLayoutManager(getBaseActivity()));
         rvCustomerInvoices.setAdapter(adapterCustomerInvoice);
 
-        callInvoicesDelivery();
+        if (SharedPrefHelper.getInstance(getBaseActivity()).getUserType().equals("user"))
+            callPrivateOrderGetUserPrivateOrders();
+        else
+            callPrivateOrder();
+
         return view;
     }
 
@@ -87,7 +92,7 @@ public class DeliveryInvoices extends BaseFragment implements HandleRetrofitResp
     @Override
     protected boolean canShowBottomBar()
     {
-        return true;
+        return false;
     }
 
     @Override
@@ -105,7 +110,7 @@ public class DeliveryInvoices extends BaseFragment implements HandleRetrofitResp
     @Override
     public int getSelectedMenuId()
     {
-        return R.id.bottomItem_map;
+        return 0;
     }
 
     //endregion
@@ -115,12 +120,20 @@ public class DeliveryInvoices extends BaseFragment implements HandleRetrofitResp
     public void onResponseSuccess(String flag, Object o)
     {
         Gson gson = new Gson();
-        if (flag.equals(DataEnum.callInvoicesDelivery.name()))
+        if (flag.equals(DataEnum.callPrivateOrderGetUserPrivateOrders.name()))
         {
             JsonArray jsonArray = gson.toJsonTree(o).getAsJsonArray();
             for (int i = 0; i < jsonArray.size(); i++)
             {
-                ModelInvoice modelInvoice = gson.fromJson(jsonArray.get(i).getAsJsonObject(), ModelInvoice.class);
+                ModelUserPrivateOrder modelInvoice = gson.fromJson(jsonArray.get(i).getAsJsonObject(), ModelUserPrivateOrder.class);
+                adapterCustomerInvoice.addItem(modelInvoice);
+            }
+        } else if (flag.equals(DataEnum.callPrivateOrder.name()))
+        {
+            JsonArray jsonArray = gson.toJsonTree(o).getAsJsonArray();
+            for (int i = 0; i < jsonArray.size(); i++)
+            {
+                ModelUserPrivateOrder modelInvoice = gson.fromJson(jsonArray.get(i).getAsJsonObject(), ModelUserPrivateOrder.class);
                 adapterCustomerInvoice.addItem(modelInvoice);
             }
         }
@@ -146,19 +159,26 @@ public class DeliveryInvoices extends BaseFragment implements HandleRetrofitResp
 
     //region calls
 
-    private void callInvoicesDelivery()
+    private void callPrivateOrderGetUserPrivateOrders()
     {
 
-        Call call = HandleCalls.restShopping.getClientService().callInvoicesDelivery();
-        HandleCalls.getInstance(getBaseActivity()).callRetrofit(call, DataEnum.callInvoicesDelivery.name(), true);
+        Call call = HandleCalls.restShopping.getClientService().callPrivateOrderGetUserPrivateOrders();
+        HandleCalls.getInstance(getBaseActivity()).callRetrofit(call, DataEnum.callPrivateOrderGetUserPrivateOrders.name(), true);
+    }
+
+    private void callPrivateOrder()
+    {
+
+        Call call = HandleCalls.restShopping.getClientService().callPrivateOrder();
+        HandleCalls.getInstance(getBaseActivity()).callRetrofit(call, DataEnum.callPrivateOrder.name(), true);
     }
     //endregion
 
     //region functions
 
-    public static DeliveryInvoices init()
+    public static UserOrdersFragment init()
     {
-        return new DeliveryInvoices();
+        return new UserOrdersFragment();
     }
     //endregion
 

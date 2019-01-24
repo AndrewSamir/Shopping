@@ -180,7 +180,7 @@ public class MoreFragment extends BaseFragment implements HandleRetrofitResp
     @OnClick(R.id.tvMoreOrders)
     void onClicktvMoreOrders(View view)
     {
-
+        addFragment(UserOrdersFragment.init(), true);
     }
 
     @OnClick(R.id.tvMoreSpecialOrder)

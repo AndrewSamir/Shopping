@@ -15,7 +15,7 @@ public class ModelCommenResponse
     private String link;
     @SerializedName("code")
     private int code;
-    @SerializedName(value = "ResponseMessage", alternate = "Message")
+    @SerializedName(value = "ResponseMessage", alternate = "message")
     private String ResponseMessage;
 
     @SerializedName("data")

@@ -4,14 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorWhite"
     android:orientation="vertical"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".activities.AddProductActivity"
-    tools:showIn="@layout/activity_add_product">
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -24,7 +21,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scaleType="fitXY"
-                android:src="@drawable/header_bg_10"
+                android:src="@drawable/header_bg_8"
                 tools:ignore="ContentDescription" />
 
             <TextView
@@ -32,7 +29,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/_7sdp"
-                android:text="@string/add_product"
+                android:text="@string/special_request"
                 android:textColor="@color/colorWhite"
                 android:textSize="@dimen/_22px" />
         </FrameLayout>
@@ -45,7 +42,7 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:id="@+id/imgAddProduct"
+                android:id="@+id/imgAddSpecialOrder"
                 android:layout_width="@dimen/_50sdp"
                 android:layout_height="@dimen/_50sdp"
                 android:src="@drawable/icon_attach2" />
@@ -63,61 +60,61 @@
                 android:textSize="@dimen/_19px" />
         </LinearLayout>
 
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:layout_marginEnd="@dimen/_10sdp"
-            android:layout_marginStart="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:drawablePadding="@dimen/_10sdp"
-            android:drawableRight="@drawable/icon_attach2"
-            android:gravity="center_vertical"
-            android:text="أرفق فيديو  (10 ثوانى بحد أقصي)"
-            android:textColor="@color/colorTextHint"
-            android:textSize="@dimen/_19px"
-            android:visibility="gone" />
-
         <EditText
-            android:id="@+id/tvAddProductTitle"
+            android:id="@+id/edtSpecialOrderAddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/_10sdp"
             android:layout_marginStart="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_15sdp"
-            android:background="@drawable/background_edit_text_new"
-            android:drawablePadding="@dimen/_10sdp"
-            android:drawableRight="@drawable/icon_pen"
-            android:hint="أسم المنتج"
-            android:padding="@dimen/_10sdp" />
+            android:layout_marginTop="@dimen/_12sdp"
+            android:background="@drawable/background_edit_register"
+            android:drawablePadding="@dimen/_7sdp"
+            android:drawableRight="@drawable/icon_country"
+            android:hint="أكتب عنوان الطلب"
+            android:inputType="text"
+            android:lines="1"
+            android:padding="@dimen/_10sdp"
+            android:textColor="@color/colorBlack"
+            android:visibility="visible"
+            tools:ignore="RtlHardcoded" />
 
         <EditText
-            android:id="@+id/tvAddProductCategory"
+            android:id="@+id/edtSpecialOrderPrice"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/_10sdp"
             android:layout_marginStart="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_15sdp"
-            android:background="@drawable/background_edit_text_new"
-            android:drawablePadding="@dimen/_10sdp"
-            android:drawableRight="@drawable/icon_pen"
-            android:hint="القسم"
-            android:inputType="none"
-            android:padding="@dimen/_10sdp" />
-
-        <EditText
-            android:id="@+id/tvAddProductPrice"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/_10sdp"
-            android:layout_marginStart="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_15sdp"
-            android:background="@drawable/background_edit_text_new"
-            android:drawablePadding="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:background="@drawable/background_edit_register"
+            android:drawablePadding="@dimen/_7sdp"
             android:drawableRight="@drawable/icon_pen"
             android:hint="سعر المنتج"
-            android:padding="@dimen/_10sdp" />
+            android:inputType="numberDecimal"
+            android:lines="1"
+            android:padding="@dimen/_10sdp"
+            android:textColor="@color/colorBlack"
+            android:visibility="visible"
+            tools:ignore="RtlHardcoded" />
+
+        <EditText
+            android:id="@+id/edtSpecialOrderCity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:background="@drawable/background_edit_register"
+            android:drawableLeft="@drawable/arrow"
+            android:drawablePadding="@dimen/_7sdp"
+            android:drawableRight="@drawable/icon_yourlink"
+            android:hint="@string/choose_country"
+            android:inputType="none"
+            android:lines="1"
+            android:padding="@dimen/_10sdp"
+            android:textColor="@color/colorBlack"
+            android:visibility="visible"
+            tools:ignore="RtlHardcoded" />
+
 
         <EditText
             android:id="@+id/tvAddProductContent"
@@ -135,7 +132,7 @@
             android:padding="@dimen/_10sdp" />
 
         <Button
-            android:id="@+id/btnAddProduct"
+            android:id="@+id/btnSendRequest"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/_20sdp"
@@ -143,9 +140,8 @@
             android:layout_marginStart="@dimen/_40sdp"
             android:layout_marginTop="@dimen/_20sdp"
             android:background="@drawable/button_pink"
-            android:text="إضافة منتج"
+            android:text="إرسال الطلب"
             android:textColor="@color/colorWhite"
             android:textSize="@dimen/_19px" />
     </LinearLayout>
-
 </ScrollView>

@@ -67,10 +67,10 @@ public class LoginActivity extends AppCompatActivity implements HandleRetrofitRe
         edtLoginPhone.setText("012861022");
         edtLoginPassword.setText("123123123");
 
-        Log.d("deviceToken", FirebaseInstanceId.getInstance().getId());
-        Log.d("deviceToken", FirebaseInstanceId.getInstance().getToken());
-        /*
-        edtLoginPhone.setText("501231233");
+//        Log.d("deviceToken", FirebaseInstanceId.getInstance().getId());
+//        Log.d("deviceToken", FirebaseInstanceId.getInstance().getToken());
+
+    /*    edtLoginPhone.setText("501231233");
         edtLoginPassword.setText("123123");*/
     }
 

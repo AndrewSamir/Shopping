@@ -99,8 +99,8 @@ public class RegisterActivity extends Activity implements HandleRetrofitResp, Va
         edtRegisterCity.setFocusable(false);
         edtRegisterCity.setClickable(true);
         adjustView();
-        callCities();
         HandleCalls.getInstance(this).setonRespnseSucess(this);
+        callCities();
         chRegisterPolicy.setOnCheckedChangeListener(this);
     }
 

@@ -3,8 +3,19 @@ package com.solution.internet.shopping.models.ModelPrivateOrderOfferNewRequest;
 public class ModelPrivateOrderOfferNewRequest
 {
     int orderid;
+    int offerid;
     String content;
     String price;
+
+    public int getOfferid()
+    {
+        return offerid;
+    }
+
+    public void setOfferid(int offerid)
+    {
+        this.offerid = offerid;
+    }
 
     public int getOrderid()
     {

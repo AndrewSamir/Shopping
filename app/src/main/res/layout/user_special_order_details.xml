@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/_5sdp"
+
+        android:orientation="vertical"
+        android:scrollbars="none"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:context=".activities.ProductDetailsActivity"
+        tools:showIn="@layout/activity_product_details">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            tools:context=".activities.ProductDetailsActivity"
+            tools:showIn="@layout/activity_product_details">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/header_bg_8"
+                    tools:ignore="ContentDescription" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/_7sdp"
+                    android:text="تفاصيل الطلب"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/_22px" />
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:background="@drawable/background_linear_empty"
+                android:orientation="vertical"
+                android:padding="@dimen/_10sdp">
+
+
+                <TextView
+                    android:id="@+id/tvProductDetailsTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:textColor="@color/colorTextHint"
+                    android:textSize="@dimen/_19px"
+                    tools:text="حذاء بنى رجالى شمواة" />
+
+                <ImageView
+                    android:id="@+id/imgProductDetails"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_140sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:scaleType="centerCrop"
+                    android:src="@mipmap/ic_launcher"
+                    tools:ignore="ContentDescription" />
+
+                <TextView
+                    android:id="@+id/tvProductDetailsName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_marginBottom="@dimen/_7sdp"
+                    android:layout_marginTop="@dimen/_25sdp"
+                    android:drawablePadding="@dimen/_10sdp"
+                    android:drawableRight="@drawable/icon_yourname"
+                    android:textColor="@color/colorTextHint"
+                    android:textSize="@dimen/_19px"
+                    tools:ignore="RtlHardcoded"
+                    tools:text="ابو ابراهيم ناصر المأمون" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/colorSeprator" />
+
+                <TextView
+                    android:id="@+id/tvProductDetailsDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_marginBottom="@dimen/_7sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:drawablePadding="@dimen/_10sdp"
+                    android:drawableRight="@drawable/icon_calendar"
+                    android:textColor="@color/colorTextHint"
+                    android:textSize="@dimen/_19px"
+                    tools:ignore="RtlHardcoded"
+                    tools:text="dd/mm/yy" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/colorSeprator" />
+
+                <TextView
+                    android:id="@+id/tvProductDetailsCountry"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_marginBottom="@dimen/_7sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:drawablePadding="@dimen/_10sdp"
+                    android:drawableRight="@drawable/icon_yourcountry"
+                    android:textColor="@color/colorTextHint"
+                    android:textSize="@dimen/_19px"
+                    tools:ignore="RtlHardcoded"
+                    tools:text="الرياض" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_marginBottom="@dimen/_7sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:text="@string/product_description"
+                    android:textColor="@color/colorTextHint"
+                    android:textSize="@dimen/_17px"
+                    tools:ignore="RtlHardcoded" />
+
+                <TextView
+                    android:id="@+id/tvProductDetailsContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/_12sdp"
+                    tools:text="هناك حقيقة مثبتة منذ زمن طويل وهي أن
+المحتوى المقروء لصفحة ما سيلهي القارئ عنالتركيز على الشكل الخارجي للنص أو شكل الفقرات في الصفحة التي يقرأها. ولذلك يتم
+استخدام طريقة لوريم إيبسوم لأنها تعطي طبيعياَ -إلى حد ما- للأحرف عوضاً عن " />
+
+                <TextView
+                    android:id="@+id/tvProductDetailsPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:background="@drawable/background_price"
+                    android:gravity="center"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/_14sdp"
+                    android:visibility="gone"
+                    tools:text="150 ريال" />
+            </LinearLayout>
+
+
+            <Button
+                android:id="@+id/btnSpecialOrderDetailsOffers"
+                android:layout_width="@dimen/_160sdp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_30sdp"
+                android:alpha="1"
+                android:background="@drawable/background_text_edit_profile"
+                android:text="العروض المقدمة"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/_19px" />
+        </LinearLayout>
+    </ScrollView>
+
+    <include layout="@layout/xml_nav_bar" />
+</android.support.design.widget.CoordinatorLayout>

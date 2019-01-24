@@ -262,7 +262,11 @@ public class HomeFragment extends BaseFragment implements HandleRetrofitResp, Te
         alert.show();
     }
 
-
+    @OnClick(R.id.imgAddSpecialOrder)
+    void onClickimgAddSpecialOrder(View view)
+    {
+        addFragment(AddSpecialOrderFragment.init(), true);
+    }
     //endregion
 
     //region calls
