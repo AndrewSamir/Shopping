@@ -19,8 +19,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class MoreFragment extends BaseFragment implements HandleRetrofitResp
-{
+public class MoreFragment extends BaseFragment implements HandleRetrofitResp {
     //region fields
 
     //endregion
@@ -38,8 +37,7 @@ public class MoreFragment extends BaseFragment implements HandleRetrofitResp
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
-    {
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         final View view = inflater.inflate(R.layout.more_fragment, container, false);
 
@@ -49,15 +47,13 @@ public class MoreFragment extends BaseFragment implements HandleRetrofitResp
     }
 
     @Override
-    public void onResume()
-    {
+    public void onResume() {
         super.onResume();
         HandleCalls.getInstance(getBaseActivity()).setonRespnseSucess(this);
     }
 
     @Override
-    public void onStop()
-    {
+    public void onStop() {
         super.onStop();
 //        appHeader.setRight(0, 0, 0);
     }
@@ -66,32 +62,27 @@ public class MoreFragment extends BaseFragment implements HandleRetrofitResp
 
     //region parent methods
     @Override
-    protected boolean canShowAppHeader()
-    {
+    protected boolean canShowAppHeader() {
         return false;
     }
 
     @Override
-    protected boolean canShowBottomBar()
-    {
+    protected boolean canShowBottomBar() {
         return true;
     }
 
     @Override
-    protected boolean canShowBackArrow()
-    {
+    protected boolean canShowBackArrow() {
         return false;
     }
 
     @Override
-    protected String getTitle()
-    {
+    protected String getTitle() {
         return null;
     }
 
     @Override
-    public int getSelectedMenuId()
-    {
+    public int getSelectedMenuId() {
         return R.id.tvNavBarMore;
     }
 
@@ -99,20 +90,17 @@ public class MoreFragment extends BaseFragment implements HandleRetrofitResp
 
     //region calls response
     @Override
-    public void onResponseSuccess(String flag, Object o)
-    {
+    public void onResponseSuccess(String flag, Object o) {
 
     }
 
     @Override
-    public void onNoContent(String flag, int code)
-    {
+    public void onNoContent(String flag, int code) {
 
     }
 
     @Override
-    public void onResponseSuccess(String flag, Object o, int position)
-    {
+    public void onResponseSuccess(String flag, Object o, int position) {
 
     }
 
@@ -121,14 +109,12 @@ public class MoreFragment extends BaseFragment implements HandleRetrofitResp
     //region clicks
 
     @OnClick(R.id.tvMoreEditData)
-    void onClicktvMoreEditData(View view)
-    {
+    void onClicktvMoreEditData(View view) {
         addFragment(UserProfileFragment.init(), true);
     }
 
     @OnClick(R.id.tvMoreLogout)
-    void onClicktvMoreLogout(View view)
-    {
+    void onClicktvMoreLogout(View view) {
         SharedPrefHelper.getInstance(getBaseActivity()).signOut();
         Intent intent = new Intent(getBaseActivity(), LoginActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -136,8 +122,7 @@ public class MoreFragment extends BaseFragment implements HandleRetrofitResp
     }
 
     @OnClick(R.id.tvMoreLogin)
-    void onClicktvMoreLogin(View view)
-    {
+    void onClicktvMoreLogin(View view) {
         SharedPrefHelper.getInstance(getBaseActivity()).signOut();
         Intent intent = new Intent(getBaseActivity(), LoginActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -145,26 +130,22 @@ public class MoreFragment extends BaseFragment implements HandleRetrofitResp
     }
 
     @OnClick(R.id.tvMoreAbout)
-    void onClicktvMoreAbout(View view)
-    {
-
+    void onClicktvMoreAbout(View view) {
+        addFragment(NotificationsFragment.init(), true);
     }
 
     @OnClick(R.id.tvMoreContact)
-    void onClicktvMoreContact(View view)
-    {
+    void onClicktvMoreContact(View view) {
 
     }
 
     @OnClick(R.id.tvMorePrivacy)
-    void onClicktvMorePrivacy(View view)
-    {
+    void onClicktvMorePrivacy(View view) {
 
     }
 
     @OnClick(R.id.tvMoreInvoices)
-    void onClicktvMoreInvoices(View view)
-    {
+    void onClicktvMoreInvoices(View view) {
         if (SharedPrefHelper.getInstance(getBaseActivity()).getUserType().equals("user"))
             addFragment(CustomerInvoices.init(), true);
         else
@@ -172,20 +153,17 @@ public class MoreFragment extends BaseFragment implements HandleRetrofitResp
     }
 
     @OnClick(R.id.tvMoreMessages)
-    void onClicktvMoreMessages(View view)
-    {
+    void onClicktvMoreMessages(View view) {
         addFragment(InboxFragment.init(), true);
     }
 
     @OnClick(R.id.tvMoreOrders)
-    void onClicktvMoreOrders(View view)
-    {
+    void onClicktvMoreOrders(View view) {
         addFragment(UserOrdersFragment.init(), true);
     }
 
     @OnClick(R.id.tvMoreSpecialOrder)
-    void onClicktvMoreSpecialOrder(View view)
-    {
+    void onClicktvMoreSpecialOrder(View view) {
 
     }
 
@@ -197,8 +175,7 @@ public class MoreFragment extends BaseFragment implements HandleRetrofitResp
 
     //region functions
 
-    public static MoreFragment init()
-    {
+    public static MoreFragment init() {
         return new MoreFragment();
     }
     //endregion

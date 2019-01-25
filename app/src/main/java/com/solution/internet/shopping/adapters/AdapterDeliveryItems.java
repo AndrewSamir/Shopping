@@ -22,6 +22,7 @@ import com.solution.internet.shopping.models.ModelAddProductRequest.ModelAddProd
 import com.solution.internet.shopping.models.ModelCallDelivery.Items;
 import com.solution.internet.shopping.retorfitconfig.HandleCalls;
 import com.solution.internet.shopping.utlities.DataEnum;
+import com.solution.internet.shopping.utlities.SharedPrefHelper;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -71,7 +72,7 @@ public class AdapterDeliveryItems extends RecyclerView.Adapter<AdapterDeliveryIt
             switch (v.getId())
             {
                 case R.id.llRvItemDelivery:
-                    ((BaseActivity) activity).addContentFragment(ProductDetailsUserFragment.init(adapterList.get(getAdapterPosition())), true);
+                    ((BaseActivity) activity).addContentFragment(ProductDetailsUserFragment.init(adapterList.get(getAdapterPosition()), SharedPrefHelper.getInstance(activity).getUserid()), true);
 
                     break;
                 case R.id.imgItemDelegateEdit:

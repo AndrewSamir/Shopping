@@ -53,8 +53,6 @@ public abstract class BaseFragment extends RxFragment {
     @Override
     public void onResume() {
         super.onResume();
-
-
         if (canShowBottomBar() && getBaseActivity().getBottomNavigationView() != null) {
             getBaseActivity().getBottomNavigationView().setVisibility(View.VISIBLE);
         } else if (!canShowBottomBar() && getBaseActivity().getBottomNavigationView() != null) {

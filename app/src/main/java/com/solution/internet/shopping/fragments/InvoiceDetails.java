@@ -24,10 +24,10 @@ import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import retrofit2.Call;
 
-public class InvoiceDetails extends BaseFragment implements HandleRetrofitResp
-{
+public class InvoiceDetails extends BaseFragment implements HandleRetrofitResp {
     //region fields
     static int crId;
     //endregion
@@ -59,8 +59,7 @@ public class InvoiceDetails extends BaseFragment implements HandleRetrofitResp
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
-    {
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         final View view = inflater.inflate(R.layout.invoice_details, container, false);
 
@@ -71,15 +70,13 @@ public class InvoiceDetails extends BaseFragment implements HandleRetrofitResp
     }
 
     @Override
-    public void onResume()
-    {
+    public void onResume() {
         super.onResume();
         HandleCalls.getInstance(getBaseActivity()).setonRespnseSucess(this);
     }
 
     @Override
-    public void onStop()
-    {
+    public void onStop() {
         super.onStop();
 //        appHeader.setRight(0, 0, 0);
     }
@@ -88,32 +85,27 @@ public class InvoiceDetails extends BaseFragment implements HandleRetrofitResp
 
     //region parent methods
     @Override
-    protected boolean canShowAppHeader()
-    {
+    protected boolean canShowAppHeader() {
         return false;
     }
 
     @Override
-    protected boolean canShowBottomBar()
-    {
+    protected boolean canShowBottomBar() {
         return false;
     }
 
     @Override
-    protected boolean canShowBackArrow()
-    {
+    protected boolean canShowBackArrow() {
         return false;
     }
 
     @Override
-    protected String getTitle()
-    {
+    protected String getTitle() {
         return null;
     }
 
     @Override
-    public int getSelectedMenuId()
-    {
+    public int getSelectedMenuId() {
         return 0;
     }
 
@@ -121,10 +113,8 @@ public class InvoiceDetails extends BaseFragment implements HandleRetrofitResp
 
     //region calls response
     @Override
-    public void onResponseSuccess(String flag, Object o)
-    {
-        if (flag.equals(DataEnum.callInvoiceDetails.name()))
-        {
+    public void onResponseSuccess(String flag, Object o) {
+        if (flag.equals(DataEnum.callInvoiceDetails.name())) {
             Gson gson = new Gson();
             JsonObject jsonObject = gson.toJsonTree(o).getAsJsonObject();
 
@@ -135,14 +125,12 @@ public class InvoiceDetails extends BaseFragment implements HandleRetrofitResp
 
 
     @Override
-    public void onNoContent(String flag, int code)
-    {
+    public void onNoContent(String flag, int code) {
 
     }
 
     @Override
-    public void onResponseSuccess(String flag, Object o, int position)
-    {
+    public void onResponseSuccess(String flag, Object o, int position) {
 
     }
 
@@ -150,12 +138,15 @@ public class InvoiceDetails extends BaseFragment implements HandleRetrofitResp
 
     //region clicks
 
+    @OnClick(R.id.btnConfirmTransaction)
+    public void onClickbtnConfirmTransaction() {
+        addFragment(TransactionDataFragment.init(), true);
+    }
     //endregion
 
     //region calls
 
-    private void callInvoiceDetails()
-    {
+    private void callInvoiceDetails() {
         Call call = HandleCalls.restShopping.getClientService().callInvoiceDetails(crId);
         HandleCalls.getInstance(getBaseActivity()).callRetrofit(call, DataEnum.callInvoiceDetails.name(), true);
     }
@@ -163,19 +154,16 @@ public class InvoiceDetails extends BaseFragment implements HandleRetrofitResp
 
     //region functions
 
-    public static InvoiceDetails init(int crId)
-    {
+    public static InvoiceDetails init(int crId) {
         setCrId(crId);
         return new InvoiceDetails();
     }
 
-    public static void setCrId(int crId)
-    {
+    public static void setCrId(int crId) {
         InvoiceDetails.crId = crId;
     }
 
-    private void adjustView(ModelInvoiceDetails modelInvoiceDetails)
-    {
+    private void adjustView(ModelInvoiceDetails modelInvoiceDetails) {
 
         Locale locale = new Locale("en");
 

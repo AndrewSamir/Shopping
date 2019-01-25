@@ -78,7 +78,7 @@ public class HomeFragment extends BaseFragment implements HandleRetrofitResp, Te
 
         unbinder = ButterKnife.bind(this, view);
         itemsList = new ArrayList<>();
-        adapterItems = new AdapterItems(itemsList, getBaseActivity());
+        adapterItems = new AdapterItems(itemsList,-1, getBaseActivity());
         rvSearch.setLayoutManager(new GridLayoutManager(getBaseActivity(), 2));
         rvSearch.setAdapter(adapterItems);
         rvSearch.setNestedScrollingEnabled(false);

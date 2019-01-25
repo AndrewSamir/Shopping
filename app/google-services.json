@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "639940038478-oqm14oc1p9ln56qrbn0aoul20go35vub.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.solution.internet.shopping",
+            "certificate_hash": "f0b33f4178f95ce709b043bcf576aca41b8c419b"
+          }
+        },
+        {
           "client_id": "639940038478-b5ocgq4pqb5nf69f49tmqb5kf5a01gmc.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,8 +37,21 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "639940038478-b5ocgq4pqb5nf69f49tmqb5kf5a01gmc.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "639940038478-0thf48l3oahj8h0kobqub8qko4bfhaqh.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.Slash.Tasawk",
+                "app_store_id": "1444520037"
+              }
+            }
+          ]
         },
         "ads_service": {
           "status": 2

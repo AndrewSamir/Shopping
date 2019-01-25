@@ -15,15 +15,21 @@ import android.view.View;
 
 import com.solution.internet.shopping.R;
 import com.solution.internet.shopping.fragments.BaseFragment;
+import com.solution.internet.shopping.fragments.ChatFragment;
 import com.solution.internet.shopping.fragments.ConfirmationCodeFragment;
 import com.solution.internet.shopping.fragments.DeliveryHomeFragment;
 import com.solution.internet.shopping.fragments.DeliveryInvoices;
 import com.solution.internet.shopping.fragments.HomeFragment;
 import com.solution.internet.shopping.fragments.InboxFragment;
 import com.solution.internet.shopping.fragments.InvoiceDeliveryDetails;
+import com.solution.internet.shopping.fragments.InvoiceDetails;
 import com.solution.internet.shopping.fragments.MapFragment;
 import com.solution.internet.shopping.fragments.MoreFragment;
+import com.solution.internet.shopping.fragments.UserSpecialOrderDetailsFragment;
+import com.solution.internet.shopping.fragments.UserSpecialOrderDetailsFragment_ViewBinding;
 import com.solution.internet.shopping.interfaces.HandleRetrofitResp;
+import com.solution.internet.shopping.singleton.SingletonShopping;
+import com.solution.internet.shopping.utlities.DataEnum;
 
 
 /**
@@ -44,6 +50,25 @@ public class DeliveryMainActivity extends BaseActivity implements View.OnClickLi
 
         if (intent.hasExtra("mobile"))
             addContentFragment(ConfirmationCodeFragment.init(intent.getStringExtra("mobile")), false);
+        else if (intent.hasExtra(DataEnum.extraNotificationType.name())) {
+            switch (intent.getStringExtra(DataEnum.extraNotificationType.name())) {
+                case "specialorder":
+                    addContentFragment(UserSpecialOrderDetailsFragment.init(intent.getIntExtra(DataEnum.extraNotificationItemId.name(), 0)), false);
+
+                    break;
+                case "chat":
+                    SingletonShopping.getInstance().setChatUserId(intent.getIntExtra(DataEnum.extraNotificationItemId.name(), 0));
+                    addContentFragment(ChatFragment.init(), false);
+
+                    break;
+                case "invoice":
+                    addContentFragment(InvoiceDeliveryDetails.init(intent.getIntExtra(DataEnum.extraNotificationItemId.name(), 0)), false);
+                    break;
+                case "alert":
+                    addContentFragment(new DeliveryHomeFragment(), false);
+                    break;
+            }
+        }
         else
             addContentFragment(new DeliveryHomeFragment(), false);
 

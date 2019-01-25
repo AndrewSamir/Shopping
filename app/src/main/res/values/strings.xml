@@ -95,4 +95,5 @@
     <string name="message">الرسالة</string>
     <string name="invoices">الفواتير</string>
     <string name="update_product">تعديل منتج</string>
+    <string name="default_notification_channel_id">default_notification_channel_id</string>
 </resources>

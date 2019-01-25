@@ -39,8 +39,7 @@ import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
 import retrofit2.Call;
 
-public class DeliveryPageFragment extends BaseFragment implements HandleRetrofitResp
-{
+public class DeliveryPageFragment extends BaseFragment implements HandleRetrofitResp {
     //region fields
 
     List<Items> itemsList;
@@ -71,15 +70,14 @@ public class DeliveryPageFragment extends BaseFragment implements HandleRetrofit
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
-    {
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         final View view = inflater.inflate(R.layout.content_delegate, container, false);
 
         unbinder = ButterKnife.bind(this, view);
 
         itemsList = new ArrayList<>();
-        adapterItems = new AdapterItems(itemsList, getBaseActivity());
+        adapterItems = new AdapterItems(itemsList, deliveryId, getBaseActivity());
         rvDelegate.setLayoutManager(new GridLayoutManager(getBaseActivity(), 2));
         rvDelegate.setAdapter(adapterItems);
         rvDelegate.setNestedScrollingEnabled(false);
@@ -91,15 +89,13 @@ public class DeliveryPageFragment extends BaseFragment implements HandleRetrofit
     }
 
     @Override
-    public void onResume()
-    {
+    public void onResume() {
         super.onResume();
         HandleCalls.getInstance(getBaseActivity()).setonRespnseSucess(this);
     }
 
     @Override
-    public void onStop()
-    {
+    public void onStop() {
         super.onStop();
 //        appHeader.setRight(0, 0, 0);
     }
@@ -108,32 +104,27 @@ public class DeliveryPageFragment extends BaseFragment implements HandleRetrofit
 
     //region parent methods
     @Override
-    protected boolean canShowAppHeader()
-    {
+    protected boolean canShowAppHeader() {
         return false;
     }
 
     @Override
-    protected boolean canShowBottomBar()
-    {
+    protected boolean canShowBottomBar() {
         return false;
     }
 
     @Override
-    protected boolean canShowBackArrow()
-    {
+    protected boolean canShowBackArrow() {
         return false;
     }
 
     @Override
-    protected String getTitle()
-    {
+    protected String getTitle() {
         return null;
     }
 
     @Override
-    public int getSelectedMenuId()
-    {
+    public int getSelectedMenuId() {
         return 0;
     }
 
@@ -141,27 +132,26 @@ public class DeliveryPageFragment extends BaseFragment implements HandleRetrofit
 
     //region calls response
     @Override
-    public void onResponseSuccess(String flag, Object o)
-    {
+    public void onResponseSuccess(String flag, Object o) {
         Gson gson = new Gson();
         JsonObject jsonObject = gson.toJsonTree(o).getAsJsonObject();
 
-        if (flag.equals(DataEnum.callDelivery.name()))
-        {
+        if (flag.equals(DataEnum.callDelivery.name())) {
             modelCallDelivery = gson.fromJson(jsonObject, ModelCallDelivery.class);
             adjustView();
+        }
+
+    }
+
+    @Override
+    public void onNoContent(String flag, int code) {
+        if (flag.equals(DataEnum.callChatNew.name())) {
+            addFragment(ChatFragment.init(), true);
         }
     }
 
     @Override
-    public void onNoContent(String flag, int code)
-    {
-
-    }
-
-    @Override
-    public void onResponseSuccess(String flag, Object o, int position)
-    {
+    public void onResponseSuccess(String flag, Object o, int position) {
 
     }
 
@@ -170,22 +160,19 @@ public class DeliveryPageFragment extends BaseFragment implements HandleRetrofit
     //region clicks
 
     @OnClick(R.id.tvDelegateSpecialRequest)
-    void onClicktvDelegateSpecialRequest(View view)
-    {
+    void onClicktvDelegateSpecialRequest(View view) {
         dialogAddSpecialRrequest();
     }
     //endregion
 
     //region calls
-    private void callDelivery()
-    {
+    private void callDelivery() {
         Call call = HandleCalls.restShopping.getClientService().callDelivery(deliveryId);
         HandleCalls.getInstance(getBaseActivity()).callRetrofit(call, DataEnum.callDelivery.name(), true);
     }
 
 
-    private void callChatNew(String message, String type, String price)
-    {
+    private void callChatNew(String message, String type, String price) {
 
         ModelChatNewRequest modelChatNewRequest = new ModelChatNewRequest();
         modelChatNewRequest.setMessage(message);
@@ -200,19 +187,16 @@ public class DeliveryPageFragment extends BaseFragment implements HandleRetrofit
 
     //region functions
 
-    public static DeliveryPageFragment init(int deliveryId)
-    {
+    public static DeliveryPageFragment init(int deliveryId) {
         setDeliveryId(deliveryId);
         return new DeliveryPageFragment();
     }
 
-    public static void setDeliveryId(int deliveryId)
-    {
+    public static void setDeliveryId(int deliveryId) {
         DeliveryPageFragment.deliveryId = deliveryId;
     }
 
-    private void adjustView()
-    {
+    private void adjustView() {
 
         tvDelegateName.setText(modelCallDelivery.getInfo().getFullname());
         tvDelegateCity.setText(modelCallDelivery.getInfo().getCityId() + "");
@@ -221,8 +205,7 @@ public class DeliveryPageFragment extends BaseFragment implements HandleRetrofit
         adapterItems.addAll(modelCallDelivery.getItems());
     }
 
-    private void dialogAddSpecialRrequest()
-    {
+    private void dialogAddSpecialRrequest() {
         dialogAddReset = new Dialog(getBaseActivity());
         // Include dialog.xml file
         dialogAddReset.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -236,14 +219,11 @@ public class DeliveryPageFragment extends BaseFragment implements HandleRetrofit
         dialogAddReset.show();
 
         Button btnDialogAction = dialogAddReset.findViewById(R.id.btnDialogAction);
-        btnDialogAction.setOnClickListener(new View.OnClickListener()
-        {
-            public void onClick(View v)
-            {
+        btnDialogAction.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
                 if (edtDialogMessage.getText().toString().length() == 0)
                     edtDialogMessage.setError(getString(R.string.required));
-                else
-                {
+                else {
                     callChatNew(edtDialogMessage.getText().toString(), "text", "200");
                     dialogAddReset.dismiss();
                 }
@@ -251,11 +231,9 @@ public class DeliveryPageFragment extends BaseFragment implements HandleRetrofit
             }
         });
 
-        tvDialogExit.setOnClickListener(new View.OnClickListener()
-        {
+        tvDialogExit.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view)
-            {
+            public void onClick(View view) {
                 dialogAddReset.dismiss();
             }
         });

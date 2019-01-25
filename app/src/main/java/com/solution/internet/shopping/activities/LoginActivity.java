@@ -23,6 +23,7 @@ import com.solution.internet.shopping.R;
 import com.solution.internet.shopping.interfaces.HandleRetrofitResp;
 import com.solution.internet.shopping.models.ModelLoginRequest.ModelLoginRequest;
 import com.solution.internet.shopping.models.ModelLoginResponse.ModelLoginResponse;
+import com.solution.internet.shopping.models.ModelRefreshTokenRequest.ModelRefreshTokenRequest;
 import com.solution.internet.shopping.retorfitconfig.HandleCalls;
 import com.solution.internet.shopping.utlities.DataEnum;
 import com.solution.internet.shopping.utlities.SharedPrefHelper;
@@ -34,8 +35,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import retrofit2.Call;
 
-public class LoginActivity extends AppCompatActivity implements HandleRetrofitResp, Validator.ValidationListener
-{
+public class LoginActivity extends AppCompatActivity implements HandleRetrofitResp, Validator.ValidationListener {
 
     //region fields
     Validator validator;
@@ -56,8 +56,7 @@ public class LoginActivity extends AppCompatActivity implements HandleRetrofitRe
 
     //region life cycle
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
@@ -70,13 +69,12 @@ public class LoginActivity extends AppCompatActivity implements HandleRetrofitRe
 //        Log.d("deviceToken", FirebaseInstanceId.getInstance().getId());
 //        Log.d("deviceToken", FirebaseInstanceId.getInstance().getToken());
 
-    /*    edtLoginPhone.setText("501231233");
-        edtLoginPassword.setText("123123");*/
+        edtLoginPhone.setText("501231233");
+        edtLoginPassword.setText("123123");
     }
 
     @Override
-    public void onResume()
-    {
+    public void onResume() {
         super.onResume();
         validator = new Validator(this);
         validator.setValidationListener(this);
@@ -86,22 +84,19 @@ public class LoginActivity extends AppCompatActivity implements HandleRetrofitRe
 
     //region clicks
     @OnClick(R.id.btnLoginEnter)
-    public void onClickbtnLoginEnter()
-    {
+    public void onClickbtnLoginEnter() {
         validator.validate();
     }
 
     @OnClick(R.id.btnLoginRegister)
-    public void onClickbtnLoginRegister()
-    {
+    public void onClickbtnLoginRegister() {
         Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
         intent.putExtra(DataEnum.intentRegisterType.name(), "delivery");
         startActivity(intent);
     }
 
     @OnClick(R.id.btnLoginAsClient)
-    public void onClickbtnLoginAsClient()
-    {
+    public void onClickbtnLoginAsClient() {
         Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
         intent.putExtra(DataEnum.intentRegisterType.name(), "user");
         startActivity(intent);
@@ -111,16 +106,17 @@ public class LoginActivity extends AppCompatActivity implements HandleRetrofitRe
 
     //region call response
     @Override
-    public void onResponseSuccess(String flag, Object o)
-    {
+    public void onResponseSuccess(String flag, Object o) {
         Gson gson = new Gson();
         JsonObject jsonObject = gson.toJsonTree(o).getAsJsonObject();
 
-        if (flag.equals(DataEnum.callLogin.name()))
-        {
+        if (flag.equals(DataEnum.callLogin.name())) {
             ModelLoginResponse modelLoginResponse = gson.fromJson(jsonObject, ModelLoginResponse.class);
             SharedPrefHelper.getInstance(this).setUser(modelLoginResponse);
-            if (modelLoginResponse.getUsertype().equals("user"))
+            callRefreshToken();
+
+        } else {
+            if (SharedPrefHelper.getInstance(this).getUserType().equals("user"))
                 startActivity(new Intent(LoginActivity.this, MainActivity.class));
             else
                 startActivity(new Intent(LoginActivity.this, DeliveryMainActivity.class));
@@ -129,22 +125,23 @@ public class LoginActivity extends AppCompatActivity implements HandleRetrofitRe
     }
 
     @Override
-    public void onNoContent(String flag, int code)
-    {
-
+    public void onNoContent(String flag, int code) {
+        if (SharedPrefHelper.getInstance(this).getUserType().equals("user"))
+            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+        else
+            startActivity(new Intent(LoginActivity.this, DeliveryMainActivity.class));
+        finish();
     }
 
     @Override
-    public void onResponseSuccess(String flag, Object o, int position)
-    {
+    public void onResponseSuccess(String flag, Object o, int position) {
 
     }
 
     //endregion
 
     //region calls
-    private void callLogin()
-    {
+    private void callLogin() {
         ModelLoginRequest modelLoginRequest = new ModelLoginRequest();
         modelLoginRequest.setMobile(edtLoginPhone.getText().toString().trim());
         modelLoginRequest.setPassword(edtLoginPassword.getText().toString().trim());
@@ -153,31 +150,34 @@ public class LoginActivity extends AppCompatActivity implements HandleRetrofitRe
         HandleCalls.getInstance(this).callRetrofit(call, DataEnum.callLogin.name(), true);
     }
 
+    private void callRefreshToken() {
+        ModelRefreshTokenRequest modelRefreshTokenRequest = new ModelRefreshTokenRequest();
+        modelRefreshTokenRequest.setDeviceToken(FirebaseInstanceId.getInstance().getToken());
+
+        Call call = HandleCalls.restShopping.getClientService().callRefreshToken(modelRefreshTokenRequest);
+        HandleCalls.getInstance(this).callRetrofit(call, DataEnum.callRefreshToken.name(), true);
+    }
+
     //endregion
 
     //region validation
 
 
     @Override
-    public void onValidationSucceeded()
-    {
+    public void onValidationSucceeded() {
         callLogin();
     }
 
     @Override
-    public void onValidationFailed(List<ValidationError> errors)
-    {
-        for (ValidationError error : errors)
-        {
+    public void onValidationFailed(List<ValidationError> errors) {
+        for (ValidationError error : errors) {
             View view = error.getView();
             String message = error.getCollatedErrorMessage(this);
 
             // Display error messages ;)
-            if (view instanceof EditText)
-            {
+            if (view instanceof EditText) {
                 ((EditText) view).setError(message);
-            } else
-            {
+            } else {
 //                showMessage(message);
             }
         }

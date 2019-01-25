@@ -13,6 +13,7 @@ import com.solution.internet.shopping.activities.BaseActivity;
 import com.solution.internet.shopping.interfaces.HandleRetrofitResp;
 import com.solution.internet.shopping.interfaces.HandleRetrofitRespAdapter;
 import com.solution.internet.shopping.models.ModelCommenResponse.ModelCommenResponse;
+import com.solution.internet.shopping.singleton.SingletonShopping;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -26,8 +27,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class HandleCalls
-{
+public class HandleCalls {
     private static Context context;
     private static HandleCalls instance = null;
     public static RestShopping restShopping;
@@ -37,87 +37,73 @@ public class HandleCalls
 
     //private HandleNoContent onNoContent;
 
-    public static HandleCalls getInstance(Context context)
-    {
+    public static HandleCalls getInstance(Context context) {
         HandleCalls.context = context;
-        if (instance == null)
-        {
+        if (instance == null) {
             instance = new HandleCalls();
             restShopping = RestShopping.getInstance(context);
         }
         return instance;
     }
 
-    public void setonRespnseSucess(HandleRetrofitResp onRespnseSucess)
-    {
+    public void setonRespnseSucess(HandleRetrofitResp onRespnseSucess) {
         this.onRespnse = onRespnseSucess;
     }
 
-    public void setonRespnseSucessApapter(HandleRetrofitRespAdapter onRespnseAdapter)
-    {
+    public void setonRespnseSucessApapter(HandleRetrofitRespAdapter onRespnseAdapter) {
         this.onRespnseAdapter = onRespnseAdapter;
     }
 
 
-    public <T> void callRetrofit(Call<ModelCommenResponse> call, final String flag, final Boolean showLoading)
-    {
+    public <T> void callRetrofit(Call<ModelCommenResponse> call, final String flag, final Boolean showLoading) {
         if (showLoading)
             progressDialog = new ProgressDialog(context, IndicatorStyle.BallBeat).show();
-        call.enqueue(new Callback<ModelCommenResponse>()
-        {
+        call.enqueue(new Callback<ModelCommenResponse>() {
             @Override
-            public void onResponse(Call<ModelCommenResponse> call, Response<ModelCommenResponse> response)
-            {
+            public void onResponse(Call<ModelCommenResponse> call, Response<ModelCommenResponse> response) {
                 if (showLoading)
                     progressDialog.dismiss();
-                if (response.code() == 200)
-                {
+                if (response.code() == 200) {
 
                     ModelCommenResponse modelCommenResponse = response.body();
                     if (modelCommenResponse.getResponseMessage() != null)
                         showMessage(modelCommenResponse.getResponseMessage());
                     if (modelCommenResponse.getLink() != null)
                         onRespnse.onResponseSuccess(flag, modelCommenResponse.getLink());
+                    if (modelCommenResponse.getC_id() != -1)
+                        SingletonShopping.getInstance().setC_id(modelCommenResponse.getC_id());
+//                        onRespnse.onResponseSuccess(flag, modelCommenResponse.getC_id());
                     if (modelCommenResponse.getData() != null && modelCommenResponse.getStatus().equals(context.getString(R.string.done)))
                         onRespnse.onResponseSuccess(flag, modelCommenResponse.getData());
                     else if (modelCommenResponse.getStatus().equals(context.getString(R.string.done)))
                         onRespnse.onNoContent(flag, response.code());
 
 
-                } else if (response.code() == 406)
-                {
-                    try
-                    {
+                } else if (response.code() == 406) {
+                    try {
                         JSONObject jObjError = new JSONObject(response.errorBody().string());
                         showMessage(jObjError.getString("Message"));
 
-                    } catch (JSONException e)
-                    {
+                    } catch (JSONException e) {
                         e.printStackTrace();
-                    } catch (IOException e)
-                    {
+                    } catch (IOException e) {
                         e.printStackTrace();
                     }
-                } else if (response.code() == 500)
-                {
-                    try
-                    {
+                } else if (response.code() == 500) {
+                    try {
                         JSONObject jObjError = new JSONObject(response.errorBody().string());
                         showMessage(jObjError.getString("Message"));
 
-                    } catch (JSONException e)
-                    {
+                    } catch (JSONException e) {
                         e.printStackTrace();
-                    } catch (IOException e)
-                    {
+                    } catch (IOException e) {
                         e.printStackTrace();
                     }
                 }
             }
 
             @Override
-            public void onFailure(Call<ModelCommenResponse> call, Throwable t)
-            {
+            public void onFailure(Call<ModelCommenResponse> call, Throwable t) {
                 if (showLoading)
                     progressDialog.dismiss();
 
@@ -129,20 +115,16 @@ public class HandleCalls
 
     }
 
-    public <T> void callRetrofitAdapter(Call<ModelCommenResponse> call, final String flag, final Boolean showLoading, final int position)
-    {
+    public <T> void callRetrofitAdapter(Call<ModelCommenResponse> call, final String flag, final Boolean showLoading, final int position) {
         if (showLoading)
             progressDialog = new ProgressDialog(context, IndicatorStyle.BallBeat).show();
 
-        call.enqueue(new Callback<ModelCommenResponse>()
-        {
+        call.enqueue(new Callback<ModelCommenResponse>() {
             @Override
-            public void onResponse(Call<ModelCommenResponse> call, Response<ModelCommenResponse> response)
-            {
+            public void onResponse(Call<ModelCommenResponse> call, Response<ModelCommenResponse> response) {
                 if (showLoading)
                     progressDialog.dismiss();
-                if (response.code() == 200)
-                {
+                if (response.code() == 200) {
 
                     ModelCommenResponse modelCommenResponse = response.body();
                     if (modelCommenResponse.getResponseMessage() != null)
@@ -153,32 +135,24 @@ public class HandleCalls
                         onRespnseAdapter.onNoContent(flag, position);
 
 
-                } else if (response.code() == 406)
-                {
-                    try
-                    {
+                } else if (response.code() == 406) {
+                    try {
                         JSONObject jObjError = new JSONObject(response.errorBody().string());
                         ((BaseActivity) context).showMessage(jObjError.getString("Message"));
 
-                    } catch (JSONException e)
-                    {
+                    } catch (JSONException e) {
                         e.printStackTrace();
-                    } catch (IOException e)
-                    {
+                    } catch (IOException e) {
                         e.printStackTrace();
                     }
-                } else if (response.code() == 500)
-                {
-                    try
-                    {
+                } else if (response.code() == 500) {
+                    try {
                         JSONObject jObjError = new JSONObject(response.errorBody().string());
                         ((BaseActivity) context).showMessage(jObjError.getString("Message"));
 
-                    } catch (JSONException e)
-                    {
+                    } catch (JSONException e) {
                         e.printStackTrace();
-                    } catch (IOException e)
-                    {
+                    } catch (IOException e) {
                         e.printStackTrace();
                     }
                 }
@@ -187,8 +161,7 @@ public class HandleCalls
             }
 
             @Override
-            public void onFailure(Call<ModelCommenResponse> call, Throwable t)
-            {
+            public void onFailure(Call<ModelCommenResponse> call, Throwable t) {
                 if (showLoading)
                     progressDialog.dismiss();
                 onRespnseAdapter.onNoContent(flag, position);
@@ -200,8 +173,7 @@ public class HandleCalls
 
     }
 
-    public MaterialDialog.Builder getMaterialDialogBuilder()
-    {
+    public MaterialDialog.Builder getMaterialDialogBuilder() {
         MaterialDialog.Builder builder = new MaterialDialog.Builder(context);
 //        builder.typeface("TheSansArabic-Bold.otf", "TheSansArabic-Plain.otf");
 
@@ -209,25 +181,20 @@ public class HandleCalls
     }
 
 
-    public void showMessage(String message)
-    {
+    public void showMessage(String message) {
         showMessage(null, message);
     }
 
-    public void showMessage(@Nullable String title, @NonNull String message)
-    {
+    public void showMessage(@Nullable String title, @NonNull String message) {
         MaterialDialog.Builder builder = getMaterialDialogBuilder();
         builder.content(message);
-        if (title != null)
-        {
+        if (title != null) {
             builder.title(title);
         }
 
-        builder.content(message).positiveText(R.string.agree).onPositive(new MaterialDialog.SingleButtonCallback()
-        {
+        builder.content(message).positiveText(R.string.agree).onPositive(new MaterialDialog.SingleButtonCallback() {
             @Override
-            public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which)
-            {
+            public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
                 dialog.dismiss();
             }
         }).autoDismiss(true).titleGravity(GravityEnum.CENTER).contentGravity(GravityEnum.CENTER).show();

@@ -14,6 +14,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -28,6 +29,7 @@ import com.solution.internet.shopping.R;
 import com.solution.internet.shopping.interfaces.HandleRetrofitResp;
 import com.solution.internet.shopping.models.ModelGetCities.ModelGetCities;
 import com.solution.internet.shopping.models.ModelLoginResponse.ModelLoginResponse;
+import com.solution.internet.shopping.models.ModelRefreshTokenRequest.ModelRefreshTokenRequest;
 import com.solution.internet.shopping.models.ModelSignUpRequest.ModelSignUpRequest;
 import com.solution.internet.shopping.retorfitconfig.HandleCalls;
 import com.solution.internet.shopping.utlities.DataEnum;
@@ -174,19 +176,19 @@ public class RegisterActivity extends Activity implements HandleRetrofitResp, Va
             SharedPrefHelper.getInstance(this).setUser(modelLoginResponse);
           /*  startActivity(new Intent(RegisterActivity.this, MainActivity.class)
                     .putExtra("mobile", edtRegisterMobile.getText().toString()));*/
+            callRefreshToken();
 
-            if (modelLoginResponse.getUsertype().equals("user"))
-                startActivity(new Intent(RegisterActivity.this, MainActivity.class) .putExtra("mobile", edtRegisterMobile.getText().toString()));
-            else
-                startActivity(new Intent(RegisterActivity.this, DeliveryMainActivity.class) .putExtra("mobile", edtRegisterMobile.getText().toString()));
-            finish();
         }
 
     }
 
     @Override
     public void onNoContent(String flag, int code) {
-
+        if (SharedPrefHelper.getInstance(this).getUserType().equals("user"))
+            startActivity(new Intent(RegisterActivity.this, MainActivity.class).putExtra("mobile", edtRegisterMobile.getText().toString()));
+        else
+            startActivity(new Intent(RegisterActivity.this, DeliveryMainActivity.class).putExtra("mobile", edtRegisterMobile.getText().toString()));
+        finish();
     }
 
     @Override
@@ -226,6 +228,13 @@ public class RegisterActivity extends Activity implements HandleRetrofitResp, Va
         HandleCalls.getInstance(this).callRetrofit(call, DataEnum.callCities.name(), true);
     }
 
+    private void callRefreshToken() {
+        ModelRefreshTokenRequest modelRefreshTokenRequest = new ModelRefreshTokenRequest();
+        modelRefreshTokenRequest.setDeviceToken(FirebaseInstanceId.getInstance().getToken());
+
+        Call call = HandleCalls.restShopping.getClientService().callRefreshToken(modelRefreshTokenRequest);
+        HandleCalls.getInstance(this).callRetrofit(call, DataEnum.callRefreshToken.name(), true);
+    }
     //endregion
 
     //region validation

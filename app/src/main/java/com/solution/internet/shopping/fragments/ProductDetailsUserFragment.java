@@ -10,19 +10,24 @@ import android.widget.TextView;
 
 import com.solution.internet.shopping.R;
 import com.solution.internet.shopping.interfaces.HandleRetrofitResp;
+import com.solution.internet.shopping.models.ModelAddProductRequest.ModelAddProductRequest;
 import com.solution.internet.shopping.models.ModelCallDelivery.Items;
+import com.solution.internet.shopping.models.ModelChatNewRequest.ModelChatNewRequest;
 import com.solution.internet.shopping.retorfitconfig.HandleCalls;
+import com.solution.internet.shopping.utlities.DataEnum;
+import com.solution.internet.shopping.utlities.SharedPrefHelper;
 import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import retrofit2.Call;
 
-public class ProductDetailsUserFragment extends BaseFragment implements HandleRetrofitResp
-{
+public class ProductDetailsUserFragment extends BaseFragment implements HandleRetrofitResp {
     //region fields
 
     static Items item;
+    static int userId;
     //endregion
 
     //region views
@@ -35,14 +40,18 @@ public class ProductDetailsUserFragment extends BaseFragment implements HandleRe
     TextView tvProductDetailsPrice;
     @BindView(R.id.imgProductDetails)
     ImageView imgProductDetails;
+
+    @BindView(R.id.tvProductDetailsReport)
+    View tvProductDetailsReport;
+    @BindView(R.id.btnProductDetails)
+    View btnProductDetails;
     //endregion
 
     //region life cycle
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
-    {
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         final View view = inflater.inflate(R.layout.product_details_fragment, container, false);
 
@@ -52,15 +61,13 @@ public class ProductDetailsUserFragment extends BaseFragment implements HandleRe
     }
 
     @Override
-    public void onResume()
-    {
+    public void onResume() {
         super.onResume();
         HandleCalls.getInstance(getBaseActivity()).setonRespnseSucess(this);
     }
 
     @Override
-    public void onStop()
-    {
+    public void onStop() {
         super.onStop();
 //        appHeader.setRight(0, 0, 0);
     }
@@ -69,32 +76,27 @@ public class ProductDetailsUserFragment extends BaseFragment implements HandleRe
 
     //region parent methods
     @Override
-    protected boolean canShowAppHeader()
-    {
+    protected boolean canShowAppHeader() {
         return false;
     }
 
     @Override
-    protected boolean canShowBottomBar()
-    {
+    protected boolean canShowBottomBar() {
         return false;
     }
 
     @Override
-    protected boolean canShowBackArrow()
-    {
+    protected boolean canShowBackArrow() {
         return false;
     }
 
     @Override
-    protected String getTitle()
-    {
+    protected String getTitle() {
         return null;
     }
 
     @Override
-    public int getSelectedMenuId()
-    {
+    public int getSelectedMenuId() {
         return 0;
     }
 
@@ -102,20 +104,19 @@ public class ProductDetailsUserFragment extends BaseFragment implements HandleRe
 
     //region calls response
     @Override
-    public void onResponseSuccess(String flag, Object o)
-    {
+    public void onResponseSuccess(String flag, Object o) {
 
     }
 
     @Override
-    public void onNoContent(String flag, int code)
-    {
-
+    public void onNoContent(String flag, int code) {
+        if (flag.equals(DataEnum.callChatNew.name())) {
+            addFragment(ChatFragment.init(), true);
+        }
     }
 
     @Override
-    public void onResponseSuccess(String flag, Object o, int position)
-    {
+    public void onResponseSuccess(String flag, Object o, int position) {
 
     }
 
@@ -124,36 +125,69 @@ public class ProductDetailsUserFragment extends BaseFragment implements HandleRe
     //region clicks
 
     @OnClick(R.id.tvProductDetailsReport)
-    void onClicktvProductDetailsReport(View view)
-    {
+    void onClicktvProductDetailsReport(View view) {
 
+    }
+
+    @OnClick(R.id.btnProductDetails)
+    public void onClickbtnProductDetails() {
+        callChatNew();
+    }
+
+    @OnClick(R.id.tvProductDetailsReport)
+    public void onClicktvProductDetailsReport() {
+        callReportProduct();
     }
     //endregion
 
     //region calls
+    private void callChatNew() {
 
+        ModelChatNewRequest modelChatNewRequest = new ModelChatNewRequest();
+        modelChatNewRequest.setMessage(" بخصوص " + item.getTitle());
+        modelChatNewRequest.setType("text");
+        modelChatNewRequest.setPrice("200");
+        modelChatNewRequest.setUserid(userId);
+
+        Call call = HandleCalls.restShopping.getClientService().callChatNew(modelChatNewRequest);
+        HandleCalls.getInstance(getBaseActivity()).callRetrofit(call, DataEnum.callChatNew.name(), true);
+    }
+
+    private void callReportProduct() {
+
+        ModelAddProductRequest modelAddProductRequest = new ModelAddProductRequest();
+        modelAddProductRequest.setItem_id(item.getItemId() + "");
+        Call call = HandleCalls.restShopping.getClientService().callReportProduct(modelAddProductRequest);
+        HandleCalls.getInstance(getBaseActivity()).callRetrofit(call, DataEnum.callReportProduct.name(), true);
+    }
     //endregion
 
     //region functions
 
-    public static ProductDetailsUserFragment init(Items item)
-    {
+    public static ProductDetailsUserFragment init(Items item, int userId) {
         setItem(item);
+        setUserId(userId);
         return new ProductDetailsUserFragment();
     }
 
-    public static void setItem(Items item)
-    {
+    public static void setUserId(int userId) {
+        ProductDetailsUserFragment.userId = userId;
+    }
+
+    public static void setItem(Items item) {
         ProductDetailsUserFragment.item = item;
     }
 
-    private void adjustView()
-    {
+    private void adjustView() {
 //        tvProductDetailsName.setText(item.getCategoryname());
         tvProductDetailsTitle.setText(item.getTitle());
         tvProductDetailsContent.setText(item.getCityname());
         tvProductDetailsPrice.setText(item.getPrice() + " ريال ");
 
+        if (!SharedPrefHelper.getInstance(getBaseActivity()).getUserType().equals("user")) {
+            tvProductDetailsReport.setVisibility(View.GONE);
+            btnProductDetails.setVisibility(View.GONE);
+        }
         Picasso.with(getBaseActivity())
                 .load(item.getPhoto())
                 .into(imgProductDetails);

@@ -32,6 +32,7 @@ public class AdapterItems extends RecyclerView.Adapter<AdapterItems.MyViewHolder
     ArrayList<Items> searchList;
 
     private Activity activity;
+    private int userId;
 
 
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener
@@ -61,17 +62,18 @@ public class AdapterItems extends RecyclerView.Adapter<AdapterItems.MyViewHolder
            /* Intent intent = new Intent(activity, ProductDetailsActivity.class);
             intent.putExtra("test", (Serializable) adapterList.get(getAdapterPosition()));
             activity.startActivity(intent);*/
-            ((BaseActivity) activity).addContentFragment(ProductDetailsUserFragment.init(adapterList.get(getAdapterPosition())), true);
+            ((BaseActivity) activity).addContentFragment(ProductDetailsUserFragment.init(adapterList.get(getAdapterPosition()),userId), true);
         }
     }
 
-    public AdapterItems(List<Items> adapterList, Activity activity)
+    public AdapterItems(List<Items> adapterList,int userId, Activity activity)
     {
         this.adapterList = adapterList;
 
         this.searchList = new ArrayList<>();
         this.searchList.addAll(adapterList);
         this.activity = activity;
+        this.userId = userId;
 
         HandleCalls.getInstance(activity).setonRespnseSucessApapter(this);
     }

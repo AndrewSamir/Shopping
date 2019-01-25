@@ -25,8 +25,7 @@ import retrofit2.http.PartMap;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
-public interface ApiCall
-{
+public interface ApiCall {
 
     //region auth
     @POST(Constant.subUrl + "user/login")
@@ -50,6 +49,12 @@ public interface ApiCall
     @GET(Constant.subUrl + "map")
     Call<ModelCommenResponse> callMap();
 
+    @GET(Constant.subUrl + "user/notifications")
+    Call<ModelCommenResponse> callGetNotifications();
+
+    @GET(Constant.subUrl + "user/notifications/clear")
+    Call<ModelCommenResponse> callClearNotifications();
+
     @GET(Constant.subUrl + "user/profile")
     Call<ModelCommenResponse> callGetProfile();
 
@@ -72,6 +77,11 @@ public interface ApiCall
 
     @POST(Constant.subUrl + "chat/acceptInvoice")
     Call<ModelCommenResponse> callAcceptInvoice(@Body ModelChatNewRequest modelChatNewRequest);
+
+    @Multipart
+    @POST(Constant.subUrl + "chat/acceptInvoice")
+    Call<ModelCommenResponse> callAcceptInvoice(@Part MultipartBody.Part photo, @PartMap() Map<String, RequestBody> partMap);
+
 
     @GET(Constant.subUrl + "chat/{id}")
     Call<ModelCommenResponse> callChatWith(@Path("id") int id);
@@ -101,6 +111,9 @@ public interface ApiCall
 
     @POST(Constant.subUrl + "products/delete")
     Call<ModelCommenResponse> callDeleteProduct(@Body ModelAddProductRequest body);
+
+    @POST(Constant.subUrl + "products/report")
+    Call<ModelCommenResponse> callReportProduct(@Body ModelAddProductRequest body);
 
     @Multipart
     @POST(Constant.subUrl + "products/add")

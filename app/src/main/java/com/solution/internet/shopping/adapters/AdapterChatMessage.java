@@ -9,6 +9,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.solution.internet.shopping.R;
+import com.solution.internet.shopping.activities.BaseActivity;
+import com.solution.internet.shopping.fragments.InvoiceDetails;
 import com.solution.internet.shopping.models.ModelChatMessage.ModelChatMessage;
 import com.solution.internet.shopping.utlities.SharedPrefHelper;
 import com.squareup.picasso.Picasso;
@@ -20,55 +22,51 @@ import java.util.List;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 
-public class AdapterChatMessage extends RecyclerView.Adapter<AdapterChatMessage.MyViewHolder>
-{
+public class AdapterChatMessage extends RecyclerView.Adapter<AdapterChatMessage.MyViewHolder> {
 
     private List<ModelChatMessage> adapterList;
     Activity activity;
 
 
-    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener
-    {
+    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public TextView tvChatMsg, tvChatMsgTime;
         CircleImageView imgChatMsg;
         ImageView imgChatPhoto;
 
-        public MyViewHolder(View view)
-        {
+        public MyViewHolder(View view) {
             super(view);
             tvChatMsg = view.findViewById(R.id.tvChatMsg);
             tvChatMsgTime = view.findViewById(R.id.tvChatMsgTime);
             imgChatMsg = view.findViewById(R.id.imgChatMsg);
             imgChatPhoto = view.findViewById(R.id.imgChatPhoto);
 
-//            imgChatMsg.setOnClickListener(this);
+            view.setOnClickListener(this);
         }
 
         @Override
-        public void onClick(View v)
-        {
-          /*  if (SharedPrefHelper.getInstance(activity).getUserid().equals(adapterList.get(getAdapterPosition()).getSenderId()))
-                ((BaseActivity) activity).addContentFragment(MoreFragment.init(), false);
-            else
-                ((BaseActivity) activity).addContentFragment(ProfileFragment.init(adapterList.get(getAdapterPosition()).getSenderId()), true);
-*/
+        public void onClick(View v) {
+            ModelChatMessage messagesChat = adapterList.get(getAdapterPosition());
+            if (messagesChat.getType().equals("invoice")) {
+                if (SharedPrefHelper.getInstance(activity).getUserType().equals("user"))
+                    ((BaseActivity) activity).addContentFragment(InvoiceDetails.init(messagesChat.getCrId()), true);
+                else
+                    ((BaseActivity) activity).addContentFragment(InvoiceDetails.init(messagesChat.getCrId()), true);
+            }
+
         }
     }
 
 
-    public AdapterChatMessage(List<ModelChatMessage> ModelChatMessageTests, Activity activity)
-    {
+    public AdapterChatMessage(List<ModelChatMessage> ModelChatMessageTests, Activity activity) {
         this.adapterList = ModelChatMessageTests;
         this.activity = activity;
     }
 
     @Override
-    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
-    {
+    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         int layoutRes = 0;
-        switch (viewType)
-        {
+        switch (viewType) {
             case 1:
                 layoutRes = R.layout.xml_chat_sent;
                 break;
@@ -91,8 +89,7 @@ public class AdapterChatMessage extends RecyclerView.Adapter<AdapterChatMessage.
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position)
-    {
+    public void onBindViewHolder(MyViewHolder holder, int position) {
         ModelChatMessage messagesChat = adapterList.get(position);
 
         if (messagesChat.getType().equals("text"))
@@ -117,18 +114,15 @@ public class AdapterChatMessage extends RecyclerView.Adapter<AdapterChatMessage.
     }
 
     @Override
-    public int getItemCount()
-    {
+    public int getItemCount() {
         return adapterList.size();
     }
 
     @Override
-    public int getItemViewType(int position)
-    {
+    public int getItemViewType(int position) {
         int sender;
 
-        if (adapterList.get(position).getUserid() == SharedPrefHelper.getInstance(activity).getUserid())
-        {
+        if (adapterList.get(position).getUserid() == SharedPrefHelper.getInstance(activity).getUserid()) {
 
             if (adapterList.get(position).getType().equals("text"))
                 sender = 1;
@@ -137,8 +131,7 @@ public class AdapterChatMessage extends RecyclerView.Adapter<AdapterChatMessage.
                 sender = 4;
             else
                 sender = 4;
-        } else
-        {
+        } else {
             if (adapterList.get(position).getType().equals("text"))
                 sender = 0;
 
@@ -151,22 +144,19 @@ public class AdapterChatMessage extends RecyclerView.Adapter<AdapterChatMessage.
         return sender;
     }
 
-    public void addAll(List<ModelChatMessage> items)
-    {
+    public void addAll(List<ModelChatMessage> items) {
         int startIndex = adapterList.size();
         adapterList.addAll(items);
         notifyItemRangeInserted(startIndex, items.size());
 
     }
 
-    public void addItem(ModelChatMessage item)
-    {
+    public void addItem(ModelChatMessage item) {
         insertItem(item, adapterList.size());
         notifyDataSetChanged();
     }
 
-    public void insertItem(ModelChatMessage item, int position)
-    {
+    public void insertItem(ModelChatMessage item, int position) {
         adapterList.add(position, item);
         notifyItemInserted(position);
     }
