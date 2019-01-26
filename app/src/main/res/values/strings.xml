@@ -1,13 +1,13 @@
 <resources>
     <string name="app_name">تسوق</string>
     <string name="done">done</string>
-    <string name="agree">Agree</string>
-    <string name="internet_connection">No Internet Connection</string>
+    <string name="agree">موافق</string>
+    <string name="internet_connection">لا يوجد اتصال بالانترنت</string>
     <string name="mobile">رقم الجوال</string>
     <string name="password">كلمة المرور</string>
     <string name="enter">دخول</string>
-    <string name="forget_password_q">forget password ?</string>
-    <string name="press_here">Press Here</string>
+    <string name="forget_password_q">نسيت كلمة المرور ؟</string>
+    <string name="press_here">أضغط هنا </string>
     <string name="title_activity_maps">Map</string>
     <string name="title_activity_register">RegisterActivity</string>
     <string name="first_name">الأسم الأول*</string>
@@ -66,7 +66,7 @@
     <string name="product_description">وصف المنتج</string>
     <string name="create_offer">قدم عرض</string>
     <string name="permissions_needed">permissions_needed</string>
-    <string name="cancel">cancel</string>
+    <string name="cancel">إلغاء</string>
     <string name="send_to">ارسال الي</string>
     <string name="category">القسم</string>
     <string name="city">المدينة</string>

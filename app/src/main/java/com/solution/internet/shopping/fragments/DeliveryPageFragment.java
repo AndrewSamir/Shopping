@@ -77,8 +77,8 @@ public class DeliveryPageFragment extends BaseFragment implements HandleRetrofit
         unbinder = ButterKnife.bind(this, view);
 
         itemsList = new ArrayList<>();
-        adapterItems = new AdapterItems(itemsList, deliveryId, getBaseActivity());
-        rvDelegate.setLayoutManager(new GridLayoutManager(getBaseActivity(), 2));
+        adapterItems = new AdapterItems(itemsList,  getBaseActivity());
+        rvDelegate.setLayoutManager(new GridLayoutManager(getBaseActivity(), 3));
         rvDelegate.setAdapter(adapterItems);
         rvDelegate.setNestedScrollingEnabled(false);
 

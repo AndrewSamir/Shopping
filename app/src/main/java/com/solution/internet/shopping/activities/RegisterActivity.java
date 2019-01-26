@@ -69,7 +69,7 @@ public class RegisterActivity extends Activity implements HandleRetrofitResp, Va
     @BindView(R.id.edtRegisterLink)
     EditText edtRegisterLink;
 
-    @Password(messageResId = R.string.required, min = 8)
+    @Password(messageResId = R.string.required)
     @BindView(R.id.edtRegisterPassword)
     EditText edtRegisterPassword;
 
@@ -83,6 +83,7 @@ public class RegisterActivity extends Activity implements HandleRetrofitResp, Va
     @BindView(R.id.btnRegisterRegister)
     Button btnRegisterRegister;
 
+    @NotEmpty(messageResId = R.string.required)
     @BindView(R.id.edtRegisterCity)
     EditText edtRegisterCity;
     //endregion
@@ -209,10 +210,12 @@ public class RegisterActivity extends Activity implements HandleRetrofitResp, Va
             if (selectedCityId != 0)
                 modelSignUpRequest.setCity_id(selectedCityId + "");
             if (edtRegisterLink.getText().toString().length() > 0)
-                modelSignUpRequest.setCity_id(edtRegisterLink.getText().toString());
+                modelSignUpRequest.setMaarof_link(edtRegisterLink.getText().toString());
+            else
+                modelSignUpRequest.setMaarof_link("");
 
-            modelSignUpRequest.setLat("24.56565645");
-            modelSignUpRequest.setLng("36.34343434");
+//            modelSignUpRequest.setLat("24.56565645");
+//            modelSignUpRequest.setLng("36.34343434");
 
             call = HandleCalls.restShopping.getClientService().callSignupDelivery(modelSignUpRequest);
             HandleCalls.getInstance(this).callRetrofit(call, DataEnum.callSignupDelivery.name(), true);

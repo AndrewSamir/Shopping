@@ -20,6 +20,7 @@ import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MoreFragment extends BaseFragment implements HandleRetrofitResp {
+
     //region fields
 
     //endregion
@@ -30,6 +31,30 @@ public class MoreFragment extends BaseFragment implements HandleRetrofitResp {
     CircleImageView imgMoreProfile;
     @BindView(R.id.tvMoreName)
     TextView tvMoreName;
+    @BindView(R.id.tvMoreEditData)
+    TextView tvMoreEditData;
+    @BindView(R.id.tvMoreLogout)
+    TextView tvMoreLogout;
+    @BindView(R.id.tvMoreLogin)
+    TextView tvMoreLogin;
+    @BindView(R.id.tvMoreOrders)
+    TextView tvMoreOrders;
+    @BindView(R.id.tvMoreSpecialOrder)
+    TextView tvMoreSpecialOrder;
+    @BindView(R.id.tvMoreInvoices)
+    TextView tvMoreInvoices;
+    @BindView(R.id.tvMoreMessages)
+    TextView tvMoreMessages;
+    @BindView(R.id.tvMoreLoginView)
+    View tvMoreLoginView;
+    @BindView(R.id.tvMoreInvoicesView)
+    View tvMoreInvoicesView;
+    @BindView(R.id.tvMoreMessagesView)
+    View tvMoreMessagesView;
+    @BindView(R.id.tvMoreOrdersView)
+    View tvMoreOrdersView;
+    @BindView(R.id.tvMoreSpecialOrderView)
+    View tvMoreSpecialOrderView;
 
     //endregion
 
@@ -42,7 +67,7 @@ public class MoreFragment extends BaseFragment implements HandleRetrofitResp {
         final View view = inflater.inflate(R.layout.more_fragment, container, false);
 
         unbinder = ButterKnife.bind(this, view);
-
+        adjustView();
         return view;
     }
 
@@ -131,17 +156,18 @@ public class MoreFragment extends BaseFragment implements HandleRetrofitResp {
 
     @OnClick(R.id.tvMoreAbout)
     void onClicktvMoreAbout(View view) {
-        addFragment(NotificationsFragment.init(), true);
+        addFragment(WebViewFragment.init("من نحن","http://pharaohsland.tours/tasawk/app/page/1"),true);
+//        addFragment(NotificationsFragment.init(), true);
     }
 
     @OnClick(R.id.tvMoreContact)
     void onClicktvMoreContact(View view) {
-
+addFragment(WebViewFragment.init("تواصل معنا","http://pharaohsland.tours/tasawk/app/contact"),true);
     }
 
     @OnClick(R.id.tvMorePrivacy)
     void onClicktvMorePrivacy(View view) {
-
+        addFragment(WebViewFragment.init("سياسة الإستخدام","http://pharaohsland.tours/tasawk/app/page/2"),true);
     }
 
     @OnClick(R.id.tvMoreInvoices)
@@ -177,6 +203,41 @@ public class MoreFragment extends BaseFragment implements HandleRetrofitResp {
 
     public static MoreFragment init() {
         return new MoreFragment();
+    }
+
+    private void adjustView() {
+
+        switch (SharedPrefHelper.getInstance(getBaseActivity()).getUserType()) {
+
+            case "visitor":
+
+                imgMoreProfile.setVisibility(View.GONE);
+                tvMoreEditData.setVisibility(View.GONE);
+                tvMoreLogout.setVisibility(View.GONE);
+                tvMoreOrders.setVisibility(View.GONE);
+                tvMoreOrdersView.setVisibility(View.GONE);
+                tvMoreSpecialOrder.setVisibility(View.GONE);
+                tvMoreSpecialOrderView.setVisibility(View.GONE);
+                tvMoreInvoices.setVisibility(View.GONE);
+                tvMoreInvoicesView.setVisibility(View.GONE);
+                tvMoreMessages.setVisibility(View.GONE);
+                tvMoreMessagesView.setVisibility(View.GONE);
+                break;
+            case "user":
+                tvMoreName.setText(SharedPrefHelper.getInstance(getBaseActivity()).getFullName());
+                tvMoreLogin.setVisibility(View.GONE);
+                tvMoreLoginView.setVisibility(View.GONE);
+                tvMoreOrders.setVisibility(View.GONE);
+                tvMoreOrdersView.setVisibility(View.GONE);
+                break;
+            case "delivery":
+                tvMoreName.setText(SharedPrefHelper.getInstance(getBaseActivity()).getFullName());
+                tvMoreLogin.setVisibility(View.GONE);
+                tvMoreLoginView.setVisibility(View.GONE);
+                tvMoreSpecialOrder.setVisibility(View.GONE);
+                tvMoreSpecialOrderView.setVisibility(View.GONE);
+                break;
+        }
     }
     //endregion
 

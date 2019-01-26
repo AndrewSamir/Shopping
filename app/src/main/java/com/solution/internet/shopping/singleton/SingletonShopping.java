@@ -5,7 +5,7 @@ public class SingletonShopping {
 
     private static SingletonShopping mInstance = null;
     private String conversationId;
-    private int c_id,chatUserId,cr_id;
+    private int c_id, chatUserId, cr_id, openChatId = -1;
 
     private SingletonShopping() {
     }
@@ -62,5 +62,13 @@ public class SingletonShopping {
 
     public void setCr_id(int cr_id) {
         this.cr_id = cr_id;
+    }
+
+    public int getOpenChatId() {
+        return openChatId;
+    }
+
+    public void setOpenChatId(int openChatId) {
+        this.openChatId = openChatId;
     }
 }

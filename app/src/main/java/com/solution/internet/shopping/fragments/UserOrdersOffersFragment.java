@@ -137,7 +137,6 @@ public class UserOrdersOffersFragment extends BaseFragment implements HandleRetr
     {
 
     }
-
     //endregion
 
     //region clicks
@@ -145,6 +144,7 @@ public class UserOrdersOffersFragment extends BaseFragment implements HandleRetr
     //endregion
 
     //region calls
+
 
     private void callPrivateOrderGetUserPrivateOrders()
     {

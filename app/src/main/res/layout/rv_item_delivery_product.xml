@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="@dimen/_7sdp"
+    android:layout_margin="@dimen/_4sdp"
     android:orientation="vertical"
     app:cardCornerRadius="@dimen/_5sdp">
 
@@ -17,8 +17,8 @@
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_80sdp"
-            android:layout_marginTop="@dimen/_7sdp">
+            android:layout_height="@dimen/_70sdp"
+            android:layout_marginTop="@dimen/_4sdp">
 
             <ImageView
                 android:id="@+id/imgRvItemDelegateItem"
@@ -36,9 +36,9 @@
                 android:ellipsize="end"
                 android:gravity="center"
                 android:lines="1"
-                android:padding="@dimen/_5sdp"
+                android:padding="@dimen/_3sdp"
                 android:textColor="@color/colorWhite"
-                android:textSize="@dimen/_10sdp"
+                android:textSize="@dimen/_7sdp"
                 tools:text="أسم المنتج" />
         </FrameLayout>
 
@@ -54,11 +54,11 @@
                 android:id="@+id/tvRvItemDelegatePrice"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_3sdp"
                 android:layout_weight="2"
                 android:gravity="right"
                 android:textColor="@color/colorTextPrice"
-                android:textSize="@dimen/_11sdp"
+                android:textSize="@dimen/_8sdp"
                 android:textStyle="bold"
                 tools:text="24 ريال " />
 

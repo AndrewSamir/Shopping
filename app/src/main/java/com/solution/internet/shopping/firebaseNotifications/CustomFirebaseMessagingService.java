@@ -14,14 +14,19 @@ import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
+import com.google.gson.Gson;
 import com.solution.internet.shopping.MainActivity;
 import com.solution.internet.shopping.R;
 import com.solution.internet.shopping.activities.DeliveryMainActivity;
 import com.solution.internet.shopping.interfaces.HandleRetrofitResp;
+import com.solution.internet.shopping.models.ModelChatMessage.ModelChatMessage;
 import com.solution.internet.shopping.models.ModelRefreshTokenRequest.ModelRefreshTokenRequest;
 import com.solution.internet.shopping.retorfitconfig.HandleCalls;
+import com.solution.internet.shopping.singleton.SingletonShopping;
 import com.solution.internet.shopping.utlities.DataEnum;
 import com.solution.internet.shopping.utlities.SharedPrefHelper;
+
+import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
@@ -39,6 +44,7 @@ public class CustomFirebaseMessagingService extends FirebaseMessagingService imp
         int itemId;
         String Body;
         String Title = null;
+        ModelChatMessage modelChatMessage;
 
         Log.d("recievedPushNotificati", remoteMessage.getData().toString());
         if (remoteMessage.getData().size() > 0) {
@@ -47,14 +53,28 @@ public class CustomFirebaseMessagingService extends FirebaseMessagingService imp
             Body = remoteMessage.getData().get("body");
             Title = remoteMessage.getData().get("title");
             itemId = Integer.parseInt(remoteMessage.getData().get("itemid"));
-
+            Intent intent;
 
             NotificationData notificationData = new NotificationData();
             notificationData.setType(Type);
             notificationData.setTitle(Title);
             notificationData.setBody(Body);
             notificationData.setItemid(itemId);
+            if (Type.equals("chat")) {
 
+                Gson gson = new Gson();
+                String jsonInString = remoteMessage.getData().get("data");
+                modelChatMessage = gson.fromJson(jsonInString, ModelChatMessage.class);
+                notificationData.setModelChatMessage(modelChatMessage);
+                Log.d("recievedPushNotificati", modelChatMessage.getType());
+
+                if (SingletonShopping.getInstance().getOpenChatId() == itemId) {
+                    intent = new Intent("KEY");
+                    intent.putExtra("chatModel", modelChatMessage);
+                    sendBroadcast(intent);
+                    return;
+                }
+            }
             this.sendNotification(notificationData);
 
         }

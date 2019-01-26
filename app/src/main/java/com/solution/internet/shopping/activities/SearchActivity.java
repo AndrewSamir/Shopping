@@ -77,7 +77,7 @@ public class SearchActivity extends AppCompatActivity implements HandleRetrofitR
         setContentView(R.layout.activity_search);
         ButterKnife.bind(this);
         itemsList = new ArrayList<>();
-        adapterItems = new AdapterItems(itemsList, -1,this);
+        adapterItems = new AdapterItems(itemsList,this);
         rvSearch.setLayoutManager(new LinearLayoutManager(this));
         rvSearch.setAdapter(adapterItems);
         rvSearch.setNestedScrollingEnabled(false);

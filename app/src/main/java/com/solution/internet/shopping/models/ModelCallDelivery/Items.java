@@ -7,6 +7,8 @@ import java.io.Serializable;
 public class Items implements Serializable {
     @SerializedName("item_id")
     private int itemId;
+    @SerializedName("userid")
+    private int userid;
     @SerializedName("title")
     private String title;
     @SerializedName("price")
@@ -17,6 +19,14 @@ public class Items implements Serializable {
     private String categoryname;
     @SerializedName("cityName")
     private String cityname;
+
+    public int getUserid() {
+        return userid;
+    }
+
+    public void setUserid(int userid) {
+        this.userid = userid;
+    }
 
     public int getItemId() {
         return itemId;

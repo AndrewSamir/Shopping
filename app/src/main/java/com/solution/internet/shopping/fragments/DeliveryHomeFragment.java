@@ -66,7 +66,7 @@ public class DeliveryHomeFragment extends BaseFragment implements HandleRetrofit
         unbinder = ButterKnife.bind(this, view);
         itemsList = new ArrayList<>();
         adapterItems = new AdapterDeliveryItems(itemsList, getBaseActivity());
-        rvSearch.setLayoutManager(new GridLayoutManager(getBaseActivity(), 2));
+        rvSearch.setLayoutManager(new GridLayoutManager(getBaseActivity(), 3));
         rvSearch.setAdapter(adapterItems);
         rvSearch.setNestedScrollingEnabled(false);
         callDelivery();
@@ -168,6 +168,11 @@ public class DeliveryHomeFragment extends BaseFragment implements HandleRetrofit
     void onClickimgAddProduct(View view)
     {
         addFragment(AddPeoductFragment.init(), true);
+    }
+
+    @OnClick(R.id.imgNotifications)
+    public void onClickimgNotifications() {
+        addFragment(NotificationsFragment.init(), true);
     }
     //endregion
 

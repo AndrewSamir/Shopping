@@ -1,131 +1,152 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/login_background"
     android:orientation="vertical">
 
-    <LinearLayout
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/_120sdp"
-        android:orientation="vertical"
-        android:paddingEnd="@dimen/_20sdp"
-        android:paddingStart="@dimen/_20sdp">
+        android:layout_height="wrap_content"
+        android:background="@drawable/login_background"
+        android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="@string/the_login"
-            android:textColor="@color/colorWhite"
-            android:textSize="@dimen/_20sdp"
-            android:textStyle="bold" />
-
-        <EditText
-            android:id="@+id/edtLoginPhone"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_15sdp"
-            android:background="@drawable/background_edit_text"
-            android:drawablePadding="@dimen/_10sdp"
-            android:drawableRight="@drawable/icon_mobile"
-            android:gravity="right"
-            android:hint="@string/mobile"
-            android:inputType="phone"
-            android:padding="@dimen/_12sdp"
-            android:textColor="@color/colorWhite"
-            android:textColorHint="@color/colorWhite"
-            tools:ignore="RtlHardcoded,UnusedAttribute" />
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/_150sdp"
+            android:orientation="vertical"
+            android:paddingEnd="@dimen/_20sdp"
+            android:paddingStart="@dimen/_20sdp">
 
-        <EditText
-            android:id="@+id/edtLoginPassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_12sdp"
-            android:background="@drawable/background_edit_text"
-            android:drawablePadding="@dimen/_10sdp"
-            android:drawableRight="@drawable/icon_password"
-            android:gravity="right"
-            android:hint="@string/password"
-            android:inputType="textPassword"
-            android:padding="@dimen/_12sdp"
-            android:textColor="@color/colorWhite"
-            android:textColorHint="@color/colorWhite"
-            tools:ignore="RtlHardcoded,UnusedAttribute" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/the_login"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/_20sdp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/edtLoginPhone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:background="@drawable/background_edit_text"
+                android:drawablePadding="@dimen/_10sdp"
+                android:drawableRight="@drawable/icon_mobile"
+                android:gravity="right"
+                android:hint="@string/mobile"
+                android:inputType="phone"
+                android:padding="@dimen/_12sdp"
+                android:textColor="@color/colorWhite"
+                android:textColorHint="@color/colorWhite"
+                tools:ignore="RtlHardcoded,UnusedAttribute" />
+
+            <EditText
+                android:id="@+id/edtLoginPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:background="@drawable/background_edit_text"
+                android:drawablePadding="@dimen/_10sdp"
+                android:drawableRight="@drawable/icon_password"
+                android:gravity="right"
+                android:hint="@string/password"
+                android:inputType="textPassword"
+                android:padding="@dimen/_12sdp"
+                android:textColor="@color/colorWhite"
+                android:textColorHint="@color/colorWhite"
+                tools:ignore="RtlHardcoded,UnusedAttribute" />
+
+            <Button
+                android:id="@+id/btnLoginEnter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:background="@drawable/background_text_edit_profile"
+                android:padding="@dimen/_10sdp"
+                android:text="@string/enter"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/_15sdp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_30sdp"
+                android:layoutDirection="rtl"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <TextView
+                    android:id="@+id/btnLoginRegister"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:drawablePadding="@dimen/_10sdp"
+                    android:drawableTop="@drawable/icon_register"
+                    android:gravity="center"
+                    android:text="تسجيل البائع"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/_15sdp" />
+
+                <TextView
+                    android:id="@+id/btnLoginAsClient"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:drawablePadding="@dimen/_10sdp"
+                    android:drawableTop="@drawable/icon_register"
+                    android:gravity="center"
+                    android:text="تسجيل المشتري"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/_15sdp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layoutDirection="rtl"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/forget_password_q"
+                    android:textColor="@color/colorBlack" />
+
+                <TextView
+                    android:id="@+id/tvLoginPressHereForgetPassword"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_3sdp"
+                    android:text="@string/press_here"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+        </LinearLayout>
 
         <Button
-            android:id="@+id/btnLoginEnter"
+            android:id="@+id/btnLoginEnterAsVisitor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginEnd="@dimen/_10sdp"
-            android:layout_marginStart="@dimen/_10sdp"
             android:layout_marginTop="@dimen/_20sdp"
             android:background="@drawable/background_text_edit_profile"
             android:padding="@dimen/_10sdp"
-            android:text="@string/enter"
+            android:alpha="0.8"
+            android:text="تجاوز"
             android:textColor="@color/colorWhite"
             android:textSize="@dimen/_15sdp" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_30sdp"
-            android:layoutDirection="rtl"
-            android:orientation="horizontal"
-            android:weightSum="2">
-
-            <TextView
-                android:id="@+id/btnLoginRegister"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:drawablePadding="@dimen/_10sdp"
-                android:drawableTop="@drawable/icon_register"
-                android:gravity="center"
-                android:text="تسجيل البائع"
-                android:textColor="@color/colorWhite"
-                android:textSize="@dimen/_15sdp" />
-
-            <TextView
-                android:id="@+id/btnLoginAsClient"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:drawablePadding="@dimen/_10sdp"
-                android:drawableTop="@drawable/icon_register"
-                android:gravity="center"
-                android:text="تسجيل المشتري"
-                android:textColor="@color/colorWhite"
-                android:textSize="@dimen/_15sdp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layoutDirection="rtl"
-            android:orientation="horizontal"
-            android:visibility="gone">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/forget_password_q"
-                android:textColor="@color/colorBlack" />
-
-            <TextView
-                android:id="@+id/tvLoginPressHereForgetPassword"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_3sdp"
-                android:text="@string/press_here"
-                android:textStyle="bold" />
-
-        </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+</ScrollView>

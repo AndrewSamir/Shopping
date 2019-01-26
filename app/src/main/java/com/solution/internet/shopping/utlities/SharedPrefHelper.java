@@ -12,19 +12,16 @@ import static android.content.Context.MODE_PRIVATE;
  * Created by andre on 22-Jan-18.
  */
 
-public class SharedPrefHelper
-{
+public class SharedPrefHelper {
     private static Context context;
     private static SharedPrefHelper instance = null;
     private static SharedPreferences prefs = null;
     private static SharedPreferences.Editor editor;
 
-    public static SharedPrefHelper getInstance(Context context)
-    {
+    public static SharedPrefHelper getInstance(Context context) {
         SharedPrefHelper.context = context;
 
-        if (instance == null)
-        {
+        if (instance == null) {
             instance = new SharedPrefHelper();
             SharedPrefHelper.prefs = context.getSharedPreferences("MY_PREFS_NAME", MODE_PRIVATE);
         }
@@ -32,8 +29,7 @@ public class SharedPrefHelper
     }
 
 
-    public void setUser(ModelLoginResponse modelLoginResponse)
-    {
+    public void setUser(ModelLoginResponse modelLoginResponse) {
         editor = context.getSharedPreferences("MY_PREFS_NAME", MODE_PRIVATE).edit();
         editor.putInt(DataEnum.shUserID.name(), modelLoginResponse.getUserid());
         editor.putString(DataEnum.shApiToken.name(), modelLoginResponse.getApiToken());
@@ -44,28 +40,24 @@ public class SharedPrefHelper
         editor.apply();
     }
 
-    public int getUserid()
-    {
+    public int getUserid() {
         return prefs.getInt(DataEnum.shUserID.name(), -1);
     }
 
-    public String getApiToken()
-    {
+    public String getApiToken() {
         return prefs.getString(DataEnum.shApiToken.name(), null);
     }
 
 
-    public String getFullName()
-    {
+    public String getFullName() {
         return prefs.getString(DataEnum.shFullName.name(), null);
     }
-  public String getUserType()
-    {
+
+    public String getUserType() {
         return prefs.getString(DataEnum.shType.name(), null);
     }
 
-    public void signOut()
-    {
+    public void signOut() {
 
         editor = context.getSharedPreferences("MY_PREFS_NAME", MODE_PRIVATE).edit();
         editor.remove(DataEnum.shUserID.name());

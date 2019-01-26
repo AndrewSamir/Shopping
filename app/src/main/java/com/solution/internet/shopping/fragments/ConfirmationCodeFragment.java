@@ -16,6 +16,7 @@ import com.solution.internet.shopping.models.ModelConfirmationCodeRequest.ModelC
 import com.solution.internet.shopping.models.ModelSignUpRequest.ModelSignUpRequest;
 import com.solution.internet.shopping.retorfitconfig.HandleCalls;
 import com.solution.internet.shopping.utlities.DataEnum;
+import com.solution.internet.shopping.utlities.SharedPrefHelper;
 
 import java.util.HashMap;
 import java.util.List;
@@ -101,11 +102,18 @@ public class ConfirmationCodeFragment extends BaseFragment implements HandleRetr
     //region calls response
     @Override
     public void onResponseSuccess(String flag, Object o) {
-        addFragment(HomeFragment.init(), false);
+        if (SharedPrefHelper.getInstance(getBaseActivity()).getUserType().equals("user"))
+            addFragment(HomeFragment.init(), false);
+        else
+            addFragment(DeliveryHomeFragment.init(), false);
     }
 
     @Override
     public void onNoContent(String flag, int code) {
+        if (SharedPrefHelper.getInstance(getBaseActivity()).getUserType().equals("user"))
+            addFragment(HomeFragment.init(), false);
+        else
+            addFragment(DeliveryHomeFragment.init(), false);
 
     }
 

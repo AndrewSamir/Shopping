@@ -76,6 +76,8 @@ public class LoginActivity extends AppCompatActivity implements HandleRetrofitRe
     @Override
     public void onResume() {
         super.onResume();
+        HandleCalls.getInstance(this).setonRespnseSucess(this);
+
         validator = new Validator(this);
         validator.setValidationListener(this);
     }
@@ -101,6 +103,14 @@ public class LoginActivity extends AppCompatActivity implements HandleRetrofitRe
         intent.putExtra(DataEnum.intentRegisterType.name(), "user");
         startActivity(intent);
 
+    }
+
+    @OnClick(R.id.btnLoginEnterAsVisitor)
+    public void onClickbtnLoginEnterAsVisitor() {
+        ModelLoginResponse modelLoginResponse = new ModelLoginResponse();
+        modelLoginResponse.setUsertype("visitor");
+        SharedPrefHelper.getInstance(this).setUser(modelLoginResponse);
+        startActivity(new Intent(LoginActivity.this, MainActivity.class));
     }
     //endregion
 

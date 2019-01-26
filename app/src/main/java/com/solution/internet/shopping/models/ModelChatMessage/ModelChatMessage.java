@@ -3,7 +3,9 @@ package com.solution.internet.shopping.models.ModelChatMessage;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class ModelChatMessage
+import java.io.Serializable;
+
+public class ModelChatMessage implements Serializable
 {
 
     @Expose

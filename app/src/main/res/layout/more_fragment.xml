@@ -100,6 +100,8 @@
                 tools:ignore="RtlHardcoded" />
 
             <View
+                android:id="@+id/tvMoreLoginView"
+
                 android:layout_width="match_parent"
                 android:layout_height="1.5dp"
                 android:background="#50FFFFFF" />
@@ -184,6 +186,8 @@
                 tools:ignore="RtlHardcoded" />
 
             <View
+                android:id="@+id/tvMoreInvoicesView"
+
                 android:layout_width="match_parent"
                 android:layout_height="1.5dp"
                 android:background="#50FFFFFF" />
@@ -205,6 +209,8 @@
                 tools:ignore="RtlHardcoded" />
 
             <View
+                android:id="@+id/tvMoreMessagesView"
+
                 android:layout_width="match_parent"
                 android:layout_height="1.5dp"
                 android:background="#50FFFFFF" />
@@ -226,6 +232,8 @@
                 tools:ignore="RtlHardcoded" />
 
             <View
+                android:id="@+id/tvMoreOrdersView"
+
                 android:layout_width="match_parent"
                 android:layout_height="1.5dp"
                 android:background="#50FFFFFF" />
@@ -247,6 +255,8 @@
                 tools:ignore="RtlHardcoded" />
 
             <View
+                android:id="@+id/tvMoreSpecialOrderView"
+
                 android:layout_width="match_parent"
                 android:layout_height="1.5dp"
                 android:background="#50FFFFFF" />

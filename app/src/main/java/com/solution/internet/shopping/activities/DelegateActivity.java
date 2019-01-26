@@ -73,7 +73,7 @@ public class DelegateActivity extends AppCompatActivity implements HandleRetrofi
         ButterKnife.bind(this);
 
         itemsList = new ArrayList<>();
-        adapterItems = new AdapterItems(itemsList,modelCallDelivery.getInfo().getUserid(), this);
+        adapterItems = new AdapterItems(itemsList, this);
         rvDelegate.setLayoutManager(new LinearLayoutManager(this));
         rvDelegate.setAdapter(adapterItems);
         rvDelegate.setNestedScrollingEnabled(false);

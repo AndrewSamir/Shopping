@@ -14,6 +14,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.solution.internet.shopping.R;
 import com.solution.internet.shopping.fragments.BaseFragment;
 import com.solution.internet.shopping.fragments.ChatFragment;
@@ -97,7 +99,23 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                 if (item.getItemId() == R.id.bottomItem_main) {
                     addContentFragment(new HomeFragment(), true);
                 } else if (item.getItemId() == R.id.bottomItem_messages) {
-                    addContentFragment(new InboxFragment(), true);
+
+                    if (SharedPrefHelper.getInstance(MainActivity.this).getUserType().equals("visitor"))
+                        showMessage("يجب تسجيل الدخول أولا", new MaterialDialog.SingleButtonCallback() {
+                            @Override
+                            public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                startActivity(intent);
+                            }
+                        }, new MaterialDialog.SingleButtonCallback() {
+                            @Override
+                            public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                                dialog.dismiss();
+                            }
+                        });
+                    else
+                        addContentFragment(new InboxFragment(), true);
                 } else if (item.getItemId() == R.id.bottomItem_map) {
                     addContentFragment(new MapFragment(), true);
                 } else if (item.getItemId() == R.id.bottomItem_more) {

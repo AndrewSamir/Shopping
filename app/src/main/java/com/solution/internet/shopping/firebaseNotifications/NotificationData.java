@@ -1,10 +1,12 @@
 package com.solution.internet.shopping.firebaseNotifications;
 
 
+import com.solution.internet.shopping.models.ModelChatMessage.ModelChatMessage;
+
 public class NotificationData {
 
     private String body, type, title;
-
+    private ModelChatMessage modelChatMessage;
     private int itemid;
 
 
@@ -41,5 +43,13 @@ public class NotificationData {
 
     public void setItemid(int itemid) {
         this.itemid = itemid;
+    }
+
+    public ModelChatMessage getModelChatMessage() {
+        return modelChatMessage;
+    }
+
+    public void setModelChatMessage(ModelChatMessage modelChatMessage) {
+        this.modelChatMessage = modelChatMessage;
     }
 }
