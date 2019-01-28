@@ -137,7 +137,7 @@
                 android:layout_marginTop="@dimen/_30sdp"
                 android:alpha="1"
                 android:background="@drawable/background_order_product"
-                android:enabled="false"
+                android:enabled="true"
                 android:text="طلب المنتج"
                 android:textColor="@color/colorWhite"
                 android:textSize="@dimen/_17px" />

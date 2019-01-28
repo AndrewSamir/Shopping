@@ -123,7 +123,15 @@ public class LoginActivity extends AppCompatActivity implements HandleRetrofitRe
         if (flag.equals(DataEnum.callLogin.name())) {
             ModelLoginResponse modelLoginResponse = gson.fromJson(jsonObject, ModelLoginResponse.class);
             SharedPrefHelper.getInstance(this).setUser(modelLoginResponse);
-            callRefreshToken();
+            if (FirebaseInstanceId.getInstance().getToken() != null)
+                callRefreshToken();
+            else {
+                if (SharedPrefHelper.getInstance(this).getUserType().equals("user"))
+                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                else
+                    startActivity(new Intent(LoginActivity.this, DeliveryMainActivity.class));
+                finish();
+            }
 
         } else {
             if (SharedPrefHelper.getInstance(this).getUserType().equals("user"))

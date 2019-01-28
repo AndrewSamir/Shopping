@@ -1,6 +1,7 @@
 package com.solution.internet.shopping.fragments;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.solution.internet.shopping.R;
 import com.solution.internet.shopping.interfaces.HandleRetrofitResp;
 import com.solution.internet.shopping.models.ModelAddProductRequest.ModelAddProductRequest;
@@ -136,7 +139,17 @@ public class ProductDetailsUserFragment extends BaseFragment implements HandleRe
 
     @OnClick(R.id.tvProductDetailsReport)
     public void onClicktvProductDetailsReport() {
-        callReportProduct();
+        showMessage(R.string.sure_report_product, new MaterialDialog.SingleButtonCallback() {
+            @Override
+            public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                callReportProduct();
+            }
+        }, new MaterialDialog.SingleButtonCallback() {
+            @Override
+            public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                dialog.dismiss();
+            }
+        });
     }
     //endregion
 

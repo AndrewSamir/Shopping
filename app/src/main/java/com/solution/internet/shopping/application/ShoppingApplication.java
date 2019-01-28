@@ -8,8 +8,10 @@ import android.support.multidex.MultiDexApplication;
 import android.util.Base64;
 import android.util.Log;
 
+import com.crashlytics.android.Crashlytics;
 import com.solution.internet.shopping.R;
 
+import io.fabric.sdk.android.Fabric;
 import java.io.File;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -28,6 +30,7 @@ public class ShoppingApplication extends MultiDexApplication
     public void onCreate()
     {
         super.onCreate();
+        Fabric.with(this, new Crashlytics());
         instance = this;
 
         initLang();

@@ -48,8 +48,6 @@ public class RegisterActivity extends Activity implements HandleRetrofitResp, Va
     //region fields
     Validator validator;
     String type;
-    List<ModelGetCities> modelGetCitiesList;
-    List<String> citiesName;
     int selectedCityId = 0;
     //endregion
 
@@ -103,7 +101,7 @@ public class RegisterActivity extends Activity implements HandleRetrofitResp, Va
         edtRegisterCity.setClickable(true);
         adjustView();
         HandleCalls.getInstance(this).setonRespnseSucess(this);
-        callCities();
+//        callCities();
         chRegisterPolicy.setOnCheckedChangeListener(this);
     }
 
@@ -135,10 +133,10 @@ public class RegisterActivity extends Activity implements HandleRetrofitResp, Va
     @OnClick(R.id.edtRegisterCity)
     public void onClickedtRegisterCity() {
 
-        final CharSequence[] items = new CharSequence[citiesName.size()];
+        final CharSequence[] items = new CharSequence[SplashActivity.citiesName.size()];
 
-        for (int i = 0; i < citiesName.size(); i++) {
-            items[i] = citiesName.get(i);
+        for (int i = 0; i < SplashActivity.citiesName.size(); i++) {
+            items[i] = SplashActivity.citiesName.get(i);
         }
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -146,8 +144,8 @@ public class RegisterActivity extends Activity implements HandleRetrofitResp, Va
         builder.setItems(items, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int item) {
                 // Do something with the selection
-                edtRegisterCity.setText(citiesName.get(item));
-                selectedCityId = modelGetCitiesList.get(item).getCityId();
+                edtRegisterCity.setText(SplashActivity.citiesName.get(item));
+                selectedCityId = SplashActivity.modelGetCitiesList.get(item).getCityId();
             }
         });
         AlertDialog alert = builder.create();
@@ -161,24 +159,21 @@ public class RegisterActivity extends Activity implements HandleRetrofitResp, Va
 
         Gson gson = new Gson();
 
-        if (flag.equals(DataEnum.callCities.name())) {
-            JsonArray jsonArray = gson.toJsonTree(o).getAsJsonArray();
-            modelGetCitiesList = new ArrayList<>();
-            citiesName = new ArrayList<>();
-            for (int i = 0; i < jsonArray.size(); i++) {
-                ModelGetCities modelGetCity = gson.fromJson(jsonArray.get(i).getAsJsonObject(), ModelGetCities.class);
-                modelGetCitiesList.add(modelGetCity);
-                citiesName.add(modelGetCity.getCity());
-            }
-
-        } else if (flag.equals(DataEnum.callSignup.name())) {
+        if (flag.equals(DataEnum.callSignup.name())) {
             JsonObject jsonObject = gson.toJsonTree(o).getAsJsonObject();
             ModelLoginResponse modelLoginResponse = gson.fromJson(jsonObject, ModelLoginResponse.class);
             SharedPrefHelper.getInstance(this).setUser(modelLoginResponse);
           /*  startActivity(new Intent(RegisterActivity.this, MainActivity.class)
                     .putExtra("mobile", edtRegisterMobile.getText().toString()));*/
-            callRefreshToken();
-
+            if (FirebaseInstanceId.getInstance().getToken() != null)
+                callRefreshToken();
+            else {
+                if (SharedPrefHelper.getInstance(this).getUserType().equals("user"))
+                    startActivity(new Intent(RegisterActivity.this, MainActivity.class).putExtra("mobile", edtRegisterMobile.getText().toString()));
+                else
+                    startActivity(new Intent(RegisterActivity.this, DeliveryMainActivity.class).putExtra("mobile", edtRegisterMobile.getText().toString()));
+                finish();
+            }
         }
 
     }

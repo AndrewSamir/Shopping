@@ -9,6 +9,7 @@ import android.support.annotation.AnimRes;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.text.SpannableString;
 import android.view.MenuItem;
 import android.view.View;
@@ -117,7 +118,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                     else
                         addContentFragment(new InboxFragment(), true);
                 } else if (item.getItemId() == R.id.bottomItem_map) {
-                    addContentFragment(new MapFragment(), true);
+
+                    addContentFragment(MapFragment.init(), true);
                 } else if (item.getItemId() == R.id.bottomItem_more) {
                     addContentFragment(new MoreFragment(), true);
                 }

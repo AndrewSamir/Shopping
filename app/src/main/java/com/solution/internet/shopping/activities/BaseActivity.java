@@ -151,6 +151,22 @@ public abstract class BaseActivity extends RxAppCompatActivity {
 //           LoggerHelper.e(ex);
         }
     }
+    public void addContentFragmentAdd(Fragment fragment, boolean addToBackStack) {
+        hideVirtualKeyBoard();
+        showLoading(false);
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+
+        fragmentTransaction.add(getFragmentContainerID(), fragment);
+
+        if (addToBackStack) {
+            fragmentTransaction.addToBackStack(content_Fragment);
+        }
+        try {
+            fragmentTransaction.commit();
+        } catch (Exception ex) {
+//           LoggerHelper.e(ex);
+        }
+    }
 
     @Override
     public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {

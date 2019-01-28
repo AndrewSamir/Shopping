@@ -98,6 +98,10 @@
                 <action android:name="android.intent.action.RESPOND_VIA_MESSAGE"/>
             </intent-filter>
         </service>
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="4f7d9c847824038c4a761df90a1ce7480bac552f" />
     </application>
 
+    <uses-permission android:name="android.permission.INTERNET" />
 </manifest>

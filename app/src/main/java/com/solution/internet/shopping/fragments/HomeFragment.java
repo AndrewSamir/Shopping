@@ -19,6 +19,7 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.solution.internet.shopping.R;
+import com.solution.internet.shopping.activities.SplashActivity;
 import com.solution.internet.shopping.adapters.AdapterItems;
 import com.solution.internet.shopping.interfaces.HandleRetrofitResp;
 import com.solution.internet.shopping.models.ModelCallDelivery.Items;
@@ -39,11 +40,7 @@ import retrofit2.Call;
 public class HomeFragment extends BaseFragment implements HandleRetrofitResp, TextWatcher {
 
     //region fields
-    List<ModelGetCities> modelGetCitiesList;
-    List<String> citiesName;
     int cityId = 0;
-    List<ModelGetCategories> modelGetCategoriesList;
-    List<String> categoriesName;
     int categoryId = 0;
     List<Items> itemsList;
     AdapterItems adapterItems;
@@ -83,7 +80,6 @@ public class HomeFragment extends BaseFragment implements HandleRetrofitResp, Te
         rvSearch.setLayoutManager(new GridLayoutManager(getBaseActivity(), 3));
         rvSearch.setAdapter(adapterItems);
         rvSearch.setNestedScrollingEnabled(false);
-        callCities();
         edtSearch.addTextChangedListener(this);
 
         edtSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -99,6 +95,7 @@ public class HomeFragment extends BaseFragment implements HandleRetrofitResp, Te
 
         if (SharedPrefHelper.getInstance(getBaseActivity()).equals("visitor"))
             imgNotifications.setVisibility(View.GONE);
+        callProducts();
         return view;
     }
 
@@ -148,28 +145,7 @@ public class HomeFragment extends BaseFragment implements HandleRetrofitResp, Te
     @Override
     public void onResponseSuccess(String flag, Object o) {
         Gson gson = new Gson();
-
-        if (flag.equals(DataEnum.callCities.name())) {
-            JsonArray jsonArray = gson.toJsonTree(o).getAsJsonArray();
-            modelGetCitiesList = new ArrayList<>();
-            citiesName = new ArrayList<>();
-            for (int i = 0; i < jsonArray.size(); i++) {
-                ModelGetCities modelGetCity = gson.fromJson(jsonArray.get(i).getAsJsonObject(), ModelGetCities.class);
-                modelGetCitiesList.add(modelGetCity);
-                citiesName.add(modelGetCity.getCity());
-            }
-            callcategories();
-        } else if (flag.equals(DataEnum.callcategories.name())) {
-            JsonArray jsonArray = gson.toJsonTree(o).getAsJsonArray();
-            modelGetCategoriesList = new ArrayList<>();
-            categoriesName = new ArrayList<>();
-            for (int i = 0; i < jsonArray.size(); i++) {
-                ModelGetCategories modelGetCategories = gson.fromJson(jsonArray.get(i).getAsJsonObject(), ModelGetCategories.class);
-                modelGetCategoriesList.add(modelGetCategories);
-                categoriesName.add(modelGetCategories.getCategory());
-            }
-            callProducts();
-        } else if ((flag.equals(DataEnum.callProducts.name()))) {
+        if ((flag.equals(DataEnum.callProducts.name()))) {
             adapterItems.clearAllListData();
             JsonArray jsonArray = gson.toJsonTree(o).getAsJsonArray();
 
@@ -195,10 +171,10 @@ public class HomeFragment extends BaseFragment implements HandleRetrofitResp, Te
     //region clicks
     @OnClick(R.id.tvSearchCity)
     public void onClicktvSearchCity() {
-        final CharSequence[] items = new CharSequence[citiesName.size()];
+        final CharSequence[] items = new CharSequence[SplashActivity.citiesName.size()];
 
-        for (int i = 0; i < citiesName.size(); i++) {
-            items[i] = citiesName.get(i);
+        for (int i = 0; i < SplashActivity.citiesName.size(); i++) {
+            items[i] = SplashActivity.citiesName.get(i);
         }
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getBaseActivity());
@@ -206,8 +182,8 @@ public class HomeFragment extends BaseFragment implements HandleRetrofitResp, Te
         builder.setItems(items, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int item) {
                 // Do something with the selection
-                tvSearchCity.setText(citiesName.get(item));
-                cityId = modelGetCitiesList.get(item).getCityId();
+                tvSearchCity.setText(SplashActivity.citiesName.get(item));
+                cityId = SplashActivity.modelGetCitiesList.get(item).getCityId();
                 if (categoryId != -1)
                     callProducts();
             }
@@ -218,10 +194,10 @@ public class HomeFragment extends BaseFragment implements HandleRetrofitResp, Te
 
     @OnClick(R.id.tvSearchCategory)
     public void onClicktvSearchCategory() {
-        final CharSequence[] items = new CharSequence[categoriesName.size()];
+        final CharSequence[] items = new CharSequence[SplashActivity.categoriesName.size()];
 
-        for (int i = 0; i < categoriesName.size(); i++) {
-            items[i] = categoriesName.get(i);
+        for (int i = 0; i < SplashActivity.categoriesName.size(); i++) {
+            items[i] = SplashActivity.categoriesName.get(i);
         }
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getBaseActivity());
@@ -229,8 +205,8 @@ public class HomeFragment extends BaseFragment implements HandleRetrofitResp, Te
         builder.setItems(items, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int item) {
                 // Do something with the selection
-                tvSearchCategory.setText(categoriesName.get(item));
-                categoryId = modelGetCategoriesList.get(item).getCategoryId();
+                tvSearchCategory.setText(SplashActivity.categoriesName.get(item));
+                categoryId = SplashActivity.modelGetCategoriesList.get(item).getCategoryId();
                 if (cityId != -1)
                     callProducts();
             }
@@ -251,17 +227,7 @@ public class HomeFragment extends BaseFragment implements HandleRetrofitResp, Te
     //endregion
 
     //region calls
-    private void callCities() {
 
-        Call call = HandleCalls.restShopping.getClientService().callCities();
-        HandleCalls.getInstance(getBaseActivity()).callRetrofit(call, DataEnum.callCities.name(), true);
-    }
-
-    private void callcategories() {
-
-        Call call = HandleCalls.restShopping.getClientService().callcategories();
-        HandleCalls.getInstance(getBaseActivity()).callRetrofit(call, DataEnum.callcategories.name(), true);
-    }
 
     private void callProducts() {
 

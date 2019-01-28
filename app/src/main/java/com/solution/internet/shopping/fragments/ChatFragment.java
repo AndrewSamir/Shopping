@@ -179,7 +179,7 @@ public class ChatFragment extends BaseFragment implements HandleRetrofitResp {
             }
         } else if (flag.equals(DataEnum.callUploadPhoto.name())) {
             String link = (String) o;
-            callChatNew(link, "photo ", "price");
+            callChatNew(link, "photo", "price");
         }
     }
 
@@ -207,7 +207,7 @@ public class ChatFragment extends BaseFragment implements HandleRetrofitResp {
     public void onClickbtnChatImg() {
         final AlertDialog.Builder alert = new AlertDialog.Builder(getBaseActivity());
 
-        alert.setMessage("choose");
+        alert.setMessage("أختر ");
 
         alert.setNegativeButton("صورة", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
@@ -285,6 +285,8 @@ public class ChatFragment extends BaseFragment implements HandleRetrofitResp {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        edtChatMessage.setText("");
 
         Call call = HandleCalls.restShopping.getClientService().callChatNew(modelChatNewRequest);
         HandleCalls.getInstance(getBaseActivity()).callRetrofit(call, DataEnum.callChatNew.name(), true);

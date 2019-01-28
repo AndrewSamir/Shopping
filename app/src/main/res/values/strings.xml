@@ -96,4 +96,5 @@
     <string name="invoices">الفواتير</string>
     <string name="update_product">تعديل منتج</string>
     <string name="default_notification_channel_id">default_notification_channel_id</string>
+    <string name="sure_report_product">هل تريد التبليغ عن منتج مسئ ؟</string>
 </resources>
