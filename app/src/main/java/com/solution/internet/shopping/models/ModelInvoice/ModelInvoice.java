@@ -3,8 +3,7 @@ package com.solution.internet.shopping.models.ModelInvoice;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class ModelInvoice
-{
+public class ModelInvoice {
 
     @Expose
     @SerializedName("avatar")
@@ -39,114 +38,114 @@ public class ModelInvoice
     @Expose
     @SerializedName("cr_id")
     private int crId;
+    @Expose
+    @SerializedName("confirm_seller")
+    private int confirm_seller;
+    @Expose
+    @SerializedName("confirm_buyer")
+    private int confirm_buyer;
 
-    public String getAvatar()
-    {
+    public int getConfirm_seller() {
+        return confirm_seller;
+    }
+
+    public void setConfirm_seller(int confirm_seller) {
+        this.confirm_seller = confirm_seller;
+    }
+
+    public int getConfirm_buyer() {
+        return confirm_buyer;
+    }
+
+    public void setConfirm_buyer(int confirm_buyer) {
+        this.confirm_buyer = confirm_buyer;
+    }
+
+    public String getAvatar() {
         return avatar;
     }
 
-    public void setAvatar(String avatar)
-    {
+    public void setAvatar(String avatar) {
         this.avatar = avatar;
     }
 
-    public String getFullname()
-    {
+    public String getFullname() {
         return fullname;
     }
 
-    public void setFullname(String fullname)
-    {
+    public void setFullname(String fullname) {
         this.fullname = fullname;
     }
 
-    public int getCIdFk()
-    {
+    public int getCIdFk() {
         return cIdFk;
     }
 
-    public void setCIdFk(int cIdFk)
-    {
+    public void setCIdFk(int cIdFk) {
         this.cIdFk = cIdFk;
     }
 
-    public int getTime()
-    {
+    public int getTime() {
         return time;
     }
 
-    public void setTime(int time)
-    {
+    public void setTime(int time) {
         this.time = time;
     }
 
-    public String getIp()
-    {
+    public String getIp() {
         return ip;
     }
 
-    public void setIp(String ip)
-    {
+    public void setIp(String ip) {
         this.ip = ip;
     }
 
-    public int getUserIdFk()
-    {
+    public int getUserIdFk() {
         return userIdFk;
     }
 
-    public void setUserIdFk(int userIdFk)
-    {
+    public void setUserIdFk(int userIdFk) {
         this.userIdFk = userIdFk;
     }
 
-    public int getAcceptedBy()
-    {
+    public int getAcceptedBy() {
         return acceptedBy;
     }
 
-    public void setAcceptedBy(int acceptedBy)
-    {
+    public void setAcceptedBy(int acceptedBy) {
         this.acceptedBy = acceptedBy;
     }
 
-    public int getPrice()
-    {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(int price)
-    {
+    public void setPrice(int price) {
         this.price = price;
     }
 
-    public String getType()
-    {
+    public String getType() {
         return type;
     }
 
-    public void setType(String type)
-    {
+    public void setType(String type) {
         this.type = type;
     }
 
-    public String getReply()
-    {
+    public String getReply() {
         return reply;
     }
 
-    public void setReply(String reply)
-    {
+    public void setReply(String reply) {
         this.reply = reply;
     }
 
-    public int getCrId()
-    {
+    public int getCrId() {
         return crId;
     }
 
-    public void setCrId(int crId)
-    {
+    public void setCrId(int crId) {
         this.crId = crId;
     }
 }

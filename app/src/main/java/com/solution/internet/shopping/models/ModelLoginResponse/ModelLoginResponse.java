@@ -21,12 +21,32 @@ public class ModelLoginResponse {
     private int countryId;
     @SerializedName("city_id")
     private int cityId;
+    @SerializedName("wallet")
+    private int wallet;
     @SerializedName("area_id")
     private int areaId;
     @SerializedName("api_token")
     private String apiToken;
+    @SerializedName("avatar")
+    private String avatar;
     @SerializedName("created_at")
     private CreatedAt createdAt;
+
+    public int getWallet() {
+        return wallet;
+    }
+
+    public void setWallet(int wallet) {
+        this.wallet = wallet;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
 
     public int getUserid() {
         return userid;

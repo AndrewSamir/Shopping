@@ -4,6 +4,7 @@ import com.solution.internet.shopping.models.ModelAddProductRequest.ModelAddProd
 import com.solution.internet.shopping.models.ModelChangePasswordRequest.ModelChangePasswordRequest;
 import com.solution.internet.shopping.models.ModelChatNewRequest.ModelChatNewRequest;
 import com.solution.internet.shopping.models.ModelCommenResponse.ModelCommenResponse;
+import com.solution.internet.shopping.models.ModelConfirmSeller.ModelConfirmSeller;
 import com.solution.internet.shopping.models.ModelConfirmationCodeRequest.ModelConfirmationCodeRequest;
 import com.solution.internet.shopping.models.ModelLoginRequest.ModelLoginRequest;
 import com.solution.internet.shopping.models.ModelRefreshTokenRequest.ModelRefreshTokenRequest;
@@ -139,6 +140,12 @@ public interface ApiCall {
     @GET(Constant.subUrl + "invoices/delivery")
     Call<ModelCommenResponse> callInvoicesDelivery();
 
+    @GET(Constant.subUrl + "invoices/confirm_seller")
+    Call<ModelCommenResponse> callConfirm_seller(ModelConfirmSeller modelConfirmSeller);
+
+    @Multipart
+    @POST(Constant.subUrl + "user/sellerTransfers")
+    Call<ModelCommenResponse> callSellerTransfers(@Part MultipartBody.Part photo, @PartMap() Map<String, RequestBody> partMap);
 
     //endregion
 
@@ -168,6 +175,13 @@ public interface ApiCall {
 
     @GET(Constant.subUrl + "PrivateOrder/{id}")
     Call<ModelCommenResponse> callPrivateOrderInfo(@Path("id") int id);
+
+    //endregion
+
+    //region pages
+
+    @GET(Constant.subUrl + "contact")
+    Call<ModelCommenResponse> callGetContact();
 
     //endregion
 }

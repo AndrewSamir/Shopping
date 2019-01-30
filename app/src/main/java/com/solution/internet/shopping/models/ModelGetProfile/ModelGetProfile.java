@@ -15,6 +15,8 @@ public class ModelGetProfile {
     private String mobile;
     @SerializedName("mobile_st")
     private int mobileSt;
+    @SerializedName("wallet")
+    private int wallet;
     @SerializedName("userType")
     private String usertype;
     @SerializedName("country_id")
@@ -29,6 +31,14 @@ public class ModelGetProfile {
     private String avatar;
     @SerializedName("created_at")
     private CreatedAt createdAt;
+
+    public int getWallet() {
+        return wallet;
+    }
+
+    public void setWallet(int wallet) {
+        this.wallet = wallet;
+    }
 
     public int getUserid() {
         return userid;

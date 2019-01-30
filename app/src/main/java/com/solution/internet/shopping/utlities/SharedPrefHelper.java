@@ -36,6 +36,8 @@ public class SharedPrefHelper {
         editor.putString(DataEnum.shFullName.name(), modelLoginResponse.getFullname());
         editor.putString(DataEnum.shMobile.name(), modelLoginResponse.getMobile());
         editor.putString(DataEnum.shType.name(), modelLoginResponse.getUsertype());
+        editor.putString(DataEnum.shAvatar.name(), modelLoginResponse.getAvatar());
+        editor.putInt(DataEnum.shWallet.name(), modelLoginResponse.getWallet());
 
         editor.apply();
     }
@@ -44,8 +46,16 @@ public class SharedPrefHelper {
         return prefs.getInt(DataEnum.shUserID.name(), -1);
     }
 
+    public int getWallet() {
+        return prefs.getInt(DataEnum.shWallet.name(), 0);
+    }
+
     public String getApiToken() {
         return prefs.getString(DataEnum.shApiToken.name(), null);
+    }
+
+    public String getAvatar() {
+        return prefs.getString(DataEnum.shAvatar.name(), "empty string");
     }
 
 

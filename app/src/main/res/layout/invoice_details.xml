@@ -149,6 +149,20 @@
             android:layout_marginTop="@dimen/_20sdp"
             android:background="@drawable/button_pink"
             android:text="تأكيد التحويل"
+            android:visibility="gone"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/_19px" />
+        <Button
+            android:id="@+id/btnConfirmTransactionDelivery"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_marginBottom="@dimen/_20sdp"
+            android:layout_marginEnd="@dimen/_40sdp"
+            android:layout_marginStart="@dimen/_40sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:background="@drawable/button_pink"
+            android:text="تأكيد الدفع"
             android:textColor="@color/colorWhite"
             android:textSize="@dimen/_19px" />
     </LinearLayout>

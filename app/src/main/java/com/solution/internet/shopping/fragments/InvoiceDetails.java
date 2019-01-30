@@ -52,7 +52,8 @@ public class InvoiceDetails extends BaseFragment implements HandleRetrofitResp {
     @BindView(R.id.tvInvoicesDetailsContent)
     TextView tvInvoicesDetailsContent;
 
-
+    @BindView(R.id.btnConfirmTransaction)
+    View btnConfirmTransaction;
     //endregion
 
     //region life cycle
@@ -171,6 +172,10 @@ public class InvoiceDetails extends BaseFragment implements HandleRetrofitResp {
         long dateTime = Long.parseLong(modelInvoiceDetails.getTime() + "000");
         String dateString = formatter.format(new Date(dateTime));
 
+        if (modelInvoiceDetails.getConfirm_buyer() == 1)
+            btnConfirmTransaction.setVisibility(View.GONE);
+        else
+            btnConfirmTransaction.setVisibility(View.VISIBLE);
 
         tvInvoicesDetailsId.setText("#" + modelInvoiceDetails.getCrId());
         tvInvoicesDetailsPrice.setText(modelInvoiceDetails.getPrice() + " ريال ");

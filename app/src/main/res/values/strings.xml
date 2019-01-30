@@ -97,4 +97,7 @@
     <string name="update_product">تعديل منتج</string>
     <string name="default_notification_channel_id">default_notification_channel_id</string>
     <string name="sure_report_product">هل تريد التبليغ عن منتج مسئ ؟</string>
+    <string name="login_first">يجب تسجيل الدخول أولا</string>
+    <string name="contact_us">تواصل معنا</string>
+    <string name="confirm_transaction_delivery">هل تم التحويل ؟</string>
 </resources>

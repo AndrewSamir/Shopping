@@ -13,6 +13,7 @@ import com.solution.internet.shopping.activities.LoginActivity;
 import com.solution.internet.shopping.interfaces.HandleRetrofitResp;
 import com.solution.internet.shopping.retorfitconfig.HandleCalls;
 import com.solution.internet.shopping.utlities.SharedPrefHelper;
+import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -135,7 +136,10 @@ public class MoreFragment extends BaseFragment implements HandleRetrofitResp {
 
     @OnClick(R.id.tvMoreEditData)
     void onClicktvMoreEditData(View view) {
-        addFragment(UserProfileFragment.init(), true);
+        if (SharedPrefHelper.getInstance(getBaseActivity()).getUserType().equals("user"))
+            addFragment(UserProfileFragment.init(), true);
+        else
+            addFragment(DeliveryProfileFragment.init(), true);
     }
 
     @OnClick(R.id.tvMoreLogout)
@@ -156,18 +160,18 @@ public class MoreFragment extends BaseFragment implements HandleRetrofitResp {
 
     @OnClick(R.id.tvMoreAbout)
     void onClicktvMoreAbout(View view) {
-        addFragment(WebViewFragment.init("من نحن","http://pharaohsland.tours/tasawk/app/page/1"),true);
+        addFragment(WebViewFragment.init("من نحن", "http://pharaohsland.tours/tasawk/app/page/1"), true);
 //        addFragment(NotificationsFragment.init(), true);
     }
 
     @OnClick(R.id.tvMoreContact)
     void onClicktvMoreContact(View view) {
-addFragment(WebViewFragment.init("تواصل معنا","http://pharaohsland.tours/tasawk/app/contact"),true);
+        addFragment(WebViewFragment.init("تواصل معنا", "http://pharaohsland.tours/tasawk/app/contact"), true);
     }
 
     @OnClick(R.id.tvMorePrivacy)
     void onClicktvMorePrivacy(View view) {
-        addFragment(WebViewFragment.init("سياسة الإستخدام","http://pharaohsland.tours/tasawk/app/page/2"),true);
+        addFragment(WebViewFragment.init("سياسة الإستخدام", "http://pharaohsland.tours/tasawk/app/page/2"), true);
     }
 
     @OnClick(R.id.tvMoreInvoices)
@@ -238,6 +242,10 @@ addFragment(WebViewFragment.init("تواصل معنا","http://pharaohsland.tour
                 tvMoreSpecialOrderView.setVisibility(View.GONE);
                 break;
         }
+
+        Picasso.with(getBaseActivity())
+                .load(SharedPrefHelper.getInstance(getBaseActivity()).getAvatar())
+                .into(imgMoreProfile);
     }
     //endregion
 
