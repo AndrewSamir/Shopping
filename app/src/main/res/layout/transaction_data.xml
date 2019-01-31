@@ -87,7 +87,7 @@
             android:alpha="1"
             android:background="@drawable/background_text_edit_profile"
             android:elevation="@dimen/_5sdp"
-            android:enabled="false"
+            android:enabled="true"
             android:text="@string/confirm_transaction"
             android:textColor="@color/colorWhite"
             android:textSize="@dimen/_15sdp"

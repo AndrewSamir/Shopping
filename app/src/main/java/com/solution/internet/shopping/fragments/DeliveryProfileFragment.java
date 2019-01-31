@@ -150,7 +150,7 @@ public class DeliveryProfileFragment extends BaseFragment implements HandleRetro
         tvUserProfileName.setText(modelGetProfile.getFullname());
         tvUserProfileMobile.setText(modelGetProfile.getMobile());
         tvUserProfileMail.setText(modelGetProfile.getEmail());
-        tvUserProfileWallet.setText(modelGetProfile.getWallet()+" الرصيد :  ");
+        tvUserProfileWallet.setText(" الرصيد :  " + modelGetProfile.getWallet());
 
     }
     //endregion

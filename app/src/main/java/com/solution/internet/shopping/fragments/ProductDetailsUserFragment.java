@@ -1,5 +1,6 @@
 package com.solution.internet.shopping.fragments;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -8,6 +9,9 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -186,17 +190,7 @@ public class ProductDetailsUserFragment extends BaseFragment implements HandleRe
                 }
             });
         else {
-            showMessage(R.string.sure_report_product, new MaterialDialog.SingleButtonCallback() {
-                @Override
-                public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                    callReportProduct();
-                }
-            }, new MaterialDialog.SingleButtonCallback() {
-                @Override
-                public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                    dialog.dismiss();
-                }
-            });
+            dialogReport();
         }
     }
 
@@ -316,6 +310,41 @@ public class ProductDetailsUserFragment extends BaseFragment implements HandleRe
 
     public static void setItemId(int itemId) {
         ProductDetailsUserFragment.itemId = itemId;
+    }
+
+    private void dialogReport() {
+        final Dialog dialogAddReset = new Dialog(getBaseActivity());
+        // Include dialog.xml file
+        dialogAddReset.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialogAddReset.setContentView(R.layout.dialog_special_request);
+
+        dialogAddReset.setCancelable(false);
+        final TextView tvDialogExit = dialogAddReset.findViewById(R.id.tvDialogExit);
+        final EditText edtDialogMessage = dialogAddReset.findViewById(R.id.edtDialogMessage);
+
+
+        dialogAddReset.show();
+
+        Button btnDialogAction = dialogAddReset.findViewById(R.id.btnDialogAction);
+        btnDialogAction.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if (edtDialogMessage.getText().toString().length() == 0)
+                    edtDialogMessage.setError(getString(R.string.required));
+                else {
+                    callReportProduct();
+                    dialogAddReset.dismiss();
+                }
+
+            }
+        });
+
+        tvDialogExit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialogAddReset.dismiss();
+            }
+        });
+
     }
 
     //endregion

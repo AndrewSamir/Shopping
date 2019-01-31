@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#50FFFF"
     android:orientation="vertical">
 
     <FrameLayout
@@ -39,7 +40,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawablePadding="@dimen/_10sdp"
-            android:drawableRight="@drawable/icon_calendar"
+            android:drawableRight="@drawable/phone"
             android:gravity="right"
             android:textColor="@color/colorBlack"
             android:textSize="@dimen/_19px"
@@ -52,7 +53,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_10sdp"
             android:drawablePadding="@dimen/_10sdp"
-            android:drawableRight="@drawable/icon_calendar"
+            android:drawableRight="@drawable/mail"
             android:gravity="right"
             android:textColor="@color/colorBlack"
             android:textSize="@dimen/_19px"
@@ -73,21 +74,21 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/_20sdp"
-                android:src="@drawable/icon_calendar" />
+                android:src="@drawable/twitter" />
 
             <ImageView
                 android:id="@+id/imgContactFacebook"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/_10sdp"
-                android:src="@drawable/icon_calendar" />
+                android:src="@drawable/facebook" />
 
             <ImageView
                 android:id="@+id/imgContactInsta"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/_10sdp"
-                android:src="@drawable/icon_calendar" />
+                android:src="@drawable/instgram" />
 
 
         </LinearLayout>

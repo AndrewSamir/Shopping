@@ -11,6 +11,7 @@ import com.solution.internet.shopping.models.ModelGetCategories.ModelGetCategori
 import com.solution.internet.shopping.models.ModelGetCities.ModelGetCities;
 import com.solution.internet.shopping.retorfitconfig.HandleCalls;
 import com.solution.internet.shopping.utlities.DataEnum;
+import com.solution.internet.shopping.utlities.SharedPrefHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -77,7 +78,12 @@ public class SplashActivity extends AppCompatActivity implements HandleRetrofitR
                 ModelGetCategories modelGetCategories = gson.fromJson(jsonArray.get(i).getAsJsonObject(), ModelGetCategories.class);
                 modelGetCategoriesList.add(modelGetCategories);
                 categoriesName.add(modelGetCategories.getCategory());
-                startActivity(new Intent(SplashActivity.this, LoginActivity.class));
+                if (SharedPrefHelper.getInstance(this).getUserid() == -1)
+                    startActivity(new Intent(SplashActivity.this, LoginActivity.class));
+                else if (SharedPrefHelper.getInstance(this).getUserType().equals("user"))
+                    startActivity(new Intent(SplashActivity.this, MainActivity.class));
+                else
+                    startActivity(new Intent(SplashActivity.this, DeliveryMainActivity.class));
                 finish();
             }
         }
