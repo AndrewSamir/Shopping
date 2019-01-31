@@ -21,6 +21,7 @@ import com.google.gson.JsonObject;
 import com.mobsandgeeks.saripaar.ValidationError;
 import com.mobsandgeeks.saripaar.Validator;
 import com.mobsandgeeks.saripaar.annotation.ConfirmPassword;
+import com.mobsandgeeks.saripaar.annotation.Email;
 import com.mobsandgeeks.saripaar.annotation.Length;
 import com.mobsandgeeks.saripaar.annotation.Min;
 import com.mobsandgeeks.saripaar.annotation.NotEmpty;
@@ -60,12 +61,15 @@ public class RegisterActivity extends Activity implements HandleRetrofitResp, Va
     @BindView(R.id.edtRegisterMobile)
     EditText edtRegisterMobile;
 
+    @Email(messageResId = R.string.required)
     @BindView(R.id.edtRegisterMail)
     EditText edtRegisterMail;
     @BindView(R.id.edtRegisterNameShow)
     EditText edtRegisterNameShow;
     @BindView(R.id.edtRegisterLink)
     EditText edtRegisterLink;
+    @BindView(R.id.edtRegisterNationalId)
+    EditText edtRegisterNationalId;
 
     @Password(messageResId = R.string.required)
     @BindView(R.id.edtRegisterPassword)
@@ -108,6 +112,7 @@ public class RegisterActivity extends Activity implements HandleRetrofitResp, Va
     @Override
     protected void onResume() {
         super.onResume();
+        HandleCalls.getInstance(this).setonRespnseSucess(this);
 
         validator = new Validator(this);
         validator.setValidationListener(this);
@@ -133,6 +138,7 @@ public class RegisterActivity extends Activity implements HandleRetrofitResp, Va
     @OnClick(R.id.edtRegisterCity)
     public void onClickedtRegisterCity() {
 
+        edtRegisterCity.setError(null);
         final CharSequence[] items = new CharSequence[SplashActivity.citiesName.size()];
 
         for (int i = 0; i < SplashActivity.citiesName.size(); i++) {
@@ -207,24 +213,28 @@ public class RegisterActivity extends Activity implements HandleRetrofitResp, Va
             if (edtRegisterLink.getText().toString().length() > 0)
                 modelSignUpRequest.setMaarof_link(edtRegisterLink.getText().toString());
             else
-                modelSignUpRequest.setMaarof_link("");
+                modelSignUpRequest.setMaarof_link(" ");
+            if (edtRegisterNationalId.getText().toString().length() > 0)
+                modelSignUpRequest.setNational_id(edtRegisterNationalId.getText().toString());
+            else
+                modelSignUpRequest.setNational_id(" ");
 
-//            modelSignUpRequest.setLat("24.56565645");
-//            modelSignUpRequest.setLng("36.34343434");
+            modelSignUpRequest.setLat("24.56565645");
+            modelSignUpRequest.setLng("36.34343434");
 
             call = HandleCalls.restShopping.getClientService().callSignupDelivery(modelSignUpRequest);
-            HandleCalls.getInstance(this).callRetrofit(call, DataEnum.callSignupDelivery.name(), true);
+            HandleCalls.getInstance(this).callRetrofit(call, DataEnum.callSignup.name(), true);
         } else {
             call = HandleCalls.restShopping.getClientService().callSignup(modelSignUpRequest);
             HandleCalls.getInstance(this).callRetrofit(call, DataEnum.callSignup.name(), true);
         }
     }
 
-    private void callCities() {
+   /* private void callCities() {
 
         Call call = HandleCalls.restShopping.getClientService().callCities();
         HandleCalls.getInstance(this).callRetrofit(call, DataEnum.callCities.name(), true);
-    }
+    }*/
 
     private void callRefreshToken() {
         ModelRefreshTokenRequest modelRefreshTokenRequest = new ModelRefreshTokenRequest();

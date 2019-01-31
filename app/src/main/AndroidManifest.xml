@@ -36,10 +36,10 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity
-            android:name=".activities.MapsActivity"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar" />
+        <!--    <activity
+                android:name=".activities.MapsActivity"
+                android:label="@string/app_name"
+                android:theme="@style/AppTheme.NoActionBar" />-->
         <activity
             android:name=".activities.RegisterActivity"
             android:label="@string/app_name"
@@ -84,7 +84,28 @@
             android:name=".activities.SearchActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.DeepLinksActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/SplashTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
 
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="onmall.com"
+                    android:scheme="http" />
+                <data
+                    android:host="onmall.com"
+                    android:scheme="https" />
+                <data
+                    android:host="https://onmall.page.link"
+                    android:scheme="https" />
+            </intent-filter>
+        </activity>
 
         <service android:name=".firebaseNotifications.CustomFirebaseInstanceIDService">
             <intent-filter>
@@ -95,9 +116,10 @@
         <service android:name=".firebaseNotifications.CustomFirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
-                <action android:name="android.intent.action.RESPOND_VIA_MESSAGE"/>
+                <action android:name="android.intent.action.RESPOND_VIA_MESSAGE" />
             </intent-filter>
         </service>
+
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="4f7d9c847824038c4a761df90a1ce7480bac552f" />

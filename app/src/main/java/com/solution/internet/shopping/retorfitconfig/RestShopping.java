@@ -38,11 +38,9 @@ public class RestShopping
 
 
         //comment start
-
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         builder.addInterceptor(interceptor);
-
         //comment end
         //  httpClient.addInterceptor(interceptor).build();
 

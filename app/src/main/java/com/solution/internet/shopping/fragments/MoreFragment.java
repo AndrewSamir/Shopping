@@ -166,7 +166,7 @@ public class MoreFragment extends BaseFragment implements HandleRetrofitResp {
 
     @OnClick(R.id.tvMoreContact)
     void onClicktvMoreContact(View view) {
-        addFragment(WebViewFragment.init("تواصل معنا", "http://pharaohsland.tours/tasawk/app/contact"), true);
+        addFragment(ContactFragment.init(), true);
     }
 
     @OnClick(R.id.tvMorePrivacy)
@@ -194,7 +194,12 @@ public class MoreFragment extends BaseFragment implements HandleRetrofitResp {
 
     @OnClick(R.id.tvMoreSpecialOrder)
     void onClicktvMoreSpecialOrder(View view) {
+        addFragment(AddSpecialOrderFragment.init(), true);
+    }
 
+    @OnClick(R.id.tvMoreShare)
+    public void onClicktvMoreShare() {
+        share("https://onmall.page.link/AJDA");
     }
 
     //endregion

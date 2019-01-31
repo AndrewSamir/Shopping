@@ -8,8 +8,17 @@ public class ModelSignUpRequest {
     private String userType;
     private String city_id;
     private String maarof_link;
+    private String national_id;
     private String lat;
     private String lng;
+
+    public String getNational_id() {
+        return national_id;
+    }
+
+    public void setNational_id(String national_id) {
+        this.national_id = national_id;
+    }
 
     public String getCity_id() {
         return city_id;

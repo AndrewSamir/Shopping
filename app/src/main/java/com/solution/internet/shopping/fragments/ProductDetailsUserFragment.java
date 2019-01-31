@@ -1,6 +1,7 @@
 package com.solution.internet.shopping.fragments;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -12,12 +13,20 @@ import android.widget.TextView;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.dynamiclinks.DynamicLink;
+import com.google.firebase.dynamiclinks.FirebaseDynamicLinks;
+import com.google.firebase.dynamiclinks.ShortDynamicLink;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.solution.internet.shopping.R;
 import com.solution.internet.shopping.activities.LoginActivity;
 import com.solution.internet.shopping.interfaces.HandleRetrofitResp;
 import com.solution.internet.shopping.models.ModelAddProductRequest.ModelAddProductRequest;
 import com.solution.internet.shopping.models.ModelCallDelivery.Items;
 import com.solution.internet.shopping.models.ModelChatNewRequest.ModelChatNewRequest;
+import com.solution.internet.shopping.models.ModelContactUs.ModelContactUs;
 import com.solution.internet.shopping.retorfitconfig.HandleCalls;
 import com.solution.internet.shopping.utlities.DataEnum;
 import com.solution.internet.shopping.utlities.SharedPrefHelper;
@@ -33,6 +42,7 @@ public class ProductDetailsUserFragment extends BaseFragment implements HandleRe
 
     static Items item;
     static int userId;
+    static int itemId;
     //endregion
 
     //region views
@@ -61,7 +71,10 @@ public class ProductDetailsUserFragment extends BaseFragment implements HandleRe
         final View view = inflater.inflate(R.layout.product_details_fragment, container, false);
 
         unbinder = ButterKnife.bind(this, view);
-        adjustView();
+        if (item != null)
+            adjustView();
+        else
+            callProductsInfo();
         return view;
     }
 
@@ -110,7 +123,13 @@ public class ProductDetailsUserFragment extends BaseFragment implements HandleRe
     //region calls response
     @Override
     public void onResponseSuccess(String flag, Object o) {
+        Gson gson = new Gson();
 
+        if (flag.equals(DataEnum.callProductsInfo.name())) {
+            JsonObject jsonObject = gson.toJsonTree(o).getAsJsonObject();
+            item = gson.fromJson(jsonObject, Items.class);
+            adjustView();
+        }
     }
 
     @Override
@@ -129,10 +148,6 @@ public class ProductDetailsUserFragment extends BaseFragment implements HandleRe
 
     //region clicks
 
-    @OnClick(R.id.tvProductDetailsReport)
-    void onClicktvProductDetailsReport(View view) {
-
-    }
 
     @OnClick(R.id.btnProductDetails)
     public void onClickbtnProductDetails() {
@@ -184,6 +199,11 @@ public class ProductDetailsUserFragment extends BaseFragment implements HandleRe
             });
         }
     }
+
+    @OnClick(R.id.ProductDetailsShare)
+    public void onClickProductDetailsShare() {
+        shareTheProduct();
+    }
     //endregion
 
     //region calls
@@ -206,6 +226,12 @@ public class ProductDetailsUserFragment extends BaseFragment implements HandleRe
         Call call = HandleCalls.restShopping.getClientService().callReportProduct(modelAddProductRequest);
         HandleCalls.getInstance(getBaseActivity()).callRetrofit(call, DataEnum.callReportProduct.name(), true);
     }
+
+    private void callProductsInfo() {
+
+        Call call = HandleCalls.restShopping.getClientService().callProductsInfo(itemId);
+        HandleCalls.getInstance(getBaseActivity()).callRetrofit(call, DataEnum.callProductsInfo.name(), true);
+    }
     //endregion
 
     //region functions
@@ -213,6 +239,14 @@ public class ProductDetailsUserFragment extends BaseFragment implements HandleRe
     public static ProductDetailsUserFragment init(Items item, int userId) {
         setItem(item);
         setUserId(userId);
+        setItemId(0);
+        return new ProductDetailsUserFragment();
+    }
+
+    public static ProductDetailsUserFragment init(String itemId) {
+        setItem(null);
+        setUserId(0);
+        setItemId(Integer.parseInt(itemId));
         return new ProductDetailsUserFragment();
     }
 
@@ -230,16 +264,60 @@ public class ProductDetailsUserFragment extends BaseFragment implements HandleRe
         tvProductDetailsContent.setText(item.getCityname());
         tvProductDetailsPrice.setText(item.getPrice() + " ريال ");
 
-        if (!SharedPrefHelper.getInstance(getBaseActivity()).getUserType().equals("user")) {
+     /*   if (!SharedPrefHelper.getInstance(getBaseActivity()).getUserType().equals("user")) {
             tvProductDetailsReport.setVisibility(View.GONE);
             btnProductDetails.setVisibility(View.GONE);
-        }
+        }*/
         Picasso.with(getBaseActivity())
                 .load(item.getPhoto())
                 .into(imgProductDetails);
 
 
     }
+
+    private void shareTheProduct() {
+
+        Uri imgUri = Uri.parse(item.getPhoto());
+
+        /*  Task<ShortDynamicLink> dynamicLink = */
+        FirebaseDynamicLinks.getInstance().createDynamicLink()
+                .setLink(Uri.parse("https://onmall.com?productId=" + item.getItemId()))
+                .setDynamicLinkDomain("onmall.page.link")
+                .setAndroidParameters(
+                        new DynamicLink.AndroidParameters.Builder("com.solution.internet.shopping")
+                                .build())
+                .setIosParameters(
+                        new DynamicLink.IosParameters.Builder("com.Slash.Tasawk")
+//                                .setAppStoreId("1161347744")
+                                .build())
+                .setSocialMetaTagParameters(
+                        new DynamicLink.SocialMetaTagParameters.Builder()
+                                .setTitle(item.getTitle())
+                                .setImageUrl(imgUri)
+                                .build())
+                .buildShortDynamicLink()
+                .addOnCompleteListener(getBaseActivity(), new OnCompleteListener<ShortDynamicLink>() {
+                    @Override
+                    public void onComplete(@NonNull Task<ShortDynamicLink> task) {
+                        if (task.isSuccessful()) {
+                            // Short link created
+                            Uri shortLink = task.getResult().getShortLink();
+//                            Uri flowchartLink = task.getResult().getPreviewLink();
+                            share(shortLink.toString());
+                        } else {
+                        }
+                    }
+                });
+    }
+
+    public static int getItemId() {
+        return itemId;
+    }
+
+    public static void setItemId(int itemId) {
+        ProductDetailsUserFragment.itemId = itemId;
+    }
+
     //endregion
 
 }

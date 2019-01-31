@@ -63,14 +63,11 @@ public class LoginActivity extends AppCompatActivity implements HandleRetrofitRe
         ButterKnife.bind(this);
         HandleCalls.getInstance(this).setonRespnseSucess(this);
 
-        edtLoginPhone.setText("012861022");
+    /*    edtLoginPhone.setText("012861022");
         edtLoginPassword.setText("123123123");
 
-//        Log.d("deviceToken", FirebaseInstanceId.getInstance().getId());
-//        Log.d("deviceToken", FirebaseInstanceId.getInstance().getToken());
-
         edtLoginPhone.setText("501231233");
-        edtLoginPassword.setText("123123");
+        edtLoginPassword.setText("123123");*/
     }
 
     @Override

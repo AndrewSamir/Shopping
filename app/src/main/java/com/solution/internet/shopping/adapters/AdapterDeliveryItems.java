@@ -126,13 +126,10 @@ public class AdapterDeliveryItems extends RecyclerView.Adapter<AdapterDeliveryIt
         holder.tvRvItemDelegatePrice.setText(items.getPrice() + " ريال ");
 //        holder.tvRvItemDelegateName.setText(items.getCategoryname());
 
-
         Picasso.with(activity)
                 .load(items.getPhoto())
                 .into(holder.imgRvItemDelegateItem);
-
     }
-
 
     @Override
     public int getItemCount()

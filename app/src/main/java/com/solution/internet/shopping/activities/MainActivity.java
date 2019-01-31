@@ -27,6 +27,7 @@ import com.solution.internet.shopping.fragments.InvoiceDeliveryDetails;
 import com.solution.internet.shopping.fragments.InvoiceDetails;
 import com.solution.internet.shopping.fragments.MapFragment;
 import com.solution.internet.shopping.fragments.MoreFragment;
+import com.solution.internet.shopping.fragments.ProductDetailsUserFragment;
 import com.solution.internet.shopping.fragments.UserProfileFragment;
 import com.solution.internet.shopping.fragments.UserSpecialOrderDetailsFragment;
 import com.solution.internet.shopping.interfaces.HandleRetrofitResp;
@@ -49,7 +50,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
 
         Intent intent = getIntent();
 
-        if (intent.hasExtra("mobile"))
+        if (intent.hasExtra(DataEnum.IS_DEEP_LINK.name()))
+            addContentFragment(ProductDetailsUserFragment.init(intent.getStringExtra(DataEnum.EXTRA_NEWS_ID.name())), false);
+
+        else if (intent.hasExtra("mobile"))
             addContentFragment(ConfirmationCodeFragment.init(intent.getStringExtra("mobile")), false);
         else if (intent.hasExtra(DataEnum.extraNotificationType.name())) {
             switch (intent.getStringExtra(DataEnum.extraNotificationType.name())) {
