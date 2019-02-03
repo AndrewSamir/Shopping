@@ -223,6 +223,21 @@ public class HomeFragment extends BaseFragment implements HandleRetrofitResp, Te
 
     @OnClick(R.id.imgAddSpecialOrder)
     void onClickimgAddSpecialOrder(View view) {
+        if (SharedPrefHelper.getInstance(getBaseActivity()).getUserType().equals("visitor"))
+            showMessage(R.string.login_first, new MaterialDialog.SingleButtonCallback() {
+                @Override
+                public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                    Intent intent = new Intent(getBaseActivity(), LoginActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
+                }
+            }, new MaterialDialog.SingleButtonCallback() {
+                @Override
+                public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                    dialog.dismiss();
+                }
+            });
+        else
         addFragment(AddSpecialOrderFragment.init(), true);
     }
 

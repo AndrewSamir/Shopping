@@ -37,6 +37,7 @@ import static com.solution.internet.shopping.utlities.DataEnum.callChatNew;
 public class InvoiceDeliveryDetails extends BaseFragment implements HandleRetrofitResp {
     //region fields
     static int crId;
+    int receipt_id;
     //endregion
 
     //region views
@@ -162,7 +163,7 @@ public class InvoiceDeliveryDetails extends BaseFragment implements HandleRetrof
     private void callConfirm_seller(String comment, String confirm) {
 
         ModelConfirmSeller modelConfirmSeller = new ModelConfirmSeller();
-        modelConfirmSeller.setReceipt_id(crId);
+        modelConfirmSeller.setReceipt_id(receipt_id);
         modelConfirmSeller.setComment(comment);
         modelConfirmSeller.setConfirm_seller(confirm);
         Call call = HandleCalls.restShopping.getClientService().callConfirm_seller(modelConfirmSeller);
@@ -199,6 +200,12 @@ public class InvoiceDeliveryDetails extends BaseFragment implements HandleRetrof
         tvInvoicesDetailsDate.setText(dateString);
         tvInvoicesDetailsName.setText(modelInvoiceDetails.getFullname());
         tvInvoicesDetailsContent.setText(modelInvoiceDetails.getReply());
+
+        receipt_id = modelInvoiceDetails.getReceipt_id();
+        if (modelInvoiceDetails.getIsPaid() == 1) {
+            tvInvoicesDetailsState.setCompoundDrawablesWithIntrinsicBounds(null, null, null, null);
+            tvInvoicesDetailsState.setText("مدفوعة");
+        }
     }
 
     private void dialogAddSpecialRrequest() {
@@ -218,7 +225,7 @@ public class InvoiceDeliveryDetails extends BaseFragment implements HandleRetrof
         btnDialogActionConfirm.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if (edtDialogMessage.getText().toString().length() == 0)
-                    callConfirm_seller("", "confirm");
+                    callConfirm_seller(" ", "confirm");
                 else
                     callConfirm_seller(edtDialogMessage.getText().toString(), "confirm");
                 dialogAddReset.dismiss();
@@ -230,7 +237,7 @@ public class InvoiceDeliveryDetails extends BaseFragment implements HandleRetrof
         btnDialogActionReject.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if (edtDialogMessage.getText().toString().length() == 0)
-                    callConfirm_seller("", "reject");
+                    callConfirm_seller(" ", "reject");
                 else
                     callConfirm_seller(edtDialogMessage.getText().toString(), "reject");
                 dialogAddReset.dismiss();

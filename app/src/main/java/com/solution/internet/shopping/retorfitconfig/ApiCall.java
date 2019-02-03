@@ -140,8 +140,8 @@ public interface ApiCall {
     @GET(Constant.subUrl + "invoices/delivery")
     Call<ModelCommenResponse> callInvoicesDelivery();
 
-    @GET(Constant.subUrl + "invoices/confirm_seller")
-    Call<ModelCommenResponse> callConfirm_seller(ModelConfirmSeller modelConfirmSeller);
+    @POST(Constant.subUrl + "invoices/confirm_seller")
+    Call<ModelCommenResponse> callConfirm_seller(@Body ModelConfirmSeller modelConfirmSeller);
 
     @Multipart
     @POST(Constant.subUrl + "user/sellerTransfers")

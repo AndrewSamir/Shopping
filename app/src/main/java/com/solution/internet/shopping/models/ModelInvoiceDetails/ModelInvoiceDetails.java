@@ -50,6 +50,28 @@ public class ModelInvoiceDetails {
     @Expose
     @SerializedName("confirm_buyer")
     private int confirm_buyer;
+    @Expose
+    @SerializedName("receipt_id")
+    private int receipt_id;
+    @Expose
+    @SerializedName("isPaid")
+    private int isPaid;
+
+    public int getReceipt_id() {
+        return receipt_id;
+    }
+
+    public void setReceipt_id(int receipt_id) {
+        this.receipt_id = receipt_id;
+    }
+
+    public int getIsPaid() {
+        return isPaid;
+    }
+
+    public void setIsPaid(int isPaid) {
+        this.isPaid = isPaid;
+    }
 
     public int getConfirm_seller() {
         return confirm_seller;

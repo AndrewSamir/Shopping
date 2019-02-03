@@ -63,11 +63,11 @@ public class LoginActivity extends AppCompatActivity implements HandleRetrofitRe
         ButterKnife.bind(this);
         HandleCalls.getInstance(this).setonRespnseSucess(this);
 
-        edtLoginPhone.setText("012861022");
+ /*       edtLoginPhone.setText("012861022");
         edtLoginPassword.setText("123123123");
 
         edtLoginPhone.setText("501231233");
-        edtLoginPassword.setText("123123");
+        edtLoginPassword.setText("123123");*/
     }
 
     @Override
@@ -106,6 +106,7 @@ public class LoginActivity extends AppCompatActivity implements HandleRetrofitRe
     public void onClickbtnLoginEnterAsVisitor() {
         ModelLoginResponse modelLoginResponse = new ModelLoginResponse();
         modelLoginResponse.setUsertype("visitor");
+        modelLoginResponse.setUserid(-1);
         SharedPrefHelper.getInstance(this).setUser(modelLoginResponse);
         startActivity(new Intent(LoginActivity.this, MainActivity.class));
     }

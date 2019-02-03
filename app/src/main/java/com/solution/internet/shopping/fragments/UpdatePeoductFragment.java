@@ -11,6 +11,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.StrictMode;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
@@ -402,7 +403,8 @@ public class UpdatePeoductFragment extends BaseFragment implements HandleRetrofi
 
     private void selectImage()
     {
-
+        StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+        StrictMode.setVmPolicy(builder.build());
         TedBottomPicker tedBottomPicker = new TedBottomPicker.Builder(getBaseActivity())
                 .setOnImageSelectedListener(new TedBottomPicker.OnImageSelectedListener()
                 {

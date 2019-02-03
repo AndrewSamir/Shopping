@@ -3,6 +3,7 @@ package com.solution.internet.shopping.fragments;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,9 +16,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.solution.internet.shopping.R;
+import com.solution.internet.shopping.activities.LoginActivity;
 import com.solution.internet.shopping.adapters.AdapterItems;
 import com.solution.internet.shopping.interfaces.HandleRetrofitResp;
 import com.solution.internet.shopping.models.ModelCallDelivery.Items;
@@ -77,7 +81,7 @@ public class DeliveryPageFragment extends BaseFragment implements HandleRetrofit
         unbinder = ButterKnife.bind(this, view);
 
         itemsList = new ArrayList<>();
-        adapterItems = new AdapterItems(itemsList,  getBaseActivity());
+        adapterItems = new AdapterItems(itemsList, getBaseActivity());
         rvDelegate.setLayoutManager(new GridLayoutManager(getBaseActivity(), 3));
         rvDelegate.setAdapter(adapterItems);
         rvDelegate.setNestedScrollingEnabled(false);
@@ -161,7 +165,22 @@ public class DeliveryPageFragment extends BaseFragment implements HandleRetrofit
 
     @OnClick(R.id.tvDelegateSpecialRequest)
     void onClicktvDelegateSpecialRequest(View view) {
-        dialogAddSpecialRrequest();
+        if (SharedPrefHelper.getInstance(getBaseActivity()).getUserType().equals("visitor"))
+            showMessage(R.string.login_first, new MaterialDialog.SingleButtonCallback() {
+                @Override
+                public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                    Intent intent = new Intent(getBaseActivity(), LoginActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
+                }
+            }, new MaterialDialog.SingleButtonCallback() {
+                @Override
+                public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                    dialog.dismiss();
+                }
+            });
+        else
+            dialogAddSpecialRrequest();
     }
     //endregion
 
